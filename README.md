@@ -9,7 +9,8 @@ When playing remotely locally (i.e., on the same network):
 The problems arise when playing on a remote network:
 * It requires a very high-speed internet on both sides
 * Even if there are high-speed networks, you are dependent on the Sony server that allows you to communicate to the PlayStation.
-* Sony's servers are a limited resource, the more users for remote play, the lesser the quality will be
+* Sony's servers are a limited resource, the more users for remote play, the lesser the quality will be.
+
 To give you an idea: although having very high speed on both sides, we were only able to run the PS4 remotely at 540p (which is sad really since most of PS4 games are made for 1080p) and 30fps.
 Trying to go as high as 720p remotely was constantly disconnecting (potentially due to Sony's servers saturating).
 <p align="center">
