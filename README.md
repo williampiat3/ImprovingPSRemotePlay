@@ -18,6 +18,10 @@ Using our solution, we were able to make the remote play running at 720p all the
 # Explanation of the solution:
 Some of you might have guessed it from the beginning our goal here is to make the remote play locally even if you are located on another network, to bypass Sony's server (which they should be thankful as it reduces their load ;) ) and to connect your computer almost directly to the PS4 or 5.
 To achieve so we have to connect securely the device you are streaming on to the network of the PlayStation, and we will achieve this building a VPN server here is a drawing explaining the principle of the solution.
+<p align="center">
+	<img src="./images/with_vpn.png">
+</p>
+
 
 We will offer you 2 solutions depending on your usage: 
 * A quick and dirty one that is very easy but that has some disadvantages (touchpad not working... for now), you only have this solution if the remote PC is running on Linux.
