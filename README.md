@@ -13,7 +13,7 @@ The problems arise when playing on a remote network:
 To give you an idea: although having very high speed on both sides, we were only able to run the PS4 remotely at 540p (which is sad really since most of PS4 games are made for 1080p) and 30fps.
 Trying to go as high as 720p remotely was constantly disconnecting (potentially due to Sony's servers saturating).
 <p align="center">
-	<img src="images/without_vpn.jpg">
+	<img src="./images/without_vpn.JPG">
 </p>
 
 Using our solution, we were able to make the remote play running at 720p all the time from afar without any connectivity issues with a safe encrypted connection. It requires to buy some equipment but it is not very expensive and we found for you the cheapest one.
@@ -22,7 +22,7 @@ Using our solution, we were able to make the remote play running at 720p all the
 Some of you might have guessed it from the beginning our goal here is to make the remote play locally even if you are located on another network, to bypass Sony's server (which they should be thankful as it reduces their load ;) ) and to connect your computer almost directly to the PS4 or 5.
 To achieve so we have to connect securely the device you are streaming on to the network of the PlayStation, and we will achieve this building a VPN server here is a drawing explaining the principle of the solution.
 <p align="center">
-	<img src="images/with_vpn.jpg">
+	<img src="./images/with_vpn.JPG">
 </p>
 
 
