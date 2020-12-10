@@ -121,8 +121,8 @@ Your LAN or local network is the network connecting all your machines to the web
 How acts the VPN we just did? It creates a subnetwork in your network, meaning that the raspberry acts just like your web router: the raspberry gives to any device connected to the VPN access to your LAN and the web. That's why you can actually ping the PlayStation. However the PlayStation app can't reach it? Yes (and this was a conjuncture) the app looks for the PlayStation on the same network that the computer meaning the subnetwork of the raspberry pi! 
 A solution could be to connect your PlayStation to the VPN but that is not feasible unless the connection of your PlayStation to the web is through a device that can use a VPN... Yeah, we are not gonna do that...
 
-<p>
- <img src="./images/quickDirtNet.JPG" width=46% height=46% align=”center”>
+<p  align=”center”>
+ <img src="./images/quickDirtNet.JPG" width=46% height=46%>
 </p>
 
 So the other possibility is to have the VPN register you to the LAN and not create a subnetwork and this is called a Bridge VPN! However piVPN is not (for now) able to configure your raspberry to work in that mode so we will have to configure everything manually... Yes this is the trickier and more complex operation but it is worth it!
@@ -316,6 +316,11 @@ Now you can increase the quality of your remote play as long as you connexion al
 
 ## About this solution: what is this changing
 Now any device connected to the VPN can be spotted on the LAN, if you go to your router's admin page (that you can also access on the remote computer with the VPN now) and check the devices connected you will note that a new device has appeared whose IP belongs to the range you gave in the configuration file of openVPN whereas in the previous solution your device was not visible as it was on a subnetwork.
+
+<p  align=”center”>
+  <img src="./images/cleanVpn.JPG" width=38% height=38%>
+</p>
+
 
 # Conclusion
 ...
