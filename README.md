@@ -102,8 +102,11 @@ To check if you are successful, you should see the overall data flow (uploads an
 
 ## Connect to the PlayStation (try at least..)
 Yeeeww ! You are connected remotely to your home network now try to connect to your PlayStation using the PS remote play application...
+
 It doesn't work...
+
 Yes, it doesn't work...
+
 But you can actually detect the PlayStation if you run this command (that works on windows, Linux and Mac OS) `ping **PS IP**` you will be receiving packets meaning the PlayStation is accessible but the app doesn't reach it! But you know what does? Chiaki!
 ## Install Chiaki
 [Chiaki](https://github.com/thestr4ng3r/chiaki) is a free, open source, PS remote play client that you can download [here.](https://github.com/thestr4ng3r/chiaki/releases)
