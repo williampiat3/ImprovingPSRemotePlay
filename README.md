@@ -1,4 +1,5 @@
-﻿# PS4 and PS5: Improving your PS remote play experience:
+
+# PS4 and PS5: Improving your PS remote play experience:
 ## Introduction
 This guide will allow you to improve your experience of PS remote play, reduce the load of Sony's servers and tap into the world of raspberry pi while sitting on your couch and playing your PS4 or 5 from anywhere. Hooked already? Well, here's how to do it:
 As I wasn't able to find online the full explanation on how to solve this problem. My brother and I decided to note down the steps that allowed us to completely tackle some issues with the PS remote play.
@@ -317,10 +318,7 @@ Now you can increase the quality of your remote play as long as you connexion al
 ## About this solution: what is this changing
 Now any device connected to the VPN can be spotted on the LAN, if you go to your router's admin page (that you can also access on the remote computer with the VPN now) and check the devices connected you will note that a new device has appeared whose IP belongs to the range you gave in the configuration file of openVPN whereas in the previous solution your device was not visible as it was on a subnetwork.
 
-<p  align=”center”>
-  <img src="./images/cleanVpn.JPG" width=38% height=38%>
-</p>
-
+<div style="text-align:center"><img src="./images/cleanVpn.JPG" width=38% height=38%></div>
 
 # Conclusion
 ...
