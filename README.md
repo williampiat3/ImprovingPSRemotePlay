@@ -320,5 +320,6 @@ Now any device connected to the VPN can be spotted on the LAN, if you go to your
 <p align="center">
  <img src="./images/cleanVpn.JPG" width=38% height=38%>
 </p>
+
 # Conclusion
 ...
