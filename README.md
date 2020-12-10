@@ -108,7 +108,7 @@ It doesn't work...
 Yes, it doesn't work...
 
 But you can actually detect the PlayStation if you run this command (that works on windows, Linux and Mac OS) `ping **PS IP**` you will be receiving packets meaning the PlayStation is accessible but the app doesn't reach it! But you know what does? Chiaki!
-## Install Chiaki <img src="./images/chiaki_icon.png">
+## Install Chiaki <img src="./images/chiaki_icon.png" width=15% height=15%>
 [Chiaki](https://github.com/thestr4ng3r/chiaki) is a free, open source, PS remote play client that you can download [here.](https://github.com/thestr4ng3r/chiaki/releases)
 You also need your **PSN account ID**, not your login, not your email... Look, you just don't have it yet ;). The Chiaki github is providing a python script for you to get it easily [here](https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you, just take the script on the raspberry anywhere, name it psn-account-id.py, open a terminal in the same folder and run `python3 psn-account-id.py`... Some packages missing? `sudo pip3 install requests` ..... pip missing? `sudo apt-get install python3-pip`. Ok now you should be fine running the script. It will open up a web page for logging you, copy past the link you get in your terminal and that's it your **PSN account ID**, note it down. 
 Run the Chiaki executable enter your **PSN account ID** the **PS IP** and then it will prompt for a PIN code
