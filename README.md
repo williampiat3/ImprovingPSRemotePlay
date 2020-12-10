@@ -347,10 +347,10 @@ We need to tell OpenVPN to make use of our “openvpn-bridge” script. Enter
 
 Copy these two lines:
 
-``
+```
 ExecStartPre=/etc/openvpn/openvpn-bridge start
 ExecStopPost=/etc/openvpn/openvpn-bridge stop
-``
+```
 
 and paste them at the bottom of the [Service] section.
 
@@ -369,6 +369,10 @@ Verify that the br0 and tap0 interfaces are up by entering in Terminal
 Check the OpenVPN server status by entering
 
 * `systemctl status openvpn@server.service`
+
+you should see a display saying that the VPN is running
+
+IMAGE(William)
 
 
 ## Open up the 1194 port on your router
