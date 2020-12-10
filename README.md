@@ -155,11 +155,279 @@ So as described in the conclusion of the previous section the solution is to bui
 If you performed the Quick and dirty solution you'll have to uninstall piVPN on the raspberry by running the command: `pivpn uninstall` and select to uninstall all the dependencies, remove the port forwarding rule on your router (you'll have to put it back afterwards),enable ssh on your raspberry pi to be able to run commands on it from your computer and reboot it.
 
 ## Set up the bridge VPN
-The solution is inspired from [this thread](https://github.com/pivpn/pivpn/issues/45) that gives a solution to build a bridge mode that is not yet supported by piVPN, espescially the second message gives a link and some guide lines. As the instructions are made for a Linux virtual machine we will adapt them here to make it easier for you.
+The solution is inspired from [this thread](https://github.com/pivpn/pivpn/issues/45) that gives a solution to build a bridge mode that is not yet supported by piVPN, espescially the second message gives a [link](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup) and some guide lines. As the instructions are made for a Linux virtual machine we will adapt them here to make it easier for you.
+
+### Authentication Setup with Easy-RSA
+
+Open Terminal on the raspberry, and become root:
+
+* `sudo su`
+
+You should always become root before running the commands below. Install OpenVPN, Easy-RSA and the Linux Ethernet bridge utilities:
+
+* `apt-get install openvpn easy-rsa bridge-utils`
+
+Copy Easy-RSA to OpenVPN's directory:
+
+* `cp -r /usr/share/easy-rsa /etc/openvpn`
+
+Now we'll make the credentials (certificates and keys) for OpenVPN authentication. Go to Easy-RSA's directory:
+
+* `cd /etc/openvpn/easy-rsa`
+
+Enter
+
+* `./easyrsa init-pki`
+
+Create a Certificate Authority (CA) by entering
+
+* `./easyrsa build-ca nopass`
+
+For Common Name, enter “OpenVPN-CA” (without quotes).
+
+Create the server credentials by entering
+
+* `./easyrsa gen-req openvpnserver nopass`
+
+The Common Name will be set to “openvpnserver” by default, so no entry is required.
+
+Sign the server credentials by entering
+
+* `./easyrsa sign-req server openvpnserver`
+
+Enter “yes” (without quotes) as requested.
+
+Generate Diffie-Hellman parameters by entering
+
+* `./easyrsa gen-dh`
+
+Now we'll create the client credentials.
+
+To create credentials for a client called “ps_remote”, enter
+
+* `./easyrsa gen-req ps_remote nopass` or `./easyrsa gen-req ps_remote` if you want a password on the VPN access
+
+The Common Name will be set to “ps_remote” by default, so no entry is required.
+
+Sign the credentials of client “ps_remote” by entering
+
+* `./easyrsa sign-req client ps_remote`
+
+Enter “yes” (without quotes) as requested.
+
+You can make more client credentials by changing “ps_remote” in the previous two commands. Each client's Common Name must be unique. 
+
+Create the HMAC signature:
+
+* `openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/private/ta.key`
+
+Certificate and key files will be given to the clients. Copy these files to the host OS via the shared folder by entering
+
+* `mkdir /home/pi/credentials`
+
+* `cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/easy-rsa/pki/issued/ps_remote.crt /etc/openvpn/easy-rsa/pki/private/ps_remote.key /home/pi/credentials`
+
+You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. 
+
+### VPN setup
+This is where we will be using all the informations that we made you find in the part common to both simple and complex installation, namely **raspberry IP**, **netmask**, **broadcast IP**,**router IP**,**public IP**
+
+We'll use the text editor “nano” to create a script called “openvpn-bridge” that performs the Ethernet bridging. Enter on the raspberry, still as root: 
+
+* `nano /etc/openvpn/openvpn-bridge`
+
+ Copy and paste the following script into that (empty) file, make sure that your are changing the keywords raspberry IP, broadcast IP and router IP by their values (they are only at the beginning of the script), make sure you leave the quotation mark around them
+
+ ```shell
+#!/bin/sh
+
+# Define Bridge Interface
+br="br0"
+
+# Define list of TAP interfaces to be bridged,
+# for example tap="tap0 tap1 tap2".
+tap="tap0"
+
+# Define physical ethernet interface to be bridged
+# with TAP interface(s) above.
+eth="eth0"
 
 
+# LINES TO EDIT
+eth_ip_netmask= "raspberry_IP/24"
+eth_broadcast= "broadcast_IP"
+eth_gateway= "router_IP"
+# NO MORE LINE TO EDIT
+
+case "$1" in
+start)
+    for t in $tap; do
+        openvpn --mktun --dev $t
+    done
+
+    brctl addbr $br
+    brctl addif $br $eth
+
+    for t in $tap; do
+        brctl addif $br $t
+    done
+
+    for t in $tap; do
+        ip addr flush dev $t
+        ip link set $t promisc on up
+    done
+
+    ip addr flush dev $eth
+    ip link set $eth promisc on up
+
+    ip addr add $eth_ip_netmask broadcast $eth_broadcast dev $br
+    ip link set $br up
+
+    ip route add default via $eth_gateway
+    ;;
+stop)
+    ip link set $br down
+    brctl delbr $br
+
+    for t in $tap; do
+        openvpn --rmtun --dev $t
+    done
+
+    ip link set $eth promisc off up
+    ip addr add $eth_ip_netmask broadcast $eth_broadcast dev $eth
+
+    ip route add default via $eth_gateway
+    ;;
+*)
+    echo "Usage:  openvpn-bridge {start|stop}"
+    exit 1
+    ;;
+esac
+exit 0
+ ```
+This script is adapted from the “bridge-start” and “bridge-stop” scripts at OpenVPN's Ethernet bridging page. It bridges the Ethernet interface, eth0, and OpenVPN's TAP interface, tap0, as members of the bridge interface, br0.
+
+Make the script executable by entering
+
+ * `chmod 744 /etc/openvpn/openvpn-bridge`
+
+Now we'll create the server configuration file. Enter
+
+* `nano /etc/openvpn/server.conf`
+
+Copy and paste the following text, you have to modify the line server bridge with your raspberry IP, your netmask and a start IP and end IP, we haven't talked about the start IP and end IP this will be the range of IP that will be allocated to the devices connected to your VPN, if you are only planning to have under 10 devices  you can set a range of 10. for instance if your raspberry IP is `192.168.1.10` you want to assign maximum 10 devices then a start IP could be `192.168.1.100` and an end IP for 10 devices is `192.168.1.109`
+
+```
+port 1194
+proto udp
+dev tap0
+ca /etc/openvpn/easy-rsa/pki/ca.crt
+cert /etc/openvpn/easy-rsa/pki/issued/openvpnserver.crt
+key /etc/openvpn/easy-rsa/pki/private/openvpnserver.key
+dh /etc/openvpn/easy-rsa/pki/dh.pem
+remote-cert-tls client
+server-bridge raspberry_IP netmask start_IP end_IP
+client-to-client
+keepalive 10 120
+tls-auth /etc/openvpn/easy-rsa/pki/private/ta.key 0
+cipher AES-256-GCM
+compress lz4-v2
+push "compress lz4-v2"
+persist-key
+persist-tun
+status /var/log/openvpn-status.log
+log-append /var/log/openvpn.log
+verb 3
+```
+
+
+We need to tell OpenVPN to make use of our “openvpn-bridge” script. Enter
+
+* `nano /lib/systemd/system/openvpn@.service`
+
+Copy these two lines:
+
+``
+ExecStartPre=/etc/openvpn/openvpn-bridge start
+ExecStopPost=/etc/openvpn/openvpn-bridge stop
+``
+
+and paste them at the bottom of the [Service] section.
+
+Exit and save. Reboot the VM by entering
+
+* `reboot`
+
+The OpenVPN server will be running at boot, i.e., no user login is required.
+
+### Basic testing
+Verify that the br0 and tap0 interfaces are up by entering in Terminal
+
+* `ip a`
+
+
+Check the OpenVPN server status by entering
+
+* `systemctl status openvpn@server.service`
+
+
+## Open up the 1194 port on your router
+
+**Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.**
+
+
+Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwing option (the specific location of this option is dependent of your router) and add a new routing rule:
+* protocol: UDP and TCP
+* port 1194
+* destination: **Raspberry IP**
+* external IP: Leave empty (except if you only want to authorize some specific IPs to connect to your VPN, which could be a good idea if your remote network has a static IP... oh wait it doesn't have one most likely ;) )
 
 ## Set up the VPN Client
 
+On the remote computer you will need the credendentials files that you created during the installation of the openVPN server
+You will also need a configuration file called `ps_remote.conf` which content has to be customized with the **public IP** line 4 (don't erase 1194 it indicate). Here is the content
+
+```
+client
+dev tap0
+proto udp
+remote public_IP 1194
+persist-key
+persist-tun
+ca ca.crt
+cert joe.crt
+key joe.key
+remote-cert-tls server
+tls-auth ta.key 1
+cipher AES-256-GCM
+compress lz4-v2
+verb 3
+```
+
+So as a reminder you need 4 files: `ps_remote.conf` that you just created and `ca.crt` `ps_remote.crt` `ps_remote.key` that were created during the installation of openvpn and the creation of the acces to the ps_remote user. Their will all be useful for configuring the VPN Client
+
+
+COMPLETE HERE
+
+Now that you managed to connect you can breathe, this is it, it's done
+
 
 ## Connect to your playstation localy remotly (uhuhuhuhuh)
+Now that your VPN is on, that your client is ready and that you can connect to the VPN server, all you need to do is to fire the PS remote play app!!! maybe you'll have a pairing to make: 
+
+To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC
+
+And that's it folks a local remote play is on!!! with full compatibility with all keys, touchpad and so on... isn't it beautiful... 
+
+Now you can increase the quality of you remote play as long as you connexion allows it, you are no more bounded by the state of sony's server. Free of this dominion you can finally remote play in peace
+
+
+
+
+## About this solution: what is this changing
+Now any device connected to the VPN can be spotted on the LAN, if you go to your router's admin page (that you can access also on the remote computer with the VPN now) and check the devices connected you will note that a new device has appeared whose IP belong to the range you gave in the configuration file of openVPN whereas in the previous solution your device was not visible as it was on a subnetwork.
+
+
+# Conclusion
+
+...
