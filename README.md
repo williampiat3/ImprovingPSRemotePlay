@@ -87,9 +87,7 @@ Connect to your router admin interface: http://**router IP** and look in the adv
 
 ## Set up a VPN client on your remote PC
 On the computer on the remote network you need to set a VPN client that will allow you to connect to the VPN server.
-* For [windows](https://openvpn.net/client-connect-vpn-for-windows/)
-* For [Mac Os](https://openvpn.net/client-connect-vpn-for-mac-os/)
-* For [Linux](https://openvpn.net/openvpn-client-for-linux/)
+* For [windows](https://openvpn.net/client-connect-vpn-for-windows/), [Mac Os](https://openvpn.net/client-connect-vpn-for-mac-os/) or [Linux](https://openvpn.net/openvpn-client-for-linux/)
 
 The rest is rather straightforward:
 * Install OpenVPN Client
