@@ -95,7 +95,7 @@ The rest is rather straightforward:
 * Install OpenVPN Client
 * Start the Client once it is installed
 * Import the ovpn file to link to the raspberry
-* Enter the username and password defended during the install of pivpn
+* Enter the username and password defined during the install of pivpn
 * Start the VPN
 * Greet yourself with a beer (Optional)
 
