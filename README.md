@@ -75,6 +75,7 @@ I will advise it just for testing the solution before implementing the second on
 
 ## On the raspberry pi, install [PiVPN](https://www.pivpn.io/)
 PiVPN is great, it allows for a very fast installation and simple (compared to the second solution we will be suggesting) and a lot of blogs are offering guides to help you select the correct settings during your configuration of it ([This one for instance](https://www.seeedstudio.com/blog/2020/07/02/set-up-a-raspberry-pi-vpn-server-using-pivpn-and-browse-securely-on-public-networks-m/), go straight to the "Configuring PiVPN on Raspberry Pi" section). So to make it simple I will condense the information that you need to have your VPN ready, there are no special setting in our case but here it is:
+* Run `sudo apt-get install openssl`
 * Run `curl -L https://install.pivpn.io | bash` or `curl -L -k https://install.pivpn.io | bash` if the first commad fails
 * Confirm static IP address
 * Use your current network settings as static address
@@ -150,3 +151,15 @@ So the other possibility is to have the VPN register you to the LAN and not crea
 
 
 # Longer and more complex solution
+So as described in the conclusion of the previous section the solution is to build a bridge VPN that will assign the remote computer to the LAN itself, not a subnetwork. The VPN is a little bit more complicated to configure but we will guide you through it.
+If you performed the Quick and dirty solution you'll have to uninstall piVPN on the raspberry by running the command: `pivpn uninstall` and select to uninstall all the dependencies, remove the port forwarding rule on your router (you'll have to put it back afterwards),enable ssh on your raspberry pi to be able to run commands on it from your computer and reboot it.
+
+## Set up the bridge VPN
+The solution is inspired from [this thread](https://github.com/pivpn/pivpn/issues/45) that gives a solution to build a bridge mode that is not yet supported by piVPN, espescially the second message gives a link and some guide lines. As the instructions are made for a Linux virtual machine we will adapt them here to make it easier for you.
+
+
+
+## Set up the VPN Client
+
+
+## Connect to your playstation localy remotly (uhuhuhuhuh)
