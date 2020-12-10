@@ -121,7 +121,7 @@ Your LAN or local network is the network connecting all your machines to the web
 How acts the VPN we just did? It creates a subnetwork in your network, meaning that the raspberry acts just like your web router: the raspberry gives to any device connected to the VPN access to your LAN and the web. That's why you can actually ping the PlayStation. However the PlayStation app can't reach it? Yes (and this was a conjuncture) the app looks for the PlayStation on the same network that the computer meaning the subnetwork of the raspberry pi! 
 A solution could be to connect your PlayStation to the VPN but that is not feasible unless the connection of your PlayStation to the web is through a device that can use a VPN... Yeah, we are not gonna do that...
 <p align="center">
- <img src="./images/quickDirtNet.JPG"> <img src="./images/cleanVpn.JPG">
+ <img src="./images/quickDirtNet.JPG"width=20% height=20%> <img src="./images/cleanVpn.JPG" width=20% height=20%>
 </p>
 
 So the other possibility is to have the VPN register you to the LAN and not create a subnetwork and this is called a Bridge VPN! However piVPN is not (for now) able to configure your raspberry to work in that mode so we will have to configure everything manually... Yes this is the trickier and more complex operation but it is worth it!
