@@ -52,9 +52,11 @@ If you don't feel like burning the OS yourself on the SD card, you can buy SD ca
 * [Enable SSH on your raspberry](https://www.raspberrypi.org/documentation/remote-access/ssh/) for being able to connect to it from your computer and run commands on it
 * From you computer (on the local network) ssh onto the raspberry: for [windows](https://www.raspberrypi.org/documentation/remote-access/ssh/windows10.md), for [macOS](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md), and [Linux](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md) (sorry linux users, I know you know how to do it)
 * Once you're connected to the rapsberry run the following command: `ifconfig | grep inet`. THe output of this command will give you the following informations. first blue rectangle is the **rapsberry IP** that you already have, second rectangle is the **netmask**, note it. The third is the **broadcast IP**, note it as well.
+
 <p align="center">
 	<img src="./images/ifconfig_output.png">
 </p>
+
 * Get your **router IP** and note it: it is most likely your **rapsberry IP** but replacing the last set of number by one (for instance in the image the router IP is 192.168.1.1). Most router have an admin server at http://**router IP**, check it out to verify your **router IP** is correct. Alternatively browsing 'my router IP "my internet provider"' will likely give you the answer
 * Get your **public IP**, Google can do that for you if you just browse 'my IP address'. get the [ipv4](https://en.wikipedia.org/wiki/IP_address#IPv4_addresses) address, not the [ipv6](https://en.wikipedia.org/wiki/IP_address#IPv6_addresses)
 * Get your **PS IP** (your playstation has to be connected to the lan for this), by browsing the http://**router IP** and entering your admin credentials (see your router manual for them) the interface depends on your internet^provider but the devices on the local net are often listed under a 'LAN' tab or 'my network'. Identify the one that is your PS4 and note down its IP. We will refer it as **PS IP**
