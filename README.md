@@ -89,8 +89,17 @@ Connect to your router admin interface: http://**router IP** and look in the adv
 On the computer on the remote network you need to set a VPN client that will allow you to connect to the VPN server.
 * For [windows](https://openvpn.net/client-connect-vpn-for-windows/)
 * For [Mac Os](https://openvpn.net/client-connect-vpn-for-mac-os/)
+* For [Linux](https://openvpn.net/openvpn-client-for-linux/)
 
-Complete here Arthur
+the rest is rather straightforward:
+* Install OpenVPN Client
+* Start the Client once it is installed
+* Import the ovpn file to link to the raspberry
+* Enter the username and password defended during the install of pivpn
+* Start the VPN
+* Greet yourself with a beer (Optional)
+
+To check if you are successful, you should see the overall data flow (uploads and downloads) on the GUI. Meanwhile browsing 'my IP address' will give you ...**public IP** (See, you get used to all this)
 
 ## Connect to the PlayStation (try at least..)
 Yeeeww ! You are connected remotely to your home network now try to connect to your PlayStation using the PS remote play application...
