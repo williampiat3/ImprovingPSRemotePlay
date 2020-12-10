@@ -108,7 +108,7 @@ It doesn't work...
 Yes, it doesn't work...
 
 But you can actually detect the PlayStation if you run this command (that works on windows, Linux and Mac OS) `ping **PS IP**` you will be receiving packets meaning the PlayStation is accessible but the app doesn't reach it! But you know what does? Chiaki!
-## Install Chiaki <img src="./images/chiaki_icon.png" width=15% height=15%>
+## Install Chiaki <img src="./images/chiaki_icon.png" width=10% height=10%>
 [Chiaki](https://github.com/thestr4ng3r/chiaki) is a free, open source, PS remote play client that you can download [here.](https://github.com/thestr4ng3r/chiaki/releases)
 You also need your **PSN account ID**, not your login, not your email... Look, you just don't have it yet ;). The Chiaki github is providing a python script for you to get it easily [here](https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you, just take the script on the raspberry anywhere, name it psn-account-id.py, open a terminal in the same folder and run `python3 psn-account-id.py`... Some packages missing? `sudo pip3 install requests` ..... pip missing? `sudo apt-get install python3-pip`. Ok now you should be fine running the script. It will open up a web page for logging you, copy past the link you get in your terminal and that's it your **PSN account ID**, note it down. 
 Run the Chiaki executable enter your **PSN account ID** the **PS IP** and then it will prompt for a PIN code
@@ -120,8 +120,9 @@ Well, it might be obvious for people used to VPNs but it wasn't for me so I had 
 Your LAN or local network is the network connecting all your machines to the web this is your router's job basically. This network cannot be seen from the outside the internet only sees your public IP that is the address of your router on the web. On your LAN every device has a local address: a local IP (the **PS IP** or **raspberry IP** or **router IP** are local IPS) that are not visible from the outside but you can access them from within your network or with the VPN we just did. 
 How acts the VPN we just did? It creates a subnetwork in your network, meaning that the raspberry acts just like your web router: the raspberry gives to any device connected to the VPN access to your LAN and the web. That's why you can actually ping the PlayStation. However the PlayStation app can't reach it? Yes (and this was a conjuncture) the app looks for the PlayStation on the same network that the computer meaning the subnetwork of the raspberry pi! 
 A solution could be to connect your PlayStation to the VPN but that is not feasible unless the connection of your PlayStation to the web is through a device that can use a VPN... Yeah, we are not gonna do that...
-
-INSERER SCHEMA SUBNETWORK
+<p align="center">
+ <img src="./images/quickDirtNet.JPG"> <img src="./images/cleanVpn.JPG">
+</p>
 
 So the other possibility is to have the VPN register you to the LAN and not create a subnetwork and this is called a Bridge VPN! However piVPN is not (for now) able to configure your raspberry to work in that mode so we will have to configure everything manually... Yes this is the trickier and more complex operation but it is worth it!
 
