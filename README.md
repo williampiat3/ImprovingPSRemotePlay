@@ -91,7 +91,7 @@ On the computer on the remote network you need to set a VPN client that will all
 * For [Mac Os](https://openvpn.net/client-connect-vpn-for-mac-os/)
 * For [Linux](https://openvpn.net/openvpn-client-for-linux/)
 
-the rest is rather straightforward:
+The rest is rather straightforward:
 * Install OpenVPN Client
 * Start the Client once it is installed
 * Import the ovpn file to link to the raspberry
