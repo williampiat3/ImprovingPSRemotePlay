@@ -6,10 +6,11 @@
 
 ## Table of contents
 
-   * [PS4 and PS5 improving your PS remote play experience](#ps4-and-ps5-improving-your-ps-remote-play-experience)
+   * [PS4 and PS5, improving your PS remote play experience](#ps4-and-ps5-improving-your-ps-remote-play-experience)
       * [Introduction](#introduction)
       * [Price](#price)
       * [Equipment needed:](#equipment-needed)
+      * [First steps common to all solutions:](#first-steps-that-are-common-to-all-the-solutions)
       * [Requirements before going to the next steps](#requirements-before-going-to-the-next-steps)
    * [Quick and dirty solution](#quick-and-dirty-solution)
       * [On the raspberry pi, install piVPN](#on-the-raspberry-pi-install-pivpn)
@@ -70,7 +71,8 @@ If you don't feel like burning the OS yourself on the SD card, you can buy SD ca
 * An ethernet cable to link the Raspberry to your router
 * A second ethernet cable (if you don't already have it) to wire your PlayStation to the router as well.
 * A PC for configuring the raspberry and testing the VPN (a PC on a remote network and a PC on the local network is the best configuration but one PC is fine)
-#First steps that are common to all the solutions
+
+## First steps that are common to all the solutions
 * [Get you raspberry pi up and running with the Raspberry pi OS](https://magpi.raspberrypi.org/articles/set-up-raspberry-pi-4) you can find a lot of tutorials on the web for this and I will not be covering this here. 
 * Connect your raspberry pi to the same router as the PlayStation and turn it on, in order for it to get a local ip address.
 * On the raspberry get the local IP by typing `hostname -I` note it, it will be referred afterward as **raspberry IP**
