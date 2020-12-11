@@ -1,5 +1,33 @@
 
-# PS4 and PS5: Improving your PS remote play experience:
+
+
+
+# PS4 and PS5: Improving your PS remote play experience
+
+## Table of contents
+
+   * [PS4 and PS5 improving your PS remote play experience](#ps4-and-ps5-improving-your-ps-remote-play-experience)
+      * [Introduction](#introduction)
+      * [Price](#price)
+      * [Equipment needed:](#equipment-needed)
+      * [Requirements before going to the next steps](#requirements-before-going-to-the-next-steps)
+   * [Quick and dirty solution](#quick-and-dirty-solution)
+      * [On the raspberry pi, install piVPN](#on-the-raspberry-pi-install-pivpn)
+      * [Open up the 1194 port on your router](#open-up-the-1194-port-on-your-router)
+      * [Set up a VPN client on your remote PC](#set-up-a-vpn-client-on-your-remote-pc)
+      * [Connect to the PlayStation (try at least..)](#connect-to-the-playstation-try-at-least)
+      * [Install Chiaki](#install-chiaki-)
+      * [Why is this not working with the PS remote play app](#why-is-this-not-working-with-the-ps-remote-play-app)
+   * [Longer and more complex solution](#longer-and-more-complex-solution)
+      * [Set up the bridge VPN](#set-up-the-bridge-vpn)
+         * [Authentication Setup with Easy-RSA](#authentication-setup-with-easy-rsa)
+         * [VPN setup](#vpn-setup)
+         * [Basic testing](#basic-testing)
+      * [Open up the 1194 port on your router](#open-up-the-1194-port-on-your-router-1)
+      * [Set up the VPN Client](#set-up-the-vpn-client)
+      * [Connect to your PlayStation locally remotely (uhuhuhuhuh)](#connect-to-your-playstation-locally-remotely-uhuhuhuhuh)
+      * [About this solution: what is this changing](#about-this-solution-what-is-this-changing)
+   * [Conclusion](#conclusion)
 ## Introduction
 This guide will allow you to improve your experience of PS remote play, reduce the load of Sony's servers and tap into the world of raspberry pi while sitting on your couch and playing your PS4 or 5 from anywhere. Hooked already? Well, here's how to do it:
 As I wasn't able to find online the full explanation on how to solve this problem. My brother and I decided to note down the steps that allowed us to completely tackle some issues with the PS remote play.
@@ -28,6 +56,9 @@ To achieve so we have to connect securely the device you are streaming on to the
 We will offer you 2 solutions depending on your usage: 
 * A quick and dirty one that is very easy but that has some disadvantages (touchpad not working... for now), you only have this solution if the remote PC is running on Linux.
 * A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up.
+
+## Price
+Our solution is cheap, a bit more than 60 euros and it has fixed priced, meaning no subscription is needed in order to operate it (appart for you electricity subscription of course). And an idle raspberry pi 3 consummes 3.4 Watts which is a small lamp so it won't be much of an extra cost
 
 ## Equipment needed:
 Of course you will need some extra devices, setting a VPN server requires a machine to run full time but we have one that is consuming the equivalent of a lamp, and some cables if you don't already have them.
@@ -353,4 +384,4 @@ Now any device connected to the VPN can be spotted on the LAN, if you go to your
 </p>
 
 # Conclusion
-...
+To our opinion this is a cheap solution to an annoying problem, my brother wanted to enjoy my ps4 games without having to buy a console and this solution was a good answer to this problem. It's also a good solution now: the PS5 being out and not everyone being able to afford it you can share the price and the console with some of your friends if you are good with sharing the console. At the time of the writting we didn't test our solution on a PS5 but, as it involves the same protocol, we are confident that it can work (stay tuned!). Submit an issue if  you are encountering a problem with the solution we will gladly help. 
