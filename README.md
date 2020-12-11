@@ -99,7 +99,7 @@ The rest is rather straightforward:
 * Start the VPN
 * Greet yourself with a beer (Optional)
 
-To check if you are successful, you should see the overall data flow (uploads and downloads) on the GUI. Meanwhile browsing 'my IP address' will give you ...**public IP** (See, you get used to all this)
+To check if you are successful, you should see the overall data flow (uploads and downloads) on the GUI. Meanwhile browsing 'my IP address' will give you your ...**public IP** (See, you get used to all this)
 
 ## Connect to the PlayStation (try at least..)
 Yeeeww ! You are connected remotely to your home network now try to connect to your PlayStation using the PS remote play application...
@@ -109,30 +109,45 @@ It doesn't work...
 Yes, it doesn't work...
 
 But you can actually detect the PlayStation if you run this command (that works on windows, Linux and Mac OS) `ping **PS IP**` you will be receiving packets meaning the PlayStation is accessible but the app doesn't reach it! But you know what does? Chiaki!
+
 ## Install Chiaki <img src="./images/chiaki_icon.png" width=10% height=10%>
 [Chiaki](https://github.com/thestr4ng3r/chiaki) is a free, open source, PS remote play client that you can download [here.](https://github.com/thestr4ng3r/chiaki/releases)
-You also need your **PSN account ID**, not your login, not your email... Look, you just don't have it yet ;). The Chiaki github is providing a python script for you to get it easily [here](https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you, just take the script on the raspberry anywhere, name it psn-account-id.py, open a terminal in the same folder and run `python3 psn-account-id.py`... Some packages missing? `sudo pip3 install requests` ..... pip missing? `sudo apt-get install python3-pip`. Ok now you should be fine running the script. It will open up a web page for logging you, copy past the link you get in your terminal and that's it your **PSN account ID**, note it down. 
+You also need your **PSN account ID**, not your login, not your email... Look, you just don't have it yet ;). 
+
+The Chiaki github is providing a python script for you to get it easily [here](https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you,just run `wget https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py` to get the script and run `python3 psn-account-id.py`... Some packages missing? `sudo pip3 install requests` ..... pip missing? `sudo apt-get install python3-pip`. Ok now you should be fine running the script. It will open up a web page for logging you, copy past the link you get in your terminal and that's it your **PSN account ID**, note it down. 
 Run the Chiaki executable enter your **PSN account ID** the **PS IP** and then it will prompt for a PIN code
+
 To register a PS4 with a PIN, it must be put into registration mode. To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC and noooooooooooowwwwwwwww .... YOU ARE CONNECTED!!!!!!!!!
+
 You can now run remote play at a higher resolution with less lag and more stable connection but ... BUT using Chiaki comes at some cost, not all the keys of the controller are supported (the touchpad for instance) and rumble is not supported on windows. It is great for a game that doesn't use it, for other games... well then the second solution remains.
 
 ## Why is this not working with the PS remote play app
-Well, it might be obvious for people used to VPNs but it wasn't for me so I had to investigate a little bit.
-Your LAN or local network is the network connecting all your machines to the web this is your router's job basically. This network cannot be seen from the outside the internet only sees your public IP that is the address of your router on the web. On your LAN every device has a local address: a local IP (the **PS IP** or **raspberry IP** or **router IP** are local IPS) that are not visible from the outside but you can access them from within your network or with the VPN we just did. 
+Well, it might be obvious for people used to VPNs but it wasn't for me so we had to investigate a little bit.
+
+Your LAN or local network is the network connecting all your machines to the web this is your router's job basically. The LAN cannot be seen from the outside. From anyone else on the internet you are one device identified by your public IP that is the address of your router on the web. 
+
+On your LAN every device has a local address: a local IP (the **PS IP** or **raspberry IP** or **router IP** are local IPs) that are not visible from the outside but you can access them from within your network or with the VPN we just did. 
+
 How acts the VPN we just did? It creates a subnetwork in your network, meaning that the raspberry acts just like your web router: the raspberry gives to any device connected to the VPN access to your LAN and the web. That's why you can actually ping the PlayStation. However the PlayStation app can't reach it? Yes (and this was a conjuncture) the app looks for the PlayStation on the same network that the computer meaning the subnetwork of the raspberry pi! 
-A solution could be to connect your PlayStation to the VPN but that is not feasible unless the connection of your PlayStation to the web is through a device that can use a VPN... Yeah, we are not gonna do that...
 
 <p align="center">
- <img width=46% height=46% src="./images/quickDirtNet.JPG">
+ <img src="./images/quickAndDirty.png">
 </p>
+
+
+A solution could be to connect your PlayStation to the VPN but that is not feasible unless the connection of your PlayStation to the web is through a device that can use a VPN... Yeah, we are not gonna do that...
+
+
 
 So the other possibility is to have the VPN register you to the LAN and not create a subnetwork and this is called a Bridge VPN! However piVPN is not (for now) able to configure your raspberry to work in that mode so we will have to configure everything manually... Yes this is the trickier and more complex operation but it is worth it!
 
 # Longer and more complex solution
 So as described in the conclusion of the previous section the solution is to build a bridge VPN that will assign the remote computer to the LAN itself, not a subnetwork. The VPN is a little bit more complicated to configure but we will guide you through it.
 If you performed the Quick and dirty solution, you'll have to uninstall piVPN on the raspberry by running the command: `pivpn uninstall` and select to uninstall all the dependencies, remove the port forwarding rule on your router (you'll have to put it back afterwards),enable ssh on your raspberry pi to be able to run commands on it from your computer and reboot it.
+
 ## Set up the bridge VPN
 The solution is inspired from [this thread](https://github.com/pivpn/pivpn/issues/45) that gives a solution to build a bridge mode that is not yet supported by piVPN, especially the second message gives a [link](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup) and some guide lines. As the instructions are made for a Linux virtual machine, we will adapt them here to make it easier for you.
+
 ### Authentication Setup with Easy-RSA
 Open Terminal on the raspberry, and become root:
 * `sudo su`
@@ -146,34 +161,36 @@ Enter
 * `./easyrsa init-pki`
 Create a Certificate Authority (CA) by entering
 * `./easyrsa build-ca nopass`
-For Common Name, enter â€œOpenVPN-CAâ€ (without quotes).
+For Common Name, enter OpenVPN-CA (without quotes).
 Create the server credentials by entering
 * `./easyrsa gen-req openvpnserver nopass`
-The Common Name will be set to â€œopenvpnserverâ€ by default, so no entry is required.
+The Common Name will be set to openvpnserver by default, so no entry is required.
 Sign the server credentials by entering
 * `./easyrsa sign-req server openvpnserver`
-Enter â€œyesâ€ (without quotes) as requested.
+Enter yes (without quotes) as requested.
 Generate Diffie-Hellman parameters by entering
 * `./easyrsa gen-dh`
 Now we'll create the client credentials.
-To create credentials for a client called â€œps_remoteâ€, enter
+To create credentials for a client called ps_remote, enter
 * `./easyrsa gen-req ps_remote nopass` or `./easyrsa gen-req ps_remote` if you want a password on the VPN access
-The Common Name will be set to â€œps_remoteâ€ by default, so no entry is required.
-Sign the credentials of client â€œps_remoteâ€ by entering
+The Common Name will be set to ps_remote by default, so no entry is required.
+Sign the credentials of client ps_remote by entering
 * `./easyrsa sign-req client ps_remote`
-Enter â€œyesâ€ (without quotes) as requested.
-You can make more client credentials by changing â€œps_remoteâ€ in the previous two commands. Each client's Common Name must be unique. 
+Enter yes (without quotes) as requested.
+You can make more client credentials by changing ps_remote in the previous two commands. Each client's Common Name must be unique. 
 Create the HMAC signature:
 * `openvpn --genkey --secret /etc/openvpn/easy-rsa/pki/private/ta.key`
 Certificate and key files will be given to the clients. Copy these files to the host OS via the shared folder by entering
 * `mkdir /home/pi/credentials`
 * `cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/easy-rsa/pki/issued/ps_remote.crt /etc/openvpn/easy-rsa/pki/private/ps_remote.key /home/pi/credentials`
 You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. 
+
 ### VPN setup
 This is where we will be using all the information that we made you find in the part common to both simple and complex installation, namely **raspberry IP**, **netmask**, **broadcast IP**,**router IP**,**public IP**
-We'll use the text editor â€œnanoâ€ to create a script called â€œopenvpn-bridgeâ€ that performs the Ethernet bridging. Enter on the raspberry, still as root: 
+We'll use the text editor nano to create a script called openvpn-bridge that performs the Ethernet bridging. Enter on the raspberry, still as root: 
 * `nano /etc/openvpn/openvpn-bridge`
  Copy and paste the following script into that (empty) file, make sure that you are changing the keyword raspberry IP, broadcast IP and router IP by their values (they are only at the beginning of the script), make sure you leave the quotation mark around them
+
  ```shell
 #!/bin/sh
 # Define Bridge Interface
@@ -227,7 +244,7 @@ stop)
 esac
 exit 0
  ```
-This script is adapted from the â€œbridge-startâ€ and â€œbridge-stopâ€ scripts at OpenVPN's Ethernet bridging page. It bridges the Ethernet interface, eth0, and OpenVPN's TAP interface, tap0, as members of the bridge interface, br0.
+This script is adapted from the bridge-start and bridge-stop scripts at OpenVPN's Ethernet bridging page. It bridges the Ethernet interface, eth0, and OpenVPN's TAP interface, tap0, as members of the bridge interface, br0.
 Make the script executable by entering
  * `chmod 744 /etc/openvpn/openvpn-bridge`
 Now we'll create the server configuration file. Enter
@@ -249,6 +266,8 @@ tls-auth /etc/openvpn/easy-rsa/pki/private/ta.key 0
 cipher AES-256-GCM
 compress lz4-v2
 push "compress lz4-v2"
+push "redirect-gateway def1"
+push "dhcp-option DNS 8.8.8.8"
 persist-key
 persist-tun
 status /var/log/openvpn-status.log
@@ -256,7 +275,7 @@ log-append /var/log/openvpn.log
 verb 3
 ```
 
-We need to tell OpenVPN to make use of our â€œopenvpn-bridgeâ€ script. Enter
+We need to tell OpenVPN to make use of our openvpn-bridge script. Enter
 * `nano /lib/systemd/system/openvpn@.service`
 Copy these two lines:
 ```
@@ -267,6 +286,7 @@ and paste them at the bottom of the [Service] section.
 Exit and save. Reboot the VM by entering
 * `reboot`
 The OpenVPN server will be running at boot, i.e., no user login is required.
+
 ### Basic testing
 Verify that the br0 and tap0 interfaces are up by entering in Terminal
 * `ip a`
@@ -274,7 +294,15 @@ Verify that the br0 and tap0 interfaces are up by entering in Terminal
 Check the OpenVPN server status by entering
 * `systemctl status openvpn@server.service`
 you should see a display saying that the VPN is running
+
+
 IMAGE(William)
+
+You still need to enable IP forwarding on your raspberry pi, but if you use the command line to just enable it  (run `echo 1 > /proc/sys/net/ipv4/ip_forward`)but when the next boot comes the IP forwarding will be disabled, you need to edit the boot configuration file of the raspberry:
+* `sudo nano /etc/sysctl.conf`
+
+And you have to uncomment the following line (close from the begin of the file, or just paste it if you are lazy):
+* `net.ipv4.ip_forward = 1`
 
 ## Open up the 1194 port on your router
 **Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.**
@@ -284,9 +312,11 @@ Connect to your router admin interface: http://**router IP** and look in the adv
 * port 1194
 * destination: **Raspberry IP**
 * external IP: Leave empty (except if you only want to authorize some specific IPs to connect to your VPN, which could be a good idea if your remote network has a static IP... oh wait it doesn't have one most likely ;) )
+
 ## Set up the VPN Client
+
 On the remote computer, you will need the credendentials files that you created during the installation of the openVPN server.
-You will also need a configuration file called `ps_remote.conf` which content has to be customized with the **public IP** line 4 (don't erase 1194 it indicate). Here is the content.
+You will also need a configuration file called `ps_remote.conf` which content has to be customized with the **public IP** line 4 (don't erase 1194 it indicates the port the VPN is using). Here is the content.
 ```
 client
 dev tap0
@@ -306,6 +336,7 @@ verb 3
 So as a reminder you need 4 files: `ps_remote.conf` that you just created and `ca.crt` `ps_remote.crt` `ps_remote.key` that were created during the installation of openvpn and the creation of the access to the ps_remote user. They will all be useful for configuring the VPN Client.
 
 COMPLETE HERE
+
 Now that you managed to connect you can breathe, this is it, it's done.
 
 ## Connect to your PlayStation locally remotely (uhuhuhuhuh)
@@ -318,7 +349,7 @@ Now you can increase the quality of your remote play as long as you connexion al
 ## About this solution: what is this changing
 Now any device connected to the VPN can be spotted on the LAN, if you go to your router's admin page (that you can also access on the remote computer with the VPN now) and check the devices connected you will note that a new device has appeared whose IP belongs to the range you gave in the configuration file of openVPN whereas in the previous solution your device was not visible as it was on a subnetwork.
 <p align="center">
- <img src="./images/cleanVpn.JPG" width=38% height=38%>
+ <img src="./images/bridgeVPN.png">
 </p>
 
 # Conclusion
