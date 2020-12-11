@@ -34,17 +34,18 @@
 ## Introduction
 This guide will allow you to improve your experience of PS remote play, reduce the load of Sony's servers and tap into the world of raspberry pi while sitting on your couch and playing your PS4 or 5 from anywhere. Hooked already? Well, here's how to do it:
 As I wasn't able to find online the full explanation on how to solve this problem. My brother and I decided to note down the steps that allowed us to completely tackle some issues with the PS remote play.
-PlayStation gives an amazing feature to all its users by enabling them to [play on their PlayStation from afar](https://remoteplay.dl.playstation.net/remoteplay/lang/en/index.html). My brother and I discovered this functionality during the quarantines in Europe for the Coronavirus. Thanks to it we were able to both play the PlayStation (not at the same time of course) while being physically separated. 
-To put it simple the feature allows you to stream your ps4 on any device, your computer for instance. As this is streaming, you don't need huge specs on the client devices ([here are the ones for windows](https://remoteplay.dl.playstation.net/remoteplay/lang/gb/ps4_win.html) as an example), just a solid connection (15 Mb/s according to Sony's website). You can test your speed by making a speed test.
+PlayStation gives an amazing feature to all its users by enabling them to [play on their PlayStation from afar](https://remoteplay.dl.playstation.net/remoteplay/lang/en/index.html). My brother and I discovered this functionality during the quarantines in Europe for the Coronavirus. Thanks to it we were able to both play the PlayStation (not at the same time of course) while being physically separated. As we are both owners of the PS4 this is not in violation of the terms of use of the PS remote play.
+To put it simple the remote play feature allows you to stream your PS4 on any device, your computer for instance. As this is streaming, you don't need huge specs on the client devices ([here are the ones for windows](https://remoteplay.dl.playstation.net/remoteplay/lang/gb/ps4_win.html) as an example), just a solid connection (15 Mb/s according to Sony's website). You can test your speed by making a speed test.
 Although this tool is incredible and useful, it has a few drawbacks:
-When playing remotely locally (i.e., on the same network):
+When using it in your home network(ie same network than the PS4):
 * There are no connectivity issues and it works very well, capped at 720p and 30fps per second for a regular ps4 and, 1080p and 60fps for a PS4 pro and PS5
+
 The problems arise when playing on a remote network:
 * It requires a very high-speed internet on both sides
 * Even if there are high-speed networks, you are dependent on the Sony server that allows you to communicate to the PlayStation.
 * Sony's servers are a limited resource, the more users for remote play, the lesser the quality will be.
 To give you an idea: although having very high speed on both sides, we were only able to run the PS4 remotely at 540p (which is sad really since most of PS4 games are made for 1080p) and 30fps.
-Trying to go as high as 720p remotely was constantly disconnecting (potentially due to Sony's servers saturating).
+Trying to go as high as 720p remotely, in our experience, was constantly disconnecting.
 <p align="center">
  <img src="./images/without_vpn.JPG">
 </p>
@@ -62,10 +63,10 @@ We will offer you 2 solutions depending on your usage:
 * A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up.
 
 ## Price
-Our solution is cheap, a bit more than 60 euros and it has fixed priced, meaning no subscription is needed in order to operate it (appart for you electricity subscription of course). And an idle raspberry pi 3 consummes 3.4 Watts which is a small lamp so it won't be much of an extra cost
+Our solution is cheap, a bit more than 60 euros and it has fixed priced, meaning no subscription is needed in order to operate it (appart for you electricity subscription of course). And an idle raspberry pi 3 consummes 3.4 Watts which is a small lamp so it won't be much of an extra cost.
 
 ## Equipment needed:
-Of course you will need some extra devices, setting a VPN server requires a machine to run full time but we have one that is consuming the equivalent of a lamp, and some cables if you don't already have them.
+Of course you will need some extra devices, setting a VPN server requires a machine to run full time but the raspberry is consuming the equivalent of a lamp, and some cables if you don't already have them.
 You will need:
 * An internet router with a solid connection (15 Mb/s according to Sony's website)
 * A fully operational [raspberry pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?resellerType=home)(4 Gb of RAM is enough, 2Gb of RAM might be as well), with its power supply and an SD card of 16Gb with the Raspberry Pi OS on it.
@@ -73,7 +74,7 @@ If you don't feel like burning the OS yourself on the SD card, you can buy SD ca
 * A keyboard and a mouse (only for the installation not the usage)
 * An ethernet cable to link the Raspberry to your router
 * A second ethernet cable (if you don't already have it) to wire your PlayStation to the router as well.
-* A PC for configuring the raspberry and testing the VPN (a PC on a remote network and a PC on the local network is the best configuration but one PC is fine)
+* A PC for configuring the raspberry and testing the VPN (a PC on a remote network and a PC on the local network is the best configuration but one PC is fine by switching the network when testing the VPN)
 
 ## First steps that are common to all the solutions
 * [Get you raspberry pi up and running with the Raspberry pi OS](https://magpi.raspberrypi.org/articles/set-up-raspberry-pi-4) you can find a lot of tutorials on the web for this and I will not be covering this here. 
@@ -387,4 +388,4 @@ Now any device connected to the VPN can be spotted on the LAN, if you go to your
 
 # Conclusion
 We don't believe that this solution harms Sony in any way: we give people the opportunity to play more on their consoles remotly and enabling friends to share a console where they might not have all the money to buy their own all of which is profitable to Sony. We made a huge ad of their remote play feature in this article and, you might have guessed it, we are definitly very found of it.
-In our minds this is a cheap solution to improve the quality and latency of your streaming feed, we wanted to enjoy ps4 games without having to buy a console both and this solution was a good answer to this problem, especially in quarantine times. It's also a good solution now: the PS5 being out and not everyone being able to aford it, you can share the price and the console with some of your friends if you are ok with sharing the console. At the time of the writting we didn't test our solution on a PS5 but, as it involves the same protocol, we are confident that it can work (stay tuned!). Submit an issue if  you are encountering a problem with the solution we will gladly help. 
+In our minds this is a cheap solution to improve the quality and latency of your streaming feed, we wanted to enjoy ps4 games without having to buy a console both and this solution was a good answer to this problem, especially in quarantine times. It's also a good solution now: the PS5 being out and not everyone being able to aford it, you can share the price and the console with some of your friends and be coowners if you are ok with sharing the console. At the time of the writting we didn't test our solution on a PS5 but, as it involves the same protocols, we are confident that it can work (stay tuned!). Submit an issue if  you are encountering a problem with the solution we will gladly help. 
