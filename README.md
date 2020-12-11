@@ -8,6 +8,7 @@
 
    * [PS4 and PS5, improving your PS remote play experience](#ps4-and-ps5-improving-your-ps-remote-play-experience)
       * [Introduction](#introduction)
+      * [Explanation of the solution](#explanation-of-the-solution)
       * [Price](#price)
       * [Equipment needed:](#equipment-needed)
       * [First steps common to all solutions:](#first-steps-that-are-common-to-all-the-solutions)
@@ -29,6 +30,7 @@
       * [Connect to your PlayStation locally remotely (uhuhuhuhuh)](#connect-to-your-playstation-locally-remotely-uhuhuhuhuh)
       * [About this solution: what is this changing](#about-this-solution-what-is-this-changing)
    * [Conclusion](#conclusion)
+
 ## Introduction
 This guide will allow you to improve your experience of PS remote play, reduce the load of Sony's servers and tap into the world of raspberry pi while sitting on your couch and playing your PS4 or 5 from anywhere. Hooked already? Well, here's how to do it:
 As I wasn't able to find online the full explanation on how to solve this problem. My brother and I decided to note down the steps that allowed us to completely tackle some issues with the PS remote play.
@@ -47,7 +49,8 @@ Trying to go as high as 720p remotely was constantly disconnecting (potentially 
  <img src="./images/without_vpn.JPG">
 </p>
 Using our solution, we were able to make the remote play running at 720p all the time from afar without any connectivity issues with a safe encrypted connection. It requires to buy some equipment but it is not very expensive and we found for you the cheapest one.
-# Explanation of the solution:
+
+## Explanation of the solution:
 Some of you might have guessed it from the beginning our goal here is to make the remote play locally even if you are located on another network, to bypass Sony's server (which they should be thankful as it reduces their load ;) ) and to connect your computer almost directly to the PS4 or 5.
 To achieve so we have to connect securely the device you are streaming on to the network of the PlayStation, and we will achieve this building a VPN server here is a drawing explaining the principle of the solution.
 <p align="center">
@@ -114,7 +117,7 @@ Once the raspberry reboots, run the following command: `pivpn add` , create user
 ## Open up the 1194 port on your router
 **Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.**
 
-Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwing option (the specific location of this option is dependent of your router) and add a new routing rule:
+Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwarding option (the specific location of this option is dependent of your router and web provider) and add a new routing rule:
 * protocol: UDP and TCP
 * port 1194
 * destination: **Raspberry IP**
@@ -152,7 +155,7 @@ Run the Chiaki executable enter your **PSN account ID** the **PS IP** and then i
 
 To register a PS4 with a PIN, it must be put into registration mode. To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC and noooooooooooowwwwwwwww .... YOU ARE CONNECTED!!!!!!!!!
 
-You can now run remote play at a higher resolution with less lag and more stable connection but ... BUT using Chiaki comes at some cost, not all the keys of the controller are supported (the touchpad for instance) and rumble is not supported on windows. It is great for a game that doesn't use it, for other games... well then the second solution remains.
+You can now run remote play at a higher resolution with less lag and more stable connection but ... BUT using Chiaki comes at some cost, not all the keys of the controller are supported the touchpad for instance and rumble are not supported on windows. It is great for a game that doesn't use them, for other games... well then the second solution remains.
 
 ## Why is this not working with the PS remote play app
 Well, it might be obvious for people used to VPNs but it wasn't for me so we had to investigate a little bit.
@@ -327,9 +330,6 @@ Verify that the br0 and tap0 interfaces are up by entering in Terminal
 Check the OpenVPN server status by entering
 * `systemctl status openvpn@server.service`
 you should see a display saying that the VPN is running
-
-
-IMAGE(William)
 
 You still need to enable IP forwarding on your raspberry pi, but if you use the command line to just enable it  (run `echo 1 > /proc/sys/net/ipv4/ip_forward`)but when the next boot comes the IP forwarding will be disabled, you need to edit the boot configuration file of the raspberry:
 * `sudo nano /etc/sysctl.conf`
