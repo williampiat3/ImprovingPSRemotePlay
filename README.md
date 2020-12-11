@@ -340,7 +340,7 @@ And you have to uncomment the following line (close from the begin of the file, 
 ## Open up the 1194 port on your router
 **Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.**
 
-Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwing option (the specific location of this option is dependent of your router) and add a new routing rule:
+Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwarding option (the specific location of this option is dependent of your router) and add a new routing rule:
 * protocol: UDP and TCP
 * port 1194
 * destination: **Raspberry IP**
