@@ -60,13 +60,18 @@ We will offer you 2 solutions depending on your usage:
 * A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up.
 
 ## Price
-Our solution is cheap, a bit more than 60 euros and it has fixed priced, meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 consumes 3.4 Watts which is a small lamp so it won't be much of an extra cost.
+Our solution is cheap, a bit more than 90 euros and it has fixed priced, meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 consumes 3.4 Watts which is a small lamp so it won't be much of an extra cost.
+It is composed of:
+* A [raspberry pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?resellerType=home) (4 Gb of RAM is enough, 2Gb of RAM might be as well)
+* An SD card of 16Gb (or more), 8Gb could be enough but I do not recommend it.
+* A USB-C Power supply, idealy the [official one](https://www.raspberrypi.org/products/type-c-power-supply/?resellerType=home)
+* A nice [case](https://www.raspberrypi.org/products/raspberry-pi-4-case/?resellerType=home), recommended to protect it
 
 ## Equipment needed:
 Of course you will need some extra devices, setting a VPN server requires a machine to run full time but the raspberry is consuming the equivalent of a lamp, and some cables if you don't already have them.
 You will need:
 * An internet router with a solid connection (15 Mb/s according to Sony's website)
-* A fully operational [raspberry pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?resellerType=home)(4 Gb of RAM is enough, 2Gb of RAM might be as well), with its power supply and an SD card of 16Gb with the Raspberry Pi OS on it.
+* A fully operational raspberry pi 4, with its power supply and an SD card with the Raspberry Pi OS on it.
 
 If you don't feel like burning the OS yourself on the SD card, you can buy SD cards with the OS preinstalled as described [here](https://www.raspberrypi.org/downloads/noobs/), no judgment here.
 * A keyboard and a mouse (only for the installation not the usage)
