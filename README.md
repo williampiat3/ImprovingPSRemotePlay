@@ -1,4 +1,4 @@
-﻿
+
 
 # PS4 and PS5: Improving your PS remote play experience
 ## Table of contents
@@ -333,15 +333,16 @@ for Windows:
 * In Securepoint, right-click on the VPN connection's name, select "Quick edit", delete everything, and paste
 * Start the connection
 Two options are available: either you are connected and proceed to self-congratulating in whatever form you need, or the icon is red, and ... take a break and restart from the beginning: it took us four days to successfully connect, we know it can be a tough task guys.
+
 For Mac unfortunately, we cannot give feedback yet, so I will just paste the [guide](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup) and adapt with names we chose here:
 * For macOS clients, use [Tunnelblick](https://tunnelblick.net/). Be sure to get the correct version for your version of macOS, which could be the beta release. When it asks for configuration files after you install it, just quit. 
-* Tunnelblick uses files with a ".tblk" extension. For the client "ps_remote", place the files ca.crt, ps_remote.crt, ps_remote.key, ta.key and ps_remote.conf into a new folder called whatever you want to call that VPN connection, say, "Home VPN.tblk".
+* Tunnelblick uses files with a ".tblk" extension. For the client "ps_remote", place the files ca.crt, ps_remote.crt, ps_remote.key, ta.key and ps_remote.conf into a new folder called whatever you want to call that VPN connection, say, "Home VPN.tblk".
 * Double-click that file to add it to Tunnelblick's list of connections.
 * Tunnelblick appears at the right side of the menu bar as a tunnel icon.
-* Go to "VPN Details", select the connection on the left, and under the "Settings" tab, set "Set DNS/WINS" to "Do not set nameserver".
-* Also uncheck "Check if the apparent public IP address changed after connecting," since this is unnecessary for this type of VPN setup (the client's public IP address will not change).
+* Go to "VPN Details", select the connection on the left, and under the "Settings" tab, set "Set DNS/WINS" to "Do not set nameserver".
+* Also uncheck "Check if the apparent public IP address changed after connecting," since this is unnecessary for this type of VPN setup (the client's public IP address will not change).
 * Exit the menus. With the OpenVPN server running, click the tunnel icon, and connect. A message about the DNS server address not being routed through the VPN may pop up, which can be ignored since this isn't the intent of this VPN setup.
-To get back to the individual client files, right-click on the .tblk file and select "Show Package Contents." If you want to change any of the client files, you must reload (double-click) the .tblk file again after making the changes. However, to quickly change the client configuration file without having to reload, go to "VPN Details", highlight the connection in the list on the left, click the gear icon below the list and select "Edit OpenVPN Configuration File." The client doesn't need to keep the original client files after the configuration is created, since they get copied to the folder ~/Library/Application Support/Tunnelblick/Configurations.
+To get back to the individual client files, right-click on the .tblk file and select "Show Package Contents." If you want to change any of the client files, you must reload (double-click) the .tblk file again after making the changes. However, to quickly change the client configuration file without having to reload, go to "VPN Details", highlight the connection in the list on the left, click the gear icon below the list and select "Edit OpenVPN Configuration File." The client doesn't need to keep the original client files after the configuration is created, since they get copied to the folder ~/Library/Application Support/Tunnelblick/Configurations.
 As for Linux users, we know you can do it, Linux is at its best here.
 Now that you managed to connect you can breathe, this is it, it's done. (Painkiller might be needed)
 ## Connect to your PlayStation locally remotely (uhuhuhuhuh)
