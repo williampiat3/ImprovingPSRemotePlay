@@ -145,11 +145,20 @@ But you can actually detect the PlayStation if you run this command (that works 
 [Chiaki](https://github.com/thestr4ng3r/chiaki) is a free, open source, PS remote play client that you can download [here.](https://github.com/thestr4ng3r/chiaki/releases)
 You also need your **PSN account ID**, not your login, not your email... Look, you just don't have it yet ;). 
 
-The Chiaki github is providing a python script for you to get it easily [here](https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you,just run `wget https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py` to get the script and run `python3 psn-account-id.py`... Some packages missing? `sudo pip3 install requests` ..... pip missing? `sudo apt-get install python3-pip`. Ok now you should be fine running the script. It will open up a web page for logging you, copy past the link you get in your terminal and that's it your **PSN account ID**, note it down. 
+The Chiaki github is providing a python script for you to get it easily [here](https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you :
+just run `wget https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py` to get the script and run `python3 psn-account-id.py`...
+Some packages missing? `sudo pip3 install requests` .....
+pip missing? `sudo apt-get install python3-pip`. 
+
+Ok now you should be fine running the script. It will open up a web page for logging you, copy past the link you get in your terminal and that's it your **PSN account ID**, note it down. 
 Run the Chiaki executable enter your **PSN account ID** the **PS IP** and then it will prompt for a PIN code
 To register a PS4 with a PIN, it must be put into registration mode. To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC and noooooooooooowwwwwwwww .... YOU ARE CONNECTED
 
-You can now run remote play at a higher resolution with less lag and more stable connection but ... BUT using Chiaki comes at some cost, not all the keys of the controller are supported the touchpad for instance and rumble are not supported on windows. It is great for a game that doesn't use them, for other games... well then the second solution remains.
+You can now run remote play at a higher resolution with less lag and more stable connection but ... BUT using Chiaki comes at some cost:
+* not all the keys of the controller are supported the touchpad for instance (Linux and Windows)
+* Rumble and ... remote waiking-up the ps4 from Rest mode are not supported on Windows. 
+
+It is great for a game that doesn't use them, for other games... well then the second solution remains.
 
 ## Why is this not working with the PS remote play app
 Well, it might be obvious for people used to VPNs but it wasn't for me so we had to investigate a little bit.
@@ -216,6 +225,7 @@ You have to give the folder credentials that we just created to the computer tha
 This is where we will be using all the information that we made you find in the part common to both simple and complex installation, namely **raspberry IP**, **netmask**, **broadcast IP**,**router IP**,**public IP**
 We'll use the text editor nano to create a script called openvpn-bridge that performs the Ethernet bridging. Enter on the raspberry, still as root: 
 * `nano /etc/openvpn/openvpn-bridge`
+
  Copy and paste the following script into that (empty) file, make sure that you are changing the keyword raspberry IP, broadcast IP and router IP by their values (they are only at the beginning of the script), make sure you leave the quotation mark around them
  ```shell
 #!/bin/sh
@@ -270,10 +280,13 @@ esac
 exit 0
  ```
 This script is adapted from the bridge-start and bridge-stop scripts at OpenVPN's Ethernet bridging page. It bridges the Ethernet interface, eth0, and OpenVPN's TAP interface, tap0, as members of the bridge interface, br0.
+
 Make the script executable by entering
  * `chmod 744 /etc/openvpn/openvpn-bridge`
+ 
 Now we'll create the server configuration file. Enter
 * `nano /etc/openvpn/server.conf`
+
 Copy and paste the following text, you have to modify the line server bridge with your raspberry IP, your netmask and a start IP and end IP, we haven't talked about the start IP and end IP this will be the range of IP that will be allocated to the devices connected to your VPN, if you are only planning to have under 10 devices  you can set a range of 10. for instance if your raspberry IP is `192.168.1.10` you want to assign maximum 10 devices then a start IP could be `192.168.1.100` and an end IP for 10 devices is `192.168.1.109`
 ```
 port 1194
@@ -300,7 +313,9 @@ log-append /var/log/openvpn.log
 verb 3
 ```
 We need to tell OpenVPN to make use of our openvpn-bridge script. Enter
+
 * `nano /lib/systemd/system/openvpn@.service`
+
 Copy these two lines:
 ```
 ExecStartPre=/etc/openvpn/openvpn-bridge start
@@ -308,7 +323,9 @@ ExecStopPost=/etc/openvpn/openvpn-bridge stop
 ```
 And paste them at the bottom of the [Service] section.
 Exit and save. Reboot the VM by entering
+
 * `reboot`
+
 The OpenVPN server will be running at boot, i.e., no user login is required.
 
 ### Basic testing
