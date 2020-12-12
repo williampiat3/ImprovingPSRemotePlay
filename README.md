@@ -64,7 +64,7 @@ Our solution is cheap, a bit less than 90 euros and it has fixed priced, meaning
 It is composed of:
 * A [raspberry pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?resellerType=home) (4 Gb of RAM is enough, 2Gb of RAM might be as well)
 * A micro SD card of 16Gb (or more), 8Gb could be enough but I do not recommend it.
-* A USB-C Power supply, idealy the [official one](https://www.raspberrypi.org/products/type-c-power-supply/?resellerType=home)
+* A USB-C Power supply, ideally the [official one](https://www.raspberrypi.org/products/type-c-power-supply/?resellerType=home)
 * A nice [case](https://www.raspberrypi.org/products/raspberry-pi-4-case/?resellerType=home), recommended to protect it
 
 ## Equipment needed:
