@@ -156,7 +156,7 @@ To register a PS4 with a PIN, it must be put into registration mode. To do this,
 
 You can now run remote play at a higher resolution with less lag and more stable connection but ... BUT using Chiaki comes at some cost:
 * not all the keys of the controller are supported the touchpad for instance (Linux and Windows)
-* Rumble and ... remote waiking-up the ps4 from Rest mode are not supported on Windows. 
+* Rumble and ... remote waking-up the ps4 from Rest mode are not supported on Windows. 
 
 It is great for a game that doesn't use them, for other games... well then the second solution remains.
 
