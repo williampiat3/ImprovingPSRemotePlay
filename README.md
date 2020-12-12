@@ -381,6 +381,7 @@ To get back to the individual client files, right-click on the .tblk file and se
 The client doesn't need to keep the original client files after the configuration is created, since they get copied to the folder ~/Library/Application Support/Tunnelblick/Configurations.
 
 As for Linux users, we know you can do it, Linux is at its best here.
+
 Now that you managed to connect you can breathe, this is it, it's done. (Painkiller might be needed)
 
 ## Connect to your PlayStation locally remotely (uhuhuhuhuh)
@@ -399,4 +400,7 @@ Now any device connected to the VPN can be spotted on the LAN, if you go to your
 # Conclusion
 
 We don't believe that this solution harms Sony in any way: we give people the opportunity to play more on their consoles remotely and enabling friends to share a console where they might not have all the money to buy their own all of which is profitable to Sony. We made a huge ad of their remote play feature in this article and, you might have guessed it, we are definitely very fond of it.
-In our minds this is a cheap solution to improve the quality and latency of your streaming feed, we wanted to enjoy ps4 games without having to buy a console both and this solution was a good answer to this problem, especially in quarantine times. It's also a good solution now: the PS5 being out and not everyone being able to afford it, you can share the price and the console with some of your friends and be coowners if you are ok with sharing the console. At the time of the writing, we didn't test our solution on a PS5 but, as it involves the same protocols, we are confident that it can work (stay tuned!). Submit an issue if  you are encountering a problem with the solution we will gladly help. 
+
+In our minds this is a cheap solution to improve the quality and latency of your streaming feed, we wanted to enjoy ps4 games without having to buy a console both and this solution was a good answer to this problem, especially in quarantine times. It's also a good solution now: the PS5 being out and not everyone being able to afford it, you can share the price and the console with some of your friends and be coowners if you are ok with sharing the console.
+
+At the time of the writing, we didn't test our solution on a PS5 but, as it involves the same protocols, we are confident that it can work (stay tuned!). Submit an issue if  you are encountering a problem with the solution we will gladly help. 
