@@ -30,8 +30,10 @@
 This guide will allow you to improve your experience of PS remote play, reduce the load of Sony's servers and tap into the world of raspberry pi while sitting on your couch and playing your PS4 or 5 from anywhere. Hooked already? Well, here's how to do it:
 As I wasn't able to find online the full explanation on how to solve this problem. My brother and I decided to note down the steps that allowed us to completely tackle some issues with the PS remote play.
 PlayStation gives an amazing feature to all its users by enabling them to [play on their PlayStation from afar](https://remoteplay.dl.playstation.net/remoteplay/lang/en/index.html). My brother and I discovered this functionality during the quarantines in Europe for the Coronavirus. Thanks to it we were able to both play the PlayStation (not at the same time of course) while being physically separated. As we are both owners of the PS4 this is not in violation of the terms of use of the PS remote play.
+
 To put it simple the remote play feature allows you to stream your PS4 on any device, your computer for instance. As this is streaming, you don't need huge specs on the client devices ([here are the ones for windows](https://remoteplay.dl.playstation.net/remoteplay/lang/gb/ps4_win.html) as an example), just a solid connection (15 Mb/s according to Sony's website). You can test your speed by making a speed test.
 Although this tool is incredible and useful, it has a few drawbacks:
+
 When using it in your home network(ie same network as the PS4):
 * There are no connectivity issues and it works very well, capped at 720p and 30fps per second for a regular ps4 and, 1080p and 60fps for a PS4 pro and PS5
 The problems arise when playing on a remote network:
@@ -43,28 +45,35 @@ Trying to go as high as 720p remotely, in our experience, was constantly disconn
 <p align="center">
  <img src="./images/without_vpn.JPG">
 </p>
+
 Using our solution, we were able to make the remote play running at 720p all the time from afar without any connectivity issues with a safe encrypted connection. It requires to buy some equipment but it is not very expensive and we found for you the cheapest one.
+
 ## Explanation of the solution:
 Some of you might have guessed it from the beginning our goal here is to make the remote play locally even if you are located on another network, to bypass Sony's server (which they should be thankful as it reduces their load ;) ) and to connect your computer almost directly to the PS4 or 5.
 To achieve so we have to connect securely the device you are streaming on to the network of the PlayStation, and we will achieve this building a VPN server here is a drawing explaining the principle of the solution.
 <p align="center">
  <img src="./images/with_vpn.JPG">
 </p>
+
 We will offer you 2 solutions depending on your usage: 
 * A quick and dirty one that is very easy but that has some disadvantages (touchpad not working... for now), you only have this solution if the remote PC is running on Linux.
 * A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up.
+
 ## Price
 Our solution is cheap, a bit more than 60 euros and it has fixed priced, meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 consumes 3.4 Watts which is a small lamp so it won't be much of an extra cost.
+
 ## Equipment needed:
 Of course you will need some extra devices, setting a VPN server requires a machine to run full time but the raspberry is consuming the equivalent of a lamp, and some cables if you don't already have them.
 You will need:
 * An internet router with a solid connection (15 Mb/s according to Sony's website)
 * A fully operational [raspberry pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?resellerType=home)(4 Gb of RAM is enough, 2Gb of RAM might be as well), with its power supply and an SD card of 16Gb with the Raspberry Pi OS on it.
+
 If you don't feel like burning the OS yourself on the SD card, you can buy SD cards with the OS preinstalled as described [here](https://www.raspberrypi.org/downloads/noobs/), no judgment here.
 * A keyboard and a mouse (only for the installation not the usage)
 * An ethernet cable to link the Raspberry to your router
 * A second ethernet cable (if you don't already have it) to wire your PlayStation to the router as well.
 * A PC for configuring the raspberry and testing the VPN (a PC on a remote network and a PC on the local network is the best configuration but one PC is fine by switching the network when testing the VPN)
+
 ## First steps that are common to all the solutions
 * [Get you raspberry pi up and running with the Raspberry pi OS](https://magpi.raspberrypi.org/articles/set-up-raspberry-pi-4) you can find a lot of tutorials on the web for this and I will not be covering this here. 
 * Connect your raspberry pi to the same router as the PlayStation and turn it on, in order for it to get a local ip address.
@@ -73,18 +82,23 @@ If you don't feel like burning the OS yourself on the SD card, you can buy SD ca
 * [Enable SSH on your raspberry](https://www.raspberrypi.org/documentation/remote-access/ssh/) for being able to connect to it from your computer and run commands on it.
 * From your computer (on the local network) ssh onto the raspberry: for [windows](https://www.raspberrypi.org/documentation/remote-access/ssh/windows10.md), for [macOS](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md), and [Linux](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md) (sorry Linux users, I know you know how to do it)
 * Once you're connected to the raspberry run the following command: `ifconfig | grep inet`. The output of this command will give you the following information. First blue rectangle is the **raspberry IP** that you already have, second rectangle is the **netmask**, note it. The third is the **broadcast IP**, note it as well.
+
 <p align="center">
  <img src="./images/ifconfig_output.png">
 </p>
+
 * Get your **router IP** and note it: it is most likely your **raspberry IP** but replacing the last set of numbers by one (for instance in the image the router IP is 192.168.1.1). Most routers have an admin server at http://**router IP**, check it out to verify your **router IP** is correct. Alternatively browsing 'my router IP "my internet provider"' will likely give you the answer
 * Get your **public IP**, Google can do that for you if you just browse 'my IP address'. Get the [ipv4](https://en.wikipedia.org/wiki/IP_address#IPv4_addresses) address, not the [ipv6](https://en.wikipedia.org/wiki/IP_address#IPv6_addresses)
 * Get your **PS IP** (your PlayStation has to be connected to the LAN for this), by browsing the http://**router IP** and entering your admin credentials (see your router manual for them) the interface depends on your internet^provider but the devices on the local net are often listed under a 'LAN' tab or 'my network'. Identify the one that is your PS4 and note down its IP. We will refer it as **PS IP**
+
 ## Requirements before going to the next steps.
 So at the end of these steps you are able to ssh on your raspberry that is connected to your network, and you have your **raspberry IP**, **netmask**, **broadcast IP**,**router IP**,**public IP** and **PS IP**.
 We will be supposing here that your public IP is not changing very often (in case you have a static IP, that's great). But in case for some reason your public IP changes regularly you'll have to subscribe to a DynDNS service to be able to connect every time to your home network. If it changes only when you reboot your router it's fine, you can go ahead and pretend you have a static IP (we will show you what to change if your public IP changed and guess what? it will just be changing one ip address in a configuration file)
+
 # Quick and dirty solution
 This one is fast and might give you a taste of the improvement you can experience using the VPN but it doesn't completely support all the controller's keys, it is the only solution available with Linux users.
 I will advise it just for testing the solution before implementing the second one because it lacks some of the features of the remote play.
+
 ## On the raspberry pi, install [PiVPN](https://www.pivpn.io/)
 PiVPN is great, it allows for a very fast installation and simple (compared to the second solution we will be suggesting) and a lot of blogs are offering guides to help you select the correct settings during your configuration of it ([This one for instance](https://www.seeedstudio.com/blog/2020/07/02/set-up-a-raspberry-pi-vpn-server-using-pivpn-and-browse-securely-on-public-networks-m/), go straight to the "Configuring PiVPN on Raspberry Pi" section). So to make it simple I will condense the information that you need to have your VPN ready, there are no special settings in our case but here it is:
 * Run `sudo apt-get install openssl`
@@ -100,6 +114,7 @@ PiVPN is great, it allows for a very fast installation and simple (compared to t
 * You want the security packages
 * yes you want to reboot
 Once the raspberry reboots, run the following command: `pivpn add` , create username and password it will create an ovpn file in `/home/pi/ovpns` that you need to give to the computer that will be connecting to your VPN: **I don't recommend emailing it!!! this file is a key to your home network**
+
 ## Open up the 1194 port on your router
 **Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.**
 Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwarding option (the specific location of this option is dependent of your router and web provider) and add a new routing rule:
@@ -107,6 +122,7 @@ Connect to your router admin interface: http://**router IP** and look in the adv
 * port 1194
 * destination: **Raspberry IP**
 * external IP: Leave empty (except if you only want to authorize some specific IPs to connect to your VPN, which could be a good idea if your remote network has a static IP... oh wait it doesn't have one most likely ;) )
+
 ## Set up a VPN client on your remote PC
 On the computer on the remote network, you need to set a VPN client that will allow you to connect to the VPN server.
 For [Windows](https://openvpn.net/client-connect-vpn-for-windows/), [Mac OS](https://openvpn.net/client-connect-vpn-for-mac-os/) or [Linux](https://openvpn.net/openvpn-client-for-linux/)
@@ -118,23 +134,31 @@ The rest is rather straightforward:
 * Start the VPN
 * Greet yourself with a beer (Optional)
 To check if you are successful, you should see the overall data flow (uploads and downloads) on the GUI. Meanwhile browsing 'my IP address' will give you your ...**public IP** (See, you get used to all this)
+
 ## Connect to the PlayStation (try at least..)
 Yeeeww ! You are connected remotely to your home network now try to connect to your PlayStation using the PS remote play application...
 It doesn't work...
 Yes, it doesn't work...
 But you can actually detect the PlayStation if you run this command (that works on windows, Linux and Mac OS) `ping **PS IP**` you will be receiving packets meaning the PlayStation is accessible but the app doesn't reach it! But you know what does? Chiaki!
+
 ## Install Chiaki <img src="./images/chiaki_icon.png" width=10% height=10%>
 [Chiaki](https://github.com/thestr4ng3r/chiaki) is a free, open source, PS remote play client that you can download [here.](https://github.com/thestr4ng3r/chiaki/releases)
 You also need your **PSN account ID**, not your login, not your email... Look, you just don't have it yet ;). 
+
 The Chiaki github is providing a python script for you to get it easily [here](https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you,just run `wget https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py` to get the script and run `python3 psn-account-id.py`... Some packages missing? `sudo pip3 install requests` ..... pip missing? `sudo apt-get install python3-pip`. Ok now you should be fine running the script. It will open up a web page for logging you, copy past the link you get in your terminal and that's it your **PSN account ID**, note it down. 
 Run the Chiaki executable enter your **PSN account ID** the **PS IP** and then it will prompt for a PIN code
-To register a PS4 with a PIN, it must be put into registration mode. To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC and noooooooooooowwwwwwwww .... YOU ARE CONNECTED!!!!!!!!!
+To register a PS4 with a PIN, it must be put into registration mode. To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC and noooooooooooowwwwwwwww .... YOU ARE CONNECTED
+
 You can now run remote play at a higher resolution with less lag and more stable connection but ... BUT using Chiaki comes at some cost, not all the keys of the controller are supported the touchpad for instance and rumble are not supported on windows. It is great for a game that doesn't use them, for other games... well then the second solution remains.
+
 ## Why is this not working with the PS remote play app
 Well, it might be obvious for people used to VPNs but it wasn't for me so we had to investigate a little bit.
 Your LAN or local network is the network connecting all your machines to the web this is your router's job basically. The LAN cannot be seen from the outside. From anyone else on the internet, you are one device identified by your public IP that is the address of your router on the web. 
+
 On your LAN every device has a local address: a local IP (the **PS IP** or **raspberry IP** or **router IP** are local IPs) that are not visible from the outside but you can access them from within your network or with the VPN we just did. 
+
 How acts the VPN we just did? It creates a subnetwork in your network, meaning that the raspberry acts just like your web router: the raspberry gives to any device connected to the VPN access to your LAN and the web. That's why you can actually ping the PlayStation. However the PlayStation app can't reach it? Yes (and this was a conjuncture) the app looks for the PlayStation on the same network that the computer meaning the subnetwork of the raspberry pi! 
+
 <p align="center">
  <img src="./images/quickAndDirty.png">
 </p>
@@ -142,11 +166,15 @@ How acts the VPN we just did? It creates a subnetwork in your network, meaning t
 A solution could be to connect your PlayStation to the VPN but that is not feasible unless the connection of your PlayStation to the web is through a device that can use a VPN... Yeah, we are not gonna do that...
 
 So the other possibility is to have the VPN register you to the LAN and not create a subnetwork and this is called a Bridge VPN! However piVPN is not (for now) able to configure your raspberry to work in that mode so we will have to configure everything manually... Yes, this is the trickier and more complex operation but it is worth it!
+
 # Longer and more complex solution
 So as described in the conclusion of the previous section the solution is to build a bridge VPN that will assign the remote computer to the LAN itself, not a subnetwork. The VPN is a little bit more complicated to configure but we will guide you through it.
+
 If you performed the Quick and dirty solution, you'll have to uninstall piVPN on the raspberry by running the command: `pivpn uninstall` and select to uninstall all the dependencies, remove the port forwarding rule on your router (you'll have to put it back afterwards),enable ssh on your raspberry pi to be able to run commands on it from your computer and reboot it.
+
 ## Set up the bridge VPN
 The solution is inspired from [this thread](https://github.com/pivpn/pivpn/issues/45) that gives a solution to build a bridge mode that is not yet supported by piVPN, especially the second message gives a [link](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup) and some guide lines. As the instructions are made for a Linux virtual machine, we will adapt them here to make it easier for you.
+
 ### Authentication Setup with Easy-RSA
 Open Terminal on the raspberry, and become root:
 * `sudo su`
@@ -183,6 +211,7 @@ Certificate and key files will be given to the clients. Copy these files to the 
 * `mkdir /home/pi/credentials`
 * `cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/easy-rsa/pki/issued/ps_remote.crt /etc/openvpn/easy-rsa/pki/private/ps_remote.key /home/pi/credentials`
 You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. 
+
 ### VPN setup
 This is where we will be using all the information that we made you find in the part common to both simple and complex installation, namely **raspberry IP**, **netmask**, **broadcast IP**,**router IP**,**public IP**
 We'll use the text editor nano to create a script called openvpn-bridge that performs the Ethernet bridging. Enter on the raspberry, still as root: 
@@ -281,6 +310,7 @@ And paste them at the bottom of the [Service] section.
 Exit and save. Reboot the VM by entering
 * `reboot`
 The OpenVPN server will be running at boot, i.e., no user login is required.
+
 ### Basic testing
 Verify that the br0 and tap0 interfaces are up by entering in Terminal
 * `ip a`
@@ -291,6 +321,7 @@ You still need to enable IP forwarding on your raspberry pi, but if you use the 
 * `sudo nano /etc/sysctl.conf`
 And you have to uncomment the following line (close from the begin of the file, or just paste it if you are lazy):
 * `net.ipv4.ip_forward = 1`
+
 ## Open up the 1194 port on your router
 **Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.**
 Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwarding option (the specific location of this option is dependent of your router) and add a new routing rule:
@@ -298,6 +329,7 @@ Connect to your router admin interface: http://**router IP** and look in the adv
 * port 1194
 * destination: **Raspberry IP**
 * external IP: Leave empty (except if you only want to authorize some specific IPs to connect to your VPN, which could be a good idea if your remote network has a static IP... oh wait it doesn't have one most likely ;) )
+
 ## Set up the VPN Client
 On the remote computer, you will need the credendentials files that you created during the installation of the openVPN server.
 You will also need a configuration file called `ps_remote.conf` which content has to be customized with the **public IP** line 4 (don't erase 1194 it indicates the port the VPN is using). Here is the content.
@@ -318,20 +350,22 @@ compress lz4-v2
 verb 3
 ```
 So as a reminder you need 4 files: `ps_remote.conf` that you just created and `ca.crt` `ps_remote.crt` `ps_remote.key` that were created during the installation of openvpn and the creation of the access to the ps_remote user. They will all be useful for configuring the VPN Client.
+
 Unfortunately, OpenVPN client doesn't support bridging. Therefore we cannot have this client with it's fancy GUI. All the following steps are provided once again by this amazing [guide/blog](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup). Do the following on the computer you wish to use for remote play:
 for Windows:
 * Download [Securepoint SSL VPN Client](https://sourceforge.net/projects/securepoint/) and install it. be sure to select "Management" in the starting context.
 * Start Securepoint. In the Taskbar, appeared a little padlock, click on it and in the small GUI that pop up, select the small gear (bottom right) 
 * Select **New**, and give a name to your connection. 
 * Enter the **public IP** address of the server, keep the default protocol (UDP) and port (1194), and click Add and Next.
-* For your client (ps_remote for us), point "Root CA" to ca.crt, "Certificate" to ps_remote.crt, and "Key" to ps_remote.key. 
-* Leave "Server certificate" unchecked.
+* For your client (ps_remote for us), point "Root CA" to ca.crt, "Certificate" to ps_remote.crt, and "Key" to ps_remote.key. 
+* Leave "Server certificate" unchecked.
 * Click Next, Next and Finish
 * Copy ta.key to the folder with the VPN connection's name, found in the user's "AppData\Roaming\Securepoint SSL VPN\config" folder.
 * Check that the three previously given files are present in the folder
 * Open ps_remote.conf file with a standard text editor and copy the content.
 * In Securepoint, right-click on the VPN connection's name, select "Quick edit", delete everything, and paste
 * Start the connection
+
 Two options are available: either you are connected and proceed to self-congratulating in whatever form you need, or the icon is red, and ... take a break and restart from the beginning: it took us four days to successfully connect, we know it can be a tough task guys.
 
 For Mac unfortunately, we cannot give feedback yet, so I will just paste the [guide](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup) and adapt with names we chose here:
@@ -342,9 +376,13 @@ For Mac unfortunately, we cannot give feedback yet, so I will just paste the [gu
 * Go to "VPN Details", select the connection on the left, and under the "Settings" tab, set "Set DNS/WINS" to "Do not set nameserver".
 * Also uncheck "Check if the apparent public IP address changed after connecting," since this is unnecessary for this type of VPN setup (the client's public IP address will not change).
 * Exit the menus. With the OpenVPN server running, click the tunnel icon, and connect. A message about the DNS server address not being routed through the VPN may pop up, which can be ignored since this isn't the intent of this VPN setup.
-To get back to the individual client files, right-click on the .tblk file and select "Show Package Contents." If you want to change any of the client files, you must reload (double-click) the .tblk file again after making the changes. However, to quickly change the client configuration file without having to reload, go to "VPN Details", highlight the connection in the list on the left, click the gear icon below the list and select "Edit OpenVPN Configuration File." The client doesn't need to keep the original client files after the configuration is created, since they get copied to the folder ~/Library/Application Support/Tunnelblick/Configurations.
+
+To get back to the individual client files, right-click on the .tblk file and select "Show Package Contents." If you want to change any of the client files, you must reload (double-click) the .tblk file again after making the changes. However, to quickly change the client configuration file without having to reload, go to "VPN Details", highlight the connection in the list on the left, click the gear icon below the list and select "Edit OpenVPN Configuration File".
+The client doesn't need to keep the original client files after the configuration is created, since they get copied to the folder ~/Library/Application Support/Tunnelblick/Configurations.
+
 As for Linux users, we know you can do it, Linux is at its best here.
 Now that you managed to connect you can breathe, this is it, it's done. (Painkiller might be needed)
+
 ## Connect to your PlayStation locally remotely (uhuhuhuhuh)
 Now that your VPN is on, that your client is ready and that you can connect to the VPN server, all you need to do is to fire the PS remote play app!!! maybe you'll have a pairing to make: 
 To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC
@@ -353,9 +391,12 @@ Now you can increase the quality of your remote play as long as you connexion al
 
 ## About this solution: what is this changing
 Now any device connected to the VPN can be spotted on the LAN, if you go to your router's admin page (that you can also access on the remote computer with the VPN now) and check the devices connected you will note that a new device has appeared whose IP belongs to the range you gave in the configuration file of openVPN whereas in the previous solution your device was not visible as it was on a subnetwork.
+
 <p align="center">
  <img src="./images/bridgeVPN.png">
 </p>
+
 # Conclusion
+
 We don't believe that this solution harms Sony in any way: we give people the opportunity to play more on their consoles remotely and enabling friends to share a console where they might not have all the money to buy their own all of which is profitable to Sony. We made a huge ad of their remote play feature in this article and, you might have guessed it, we are definitely very fond of it.
 In our minds this is a cheap solution to improve the quality and latency of your streaming feed, we wanted to enjoy ps4 games without having to buy a console both and this solution was a good answer to this problem, especially in quarantine times. It's also a good solution now: the PS5 being out and not everyone being able to afford it, you can share the price and the console with some of your friends and be coowners if you are ok with sharing the console. At the time of the writing, we didn't test our solution on a PS5 but, as it involves the same protocols, we are confident that it can work (stay tuned!). Submit an issue if  you are encountering a problem with the solution we will gladly help. 
