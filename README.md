@@ -382,8 +382,8 @@ The OpenVPN server will be running at boot, i.e., no user login is required.
 ### Basic testing
 Verify that the br0 and tap0 interfaces are up by entering in Terminal
 * `ip a`
-Check the OpenVPN server status by entering
 
+Check the OpenVPN server status by entering
 * `systemctl status openvpn@server.service`
 
 you should see a display saying that the VPN is running
