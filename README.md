@@ -136,6 +136,7 @@ Connect to your router admin interface: http://**router IP** and look in the adv
 ## Set up a VPN client on your remote PC
 On the computer on the remote network, you need to set a VPN client that will allow you to connect to the VPN server.
 For [Windows](https://openvpn.net/client-connect-vpn-for-windows/), [Mac OS](https://openvpn.net/client-connect-vpn-for-mac-os/) or [Linux](https://doc.ubuntu-fr.org/client_openvpn)
+
 The rest is rather straightforward:
 * Install OpenVPN Client
 * Start the Client once it is installed
@@ -143,6 +144,7 @@ The rest is rather straightforward:
 * Enter the username and password defined during the install of pivpn
 * Start the VPN
 * Greet yourself with a beer (Optional)
+
 To check if you are successful, you should see the overall data flow (uploads and downloads) on the GUI. Meanwhile browsing 'my IP address' will give you your ...**public IP** (See, you get used to all this)
 
 ## Connect to the PlayStation (try at least..)
