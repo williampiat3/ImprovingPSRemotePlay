@@ -426,6 +426,7 @@ verb 3
 So as a reminder you need 4 files: `ps_remote.conf` that you just created and `ca.crt` `ps_remote.crt` `ps_remote.key` that were created during the installation of openvpn and the creation of the access to the ps_remote user. They will all be useful for configuring the VPN Client.
 
 Unfortunately, OpenVPN client doesn't support bridging. Therefore we cannot have this client with it's fancy GUI. All the following steps are provided once again by this amazing [guide/blog](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup). Do the following on the computer you wish to use for remote play:
+
 for Windows:
 * Download [Securepoint SSL VPN Client](https://sourceforge.net/projects/securepoint/) and install it. be sure to select "Management" in the starting context.
 * Start Securepoint. In the Taskbar, appeared a little padlock, click on it and in the small GUI that pop up, select the small gear (bottom right) 
