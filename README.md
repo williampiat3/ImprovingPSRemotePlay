@@ -415,8 +415,8 @@ remote public_IP 1194
 persist-key
 persist-tun
 ca ca.crt
-cert joe.crt
-key joe.key
+cert ps_remote.crt
+key ps_remote.key
 remote-cert-tls server
 tls-auth ta.key 1
 cipher AES-256-GCM
