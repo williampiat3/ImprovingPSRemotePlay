@@ -393,12 +393,14 @@ You still need to enable IP forwarding on your raspberry pi, but if you use the 
 
 * `sudo nano /etc/sysctl.conf`
 
-And you have to uncomment the following line (close from the begin of the file, or just paste it if you are lazy):
+And you have to uncomment the following lines (close from the begin of the file, or just paste it if you are lazy):
 
 * `net.ipv4.ip_forward = 1`
+* `net.ipv6.conf.all.forwarding=1`
+
 
 ## Open up the 1194 port on your router
-**Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.**
+**Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.** if you didn't enable ssh it is deactivated by default
 Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwarding option (the specific location of this option is dependent of your router) and add a new routing rule:
 * protocol: UDP and TCP
 * port 1194
