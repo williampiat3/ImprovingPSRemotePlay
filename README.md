@@ -267,7 +267,7 @@ Certificate and key files will be given to the clients. Copy these files to the 
 
 * `mkdir /home/pi/credentials`
 
-* `cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/easy-rsa/pki/issued/ps_remote.crt /etc/openvpn/easy-rsa/pki/private/ps_remote.key /home/pi/credentials`
+* `cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/easy-rsa/pki/private/ta.key /etc/openvpn/easy-rsa/pki/issued/ps_remote.crt /etc/openvpn/easy-rsa/pki/private/ps_remote.key /home/pi/credentials`
 
 **You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email.**
 
