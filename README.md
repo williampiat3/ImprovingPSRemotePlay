@@ -277,7 +277,9 @@ This is where we will be using all the information that we made you find in the 
 We'll use the text editor nano to create a script called openvpn-bridge that performs the Ethernet bridging. Enter on the raspberry, still as root: 
 * `nano /etc/openvpn/openvpn-bridge`
 
- Copy and paste the following script into that (empty) file, make sure that you are changing the keyword raspberry IP, broadcast IP and router IP by their values (they are only at the beginning of the script), make sure you leave the quotation mark around them
+
+
+ Copy and paste the following script into that (empty) file, make sure that you are changing the keyword raspberry IP, broadcast IP and router IP by their values (they are only at the beginning of the script), make sure you leave the quotation mark around them. If you are not used to nano: once you paste the content of the file, ctrl+O for saving and ctrl + X for quitting.
  ```shell
 #!/bin/sh
 # Define Bridge Interface
@@ -403,7 +405,7 @@ And you have to uncomment the following lines (close from the begin of the file,
 
 
 ## Open up the 1194 port on your router
-**Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.** if you didn't enable ssh it is deactivated by default
+**Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do the following at your own risks.** if you didn't enable ssh it is deactivated by default. You can configure this just like we presented it in [the first steps](#first-steps-that-are-common-to-all-the-solutions)
 Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwarding option (the specific location of this option is dependent of your router) and add a new routing rule:
 * protocol: UDP and TCP
 * port 1194
