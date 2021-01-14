@@ -197,7 +197,7 @@ So as described in the conclusion of the previous section the solution is to bui
 If you performed the Quick and dirty solution, you'll have to uninstall piVPN on the raspberry by running the command: `pivpn uninstall` and select to uninstall all the dependencies, remove the port forwarding rule on your router (you'll have to put it back afterwards),enable ssh on your raspberry pi to be able to run commands on it from your computer and reboot it.
 
 ## Set up the bridge VPN
-We noticed that easy-rsa on raspbian stretch 9 didn't work exactly with the commands that we giving here, we made the installation with raspberry OS (raspbian) 10 buster, make sure you have the correct version by running `cat /etc/os-release`.
+We noticed that easy-rsa on raspbian stretch 9 didn't work exactly with the commands that we are giving here, we made the installation with raspberry OS (raspbian) 10 buster, make sure you have the correct version by running `cat /etc/os-release`.
 The solution is inspired from [this thread](https://github.com/pivpn/pivpn/issues/45) that gives a solution to build a bridge mode that is not yet supported by piVPN, especially the second message gives a [link](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup) and some guidelines. As the instructions are made for a Linux virtual machine, we will adapt them here to make it easier for you.
 
 ### Authentication Setup with Easy-RSA
