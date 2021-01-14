@@ -396,7 +396,10 @@ You still need to enable IP forwarding on your raspberry pi, but if you use the 
 And you have to uncomment the following lines (close from the begin of the file, or just paste it if you are lazy):
 
 * `net.ipv4.ip_forward = 1`
+* `net.ipv6.conf.default.forwarding=1`
 * `net.ipv6.conf.all.forwarding=1`
+
+
 
 
 ## Open up the 1194 port on your router
