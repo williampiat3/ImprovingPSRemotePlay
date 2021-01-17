@@ -282,19 +282,68 @@ We'll use the text editor nano to create a script called openvpn-bridge that per
  Copy and paste the following script into that (empty) file, make sure that you are changing the keyword raspberry IP, broadcast IP and router IP by their values (they are only at the beginning of the script), make sure you leave the quotation mark around them. If you are not used to nano: once you paste the content of the file, ctrl+O for saving and ctrl + X for quitting.
  ```shell
 #!/bin/sh
+
 # Define Bridge Interface
 br="br0"
+
 # Define list of TAP interfaces to be bridged,
 # for example tap="tap0 tap1 tap2".
 tap="tap0"
+
 # Define physical ethernet interface to be bridged
 # with TAP interface(s) above.
 eth="eth0"
-# LINES TO EDIT
 eth_ip_netmask= "raspberry_IP/24"
 eth_broadcast= "broadcast_IP"
 eth_gateway= "router_IP"
-# NO MORE LINE TO EDIT
+
+case "$1" in
+start)
+    for t in $tap; do
+        openvpn --mktun --dev $t
+    done
+
+    brctl addbr $br
+    brctl addif $br $eth
+
+    for t in $tap; do
+        brctl addif $br $t
+    done
+
+    for t in $tap; do
+        ip addr flush dev $t
+        ip link set $t promisc on up
+    done
+
+    ip addr flush dev $eth
+    ip link set $eth promisc on up
+
+    ip addr add $eth_ip_netmask broadcast $eth_broadcast dev $br
+    ip link set $br up
+
+    ip route add default via $eth_gateway
+    ;;
+stop)
+    ip link set $br down
+    brctl delbr $br
+
+    for t in $tap; do
+        openvpn --rmtun --dev $t
+    done
+
+    ip link set $eth promisc off up
+    ip addr add $eth_ip_netmask broadcast $eth_broadcast dev $eth
+
+    ip route add default via $eth_gateway
+    ;;
+*)
+    echo "Usage:  openvpn-bridge {start|stop}"
+    exit 1
+    ;;
+esac
+exit 0
+ 
+
 case "$1" in
 start)
     for t in $tap; do
