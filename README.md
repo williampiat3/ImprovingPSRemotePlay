@@ -342,44 +342,6 @@ stop)
     ;;
 esac
 exit 0
- 
-
-case "$1" in
-start)
-    for t in $tap; do
-        openvpn --mktun --dev $t
-    done
-    brctl addbr $br
-    brctl addif $br $eth
-    for t in $tap; do
-        brctl addif $br $t
-    done
-    for t in $tap; do
-        ip addr flush dev $t
-        ip link set $t promisc on up
-    done
-    ip addr flush dev $eth
-    ip link set $eth promisc on up
-    ip addr add $eth_ip_netmask broadcast $eth_broadcast dev $br
-    ip link set $br up
-    ip route add default via $eth_gateway
-    ;;
-stop)
-    ip link set $br down
-    brctl delbr $br
-    for t in $tap; do
-        openvpn --rmtun --dev $t
-    done
-    ip link set $eth promisc off up
-    ip addr add $eth_ip_netmask broadcast $eth_broadcast dev $eth
-    ip route add default via $eth_gateway
-    ;;
-*)
-    echo "Usage:  openvpn-bridge {start|stop}"
-    exit 1
-    ;;
-esac
-exit 0
  ```
 This script is adapted from the bridge-start and bridge-stop scripts at OpenVPN's Ethernet bridging page. It bridges the Ethernet interface, eth0, and OpenVPN's TAP interface, tap0, as members of the bridge interface, br0.
 
