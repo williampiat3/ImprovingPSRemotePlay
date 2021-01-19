@@ -293,9 +293,9 @@ tap="tap0"
 # Define physical ethernet interface to be bridged
 # with TAP interface(s) above.
 eth="eth0"
-eth_ip_netmask= "raspberry_IP/24"
-eth_broadcast= "broadcast_IP"
-eth_gateway= "router_IP"
+eth_ip_netmask="raspberry_IP/24"
+eth_broadcast="broadcast_IP"
+eth_gateway="router_IP"
 
 case "$1" in
 start)
