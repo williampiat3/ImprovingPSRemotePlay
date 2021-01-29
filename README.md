@@ -64,18 +64,28 @@ We will offer you 2 solutions depending on your usage:
 * A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up.
 
 ## Price
-Our solution is cheap, a bit less than 90 euros and it has fixed priced, meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 consumes 3.4 Watts which is a small lamp so it won't be much of an extra cost.
-It is composed of:
-* A [raspberry pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?resellerType=home) (4 Gb of RAM is enough, 2Gb of RAM might be as well)
+Our solution is cheap, and it works on raspberry pi zero, 3 and 4 (so if you have one of these it works), meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 consumes 3.4 Watts which is a small lamp so it won't be much of an extra cost. The raspberry 3 and 4 can sustain multiple connexions on the VPN but come at a higher cost, on the other hand if there is only one personusing the VPN then the pi zero solution is cheaper (half of the price approximatly) the configuration is a little bit trickier at the beginning as you need to ssh from the start on it but it is more efficient.
+
+
+For the raspberry pi 3 and 4 you will need:
+* A [raspberry pi 3 or 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?resellerType=home) (2Gb of RAM are sufficient)
 * A micro SD card of 16Gb (or more), 8Gb could be enough but I do not recommend it.
 * A USB-C Power supply, ideally the [official one](https://www.raspberrypi.org/products/type-c-power-supply/?resellerType=home)
 * A nice [case](https://www.raspberrypi.org/products/raspberry-pi-4-case/?resellerType=home), recommended to protect it
 
+For the raspberry zero you will need:
+* A [raspberry pi zero 1.3](https://www.raspberrypi.org/products/raspberry-pi-zero/)
+* A micro SD card of 16Gb (or more), 8Gb could be enough but I do not recommend it.
+* A micro USB - ethernet dongle that can power the raspberry, [this one](https://www.amazon.com/Cable-Matters-Streaming-Including-Chromecast/dp/B07N2ZHFY9) for instance
+* A nice [case](https://www.raspberrypi.org/products/raspberry-pi-zero-case/), recommended to protect it
+If you are using the solution with the raspberry pi zero make sure to [enable ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/) (check paragraph 3.) right after burning the OS as you can't plug a keyboard on the pi zero if the ethernet dongle is on it
+
 ## Equipment needed:
+
 Of course you will need some extra devices, setting a VPN server requires a machine to run full time but the raspberry is consuming the equivalent of a lamp, and some cables if you don't already have them.
 You will need:
 * An internet router with a solid connection (15 Mb/s according to Sony's website)
-* A fully operational raspberry pi 4, with its power supply and an SD card with the Raspberry Pi OS on it.
+* A fully operational raspberry pi 4, 3 or zero, with its power supply and an SD card with the Raspberry Pi OS on it.
 
 If you don't feel like burning the OS yourself on the SD card, you can buy SD cards with the OS preinstalled as described [here](https://www.raspberrypi.org/downloads/noobs/), no judgment here.
 * A keyboard and a mouse (only for the installation not the usage)
@@ -219,6 +229,8 @@ Now we'll make the credentials (certificates and keys) for OpenVPN authenticatio
 Enter
 
 * `./easyrsa init-pki`
+
+If you are using the raspberry pi zero you have an extra step to perform, `nano /etc/openvpn/easy-rsa/openssl.cnf` and remove the line `RANDFILE=...`
 
 Create a Certificate Authority (CA) by entering
 
