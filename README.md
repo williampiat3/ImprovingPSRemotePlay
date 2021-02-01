@@ -25,6 +25,7 @@
       * [Set up the VPN Client](#set-up-the-vpn-client)
       * [Connect to your PlayStation locally remotely (uhuhuhuhuh)](#connect-to-your-playstation-locally-remotely-uhuhuhuhuh)
       * [About this solution: what is this changing](#about-this-solution-what-is-this-changing)
+      * [Testing the connection](#testing-the-connection)
    * [Conclusion](#conclusion)
    * [Other uses of this VPN](#other-uses-of-this-vpn)
 
