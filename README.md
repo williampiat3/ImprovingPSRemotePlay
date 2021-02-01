@@ -26,6 +26,7 @@
       * [Connect to your PlayStation locally remotely (uhuhuhuhuh)](#connect-to-your-playstation-locally-remotely-uhuhuhuhuh)
       * [About this solution: what is this changing](#about-this-solution-what-is-this-changing)
    * [Conclusion](#conclusion)
+   * [Other uses of this VPN](#other-uses-of-this-vpn)
 
 ## Introduction
 This guide will allow you to improve your experience of PS remote play, reduce the load of Sony's servers and tap into the world of raspberry pi while sitting on your couch and playing your PS4 or 5 from anywhere. Hooked already? Well, here's how to do it:
@@ -78,6 +79,7 @@ For the raspberry zero you will need:
 * A micro SD card of 16Gb (or more), 8Gb could be enough but I do not recommend it.
 * A micro USB - ethernet dongle that can power the raspberry, [this one](https://www.amazon.com/Cable-Matters-Streaming-Including-Chromecast/dp/B07N2ZHFY9) for instance
 * A nice [case](https://www.raspberrypi.org/products/raspberry-pi-zero-case/), recommended to protect it
+
 If you are using the solution with the raspberry pi zero make sure to [enable ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/) (check paragraph 3.) right after burning the OS as you can't plug a keyboard on the pi zero if the ethernet dongle is on it
 
 ## Equipment needed:
@@ -499,6 +501,13 @@ Now you can increase the quality of your remote play as long as you connexion al
 ## About this solution: what is this changing
 Now any device connected to the VPN can be spotted on the LAN, if you go to your router's admin page (that you can also access on the remote computer with the VPN now) and check the devices connected you will note that a new device has appeared whose IP belongs to the range you gave in the configuration file of openVPN whereas in the previous solution your device was not visible as it was on a subnetwork.
 
+## Testing the connection
+
+Once your setup is ready I advise you to use iperf3 to check the performance of your network through the VPN by using a remote wired network: the software is available on linux, windows and MacOS: therefore you can use it on all you machines to check the throuput:
+* On linux (on the raspberry) install it by using `sudo apt-get install iperf3`, on windows and on MacOS download the (source files)[https://iperf.fr/fr/iperf-download.php] and unzip them
+* On the raspberry run the following command to run a test server `iperf3 -s`
+* On the client computer if it is a windows go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` and you should see the average throuput that you can get from the VPN: for a seamless connection it has to be above 10Mb/s which can be perfomed by the pi zero with the dongle
+
 <p align="center">
  <img src="./images/bridgeVPN.png">
 </p>
@@ -510,3 +519,8 @@ We don't believe that this solution harms Sony in any way: we give people the op
 In our minds this is a cheap solution to improve the quality and latency of your streaming feed, we wanted to enjoy ps4 games without having to buy a console both and this solution was a good answer to this problem, especially in quarantine times. It's also a good solution now: the PS5 being out and not everyone being able to afford it, you can share the price and the console with some of your friends and be coowners if you are ok with sharing the console.
 
 At the time of the writing, we didn't test our solution on a PS5 but, as it involves the same protocols, we are confident that it can work (stay tuned!). Submit an issue if  you are encountering a problem with the solution we will gladly help. 
+
+# Other uses of this VPN
+This VPN can also be used for other purposes: for building a LAN for playing with friends on PC, giving yourself access to your local network if you have a machine at home. I personnaly use it when working on projects with my friends so that we can code on the same machine.
+
+You can also stream more efficiently Steam to a remote computer: if you are using steam remote play over the internet the computer that is streaming has quite an heavy load ass it has to decode the straeming flux coming from steam server: even if you are using the VPN the computer running the game will be seding the video flux to steam servers and that will be redirected to the streaming computer, by putting steam in offline mode on the computer running the game you will force the video flux to pass through the VPN directly and decrease the decoding load on the computer streaming the game: good to know if you are streaming from a potatoe. 
