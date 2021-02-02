@@ -505,7 +505,7 @@ Now any device connected to the VPN can be spotted on the LAN, if you go to your
 ## Testing the connection
 
 Once your setup is ready I advise you to use iperf3 to check the performance of your network through the VPN by using a remote wired network: the software is available on linux, windows and MacOS: therefore you can use it on all you machines to check the throuput:
-* On linux (on the raspberry) install it by using `sudo apt-get install iperf3`, on windows and on MacOS download the ([source files](https://iperf.fr/fr/iperf-download.php)) and unzip them
+* On linux (on the raspberry) install it by using `sudo apt-get install iperf3`, on windows and on MacOS download the [source files](https://iperf.fr/fr/iperf-download.php) and unzip them
 * On the raspberry run the following command to run a test server `iperf3 -s`
 * On the client computer if it is a windows go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` and you should see the average throuput that you can get from the VPN: for a seamless connection it has to be above 10Mb/s which can be perfomed by the pi zero with the dongle
 
