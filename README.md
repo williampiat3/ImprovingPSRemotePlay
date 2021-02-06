@@ -500,7 +500,7 @@ up /etc/openvpn/update-resolv-conf
 down /etc/openvpn/update-resolv-conf
 ```
 * Import the `ps_remote.conf` file in Settings => Network => VPN => + => import from file...
-* Launch the vpn
+* Launch the VPN
 
 <p align="center">
  <img src="./images/vpn_client_linux.png" width=70% height=70%>
