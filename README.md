@@ -463,7 +463,7 @@ So as a reminder you need 4 files: `ps_remote.conf` that you just created and `c
 
 Unfortunately, OpenVPN client doesn't support bridging. Therefore we cannot have this client with it's fancy GUI. All the following steps are provided once again by this amazing [guide/blog](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup). Do the following on the computer you wish to use for remote play:
 
-for Windows:
+### Windows
 * Download [Securepoint SSL VPN Client](https://sourceforge.net/projects/securepoint/) and install it. be sure to select "Management" in the starting context.
 * Start Securepoint. In the Taskbar, appeared a little padlock, click on it and in the small GUI that pop up, select the small gear (bottom right) 
 * Select **New**, and give a name to your connection. 
@@ -479,6 +479,7 @@ for Windows:
 
 Two options are available: either you are connected and proceed to self-congratulating in whatever form you need, or the icon is red, and ... take a break and restart from the beginning: it took us two days to successfully connect, we know it can be a tough task guys.
 
+### Mac
 For Mac unfortunately, we cannot give feedback yet, so I will just paste the [guide](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup) and adapt with names we chose here:
 * For macOS clients, use [Tunnelblick](https://tunnelblick.net/). Be sure to get the correct version for your version of macOS, which could be the beta release. When it asks for configuration files after you install it, just quit. 
 * Tunnelblick uses files with a ".tblk" extension. For the client "ps_remote", place the files ca.crt, ps_remote.crt, ps_remote.key, ta.key and ps_remote.conf into a new folder called whatever you want to call that VPN connection, say, "Home VPN.tblk".
@@ -491,6 +492,7 @@ For Mac unfortunately, we cannot give feedback yet, so I will just paste the [gu
 To get back to the individual client files, right-click on the .tblk file and select "Show Package Contents." If you want to change any of the client files, you must reload (double-click) the .tblk file again after making the changes. However, to quickly change the client configuration file without having to reload, go to "VPN Details", highlight the connection in the list on the left, click the gear icon below the list and select "Edit OpenVPN Configuration File".
 The client doesn't need to keep the original client files after the configuration is created, since they get copied to the folder \~/Library/Application Support/Tunnelblick/Configurations.
 
+### Linux
 As for Linux, Ubuntu integrate Openvpn therefore only two steps are needed: 
 * Edit the `ps_remote.conf` file by adding the following two lines at the bottom
 ```
@@ -501,7 +503,7 @@ down /etc/openvpn/update-resolv-conf
 * Launch the vpn
 
 <p align="center">
- <img src="./images/vpn_client_linux.png">
+ <img src="./images/vpn_client_linux.png" width=70% height=70%>
 </p>
 
 
