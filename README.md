@@ -500,6 +500,8 @@ up /etc/openvpn/update-resolv-conf
 down /etc/openvpn/update-resolv-conf
 ```
 * Import the `ps_remote.conf` file in Settings => Network => VPN => + => import from file...
+* All files are attributed just like in Securepoint SSL VPN Client in Windows but automatically
+* Clic on " Add" on the top right of the window
 * Launch the VPN
 
 <p align="center">
