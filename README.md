@@ -491,7 +491,19 @@ For Mac unfortunately, we cannot give feedback yet, so I will just paste the [gu
 To get back to the individual client files, right-click on the .tblk file and select "Show Package Contents." If you want to change any of the client files, you must reload (double-click) the .tblk file again after making the changes. However, to quickly change the client configuration file without having to reload, go to "VPN Details", highlight the connection in the list on the left, click the gear icon below the list and select "Edit OpenVPN Configuration File".
 The client doesn't need to keep the original client files after the configuration is created, since they get copied to the folder \~/Library/Application Support/Tunnelblick/Configurations.
 
-As for Linux users, we know you can do it, Linux is at its best here.
+As for Linux, Ubuntu integrate Openvpn therefore only two steps are needed: 
+* Edit the `ps_remote.conf` file by adding the following two lines at the bottom
+```
+up /etc/openvpn/update-resolv-conf
+down /etc/openvpn/update-resolv-conf
+```
+* Import the `ps_remote.conf` file in Settings => Network => VPN => + => import from file...
+* Launch the vpn
+
+<p align="center">
+ <img src="./images/vpn_client_linux.png">
+</p>
+
 
 Now that you managed to connect you can breathe, this is it, it's done. (Painkiller might be needed)
 
