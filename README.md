@@ -1,5 +1,3 @@
-
-
 # PS4 and PS5: Improving your PS remote play experience
 ## Table of contents
    * [PS4 and PS5, improving your PS remote play experience](#ps4-and-ps5-improving-your-ps-remote-play-experience)
@@ -118,7 +116,7 @@ So at the end of these steps you are able to ssh on your raspberry that is conne
 We will be supposing here that your public IP is not changing very often (in case you have a static IP, that's great). But in case for some reason your public IP changes regularly you'll have to subscribe to a DynDNS service to be able to connect every time to your home network. If it changes only when you reboot your router it's fine, you can go ahead and pretend you have a static IP (we will show you what to change if your public IP changed and guess what? it will just be changing one ip address in a configuration file)
 
 # Quick and dirty solution
-This one is fast and might give you a taste of the improvement you can experience using the VPN but it doesn't completely support all the controller's keys, it is the only solution available with Linux users.
+This one is fast and might give you a taste of the improvement you can experience using the VPN but it doesn't completely support all the controller's keys on Windows, Linux users can enjoy full compatibility following this solution.
 I will advise it just for testing the solution before implementing the second one because it lacks some of the features of the remote play.
 
 ## On the raspberry pi, install [PiVPN](https://www.pivpn.io/)
