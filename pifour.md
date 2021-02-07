@@ -1,14 +1,16 @@
-#Bridge VPN on pi 4
-      * [Set up the bridge VPN](#set-up-the-bridge-vpn)
-         * [Authentication Setup with Easy-RSA](#authentication-setup-with-easy-rsa)
-         * [VPN setup](#vpn-setup)
-         * [Basic testing](#basic-testing)
-      * [Open up the 1194 port on your router](#open-up-the-1194-port-on-your-router-1)
-      * [Set up the VPN Client](#set-up-the-vpn-client)
+# Bridge VPN on pi 4
+
+* [Set up the bridge VPN](#set-up-the-bridge-vpn)
+    * [Authentication Setup with Easy-RSA](#authentication-setup-with-easy-rsa)
+    * [VPN setup](#vpn-setup)
+* [Basic testing](#basic-testing)
+* [Open up the 1194 port on your router](#open-up-the-1194-port-on-your-router-1)
+* [Set up the VPN Client](#set-up-the-vpn-client)
 
 ## Set up the bridge VPN
 We noticed that easy-rsa on raspbian stretch 9 didn't work exactly with the commands that we are giving here, we made the installation with raspberry OS (raspbian) 10 buster, make sure you have the correct version by running `cat /etc/os-release`.
 The solution is inspired from [this thread](https://github.com/pivpn/pivpn/issues/45) that gives a solution to build a bridge mode that is not yet supported by piVPN, especially the second message gives a [link](https://www.emaculation.com/doku.php/bridged_openvpn_server_setup) and some guidelines. As the instructions are made for a Linux virtual machine, we will adapt them here to make it easier for you.
+If yu ssh on the pi this will be much easier as you'll be able to juste copy and paste the commands from your computer and this will reduce the possible errors that you can make, in a similar manner you can simply open this page on the rapsberry to run the commands more easily.
 
 ### Authentication Setup with Easy-RSA
 Open Terminal on the raspberry, and become root:
@@ -29,8 +31,6 @@ Now we'll make the credentials (certificates and keys) for OpenVPN authenticatio
 Enter
 
 * `./easyrsa init-pki`
-
-If you are using the raspberry pi zero you have an extra step to perform, `nano /etc/openvpn/easy-rsa/openssl.cnf` and remove the line `RANDFILE=...`
 
 Create a Certificate Authority (CA) by entering
 
@@ -84,12 +84,9 @@ Certificate and key files will be given to the clients. Copy these files to the 
 Change the owner of the certificates to be able to copy them to another machine
 * `chown pi /home/pi/credentials/*`
 
-If you are connected via ssh on your raspberry you can securily copy the files to your computer using scp (this is the only option available for the pi zero as you can't plug an usb on it as the ethernet dongle is already taking the usb slot) so open a terminal on your computer
+Plug a USB drive onto the pi to get the files
 
-* `scp -rp pi@RASPBERRY_IP:/home/pi/credentials target_directory_local_computer`
-
-
-**You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email** 
+**You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. THe ssafest mannef is by simply giving the USB drive with the certificates** 
 
 ### VPN setup
 This is where we will be using all the information that we made you find in the part common to both simple and complex installation, namely **raspberry IP**, **netmask**, **broadcast IP**,**router IP**,**public IP**

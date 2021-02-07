@@ -10,7 +10,7 @@
    * [Quick and dirty solution](#quick-and-dirty-solution)
       * [Why is this not working with the PS remote play app](#why-is-this-not-working-with-the-ps-remote-play-app)
    * [Longer and more complex solution](#longer-and-more-complex-solution)
-      * [Connect to your PlayStation locally remotely (uhuhuhuhuh)](#connect-to-your-playstation-locally-remotely-uhuhuhuhuh)
+      * [Connect to your PlayStation locally remotely (uhuhuhuhuh)](#connect-to-your-playstation-locally-remotely)
       * [About this solution: what is this changing](#about-this-solution-what-is-this-changing)
       * [Testing the connection](#testing-the-connection)
    * [Conclusion](#conclusion)
@@ -140,7 +140,7 @@ As we performed the installation on raspberry pi 4 and zero we made two guides w
 * [Guide for pi zero](pi_zero.md)
 
 
-## Connect to your PlayStation locally remotely (uhuhuhuhuh)
+## Connect to your PlayStation locally remotely
 Now that your VPN is on, that your client is ready and that you can connect to the VPN server, all you need to do is to fire the PS remote play app!!! maybe you'll have a pairing to make: 
 To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC
 And that's it folks a local remote play is on!!! With full compatibility with all keys, touchpad and so on. Chiaki has full compatibility on Ubuntu so if you have a linux machine you can also use this solution
@@ -156,9 +156,15 @@ Once your setup is ready I advise you to use iperf3 to check the performance of 
 * On the raspberry run the following command to run a test server `iperf3 -s`
 * On the client computer if it is a windows go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` and you should see the average throuput that you can get from the VPN: for a seamless connection it has to be above 10Mb/s which can be perfomed by the pi zero with the dongle.
 
+
 <p align="center">
  <img src="./images/bridgeVPN.png">
 </p>
+
+On our networks we had the following throughput:
+* For the pi 4: 900 Mb/s on the LAN and 50Mb/s over the VPN
+* For the pi zero: 200 Mb/s on the LAN, and 11 Mb/s over the VPN
+The VPN drastically reduces the throughput obut this is the only way you can safely connect remotely to your local network.
 
 # Conclusion
 
