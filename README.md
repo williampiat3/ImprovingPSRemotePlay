@@ -133,7 +133,7 @@ So the other possibility is to have the VPN register you to the LAN and not crea
 So as described in the conclusion of the previous section the solution is to build a bridge VPN that will assign the remote computer to the LAN itself, not a subnetwork. The VPN is a little bit more complicated to configure but we will guide you through it.
 
 If you performed the Quick and dirty solution, you'll have to uninstall piVPN on the raspberry by running the command: `pivpn uninstall` and select to uninstall all the dependencies, remove the port forwarding rule on your router (you'll have to put it back afterwards),enable ssh on your raspberry pi to be able to run commands on it from your computer and reboot it.
-As we performed the installation on raspberry pi 4 and zero we made two guides with very slight differences. However to make sure that you guys don't mix them up even though we specified each time the particularities when using a pi zero
+As we performed the installation on raspberry pi 4 and zero we made two guides with very slight differences. However to make sure that you guys don't mix the two solution we made them in two different files.
 
 * [Guide for pi 4 (and 3)](pifour.md)
 
@@ -141,9 +141,11 @@ As we performed the installation on raspberry pi 4 and zero we made two guides w
 
 
 ## Connect to your PlayStation locally remotely
+
 Now that your VPN is on, that your client is ready and that you can connect to the VPN server, all you need to do is to fire the PS remote play app!!! maybe you'll have a pairing to make: 
 To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC
 And that's it folks a local remote play is on!!! With full compatibility with all keys, touchpad and so on. Chiaki has full compatibility on Ubuntu so if you have a linux machine you can also use this solution
+
 Now you can increase the quality of your remote play as long as you connexion allows it, you are not more bounded by the state of Sony's server.
 
 ## About this solution: what is this changing
@@ -164,7 +166,8 @@ Once your setup is ready I advise you to use iperf3 to check the performance of 
 On our networks we had the following throughput:
 * For the pi 4: 900 Mb/s on the LAN and 50Mb/s over the VPN
 * For the pi zero: 200 Mb/s on the LAN, and 11 Mb/s over the VPN
-The VPN drastically reduces the throughput obut this is the only way you can safely connect remotely to your local network.
+
+The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network.
 
 # Conclusion
 
