@@ -286,7 +286,15 @@ Certificate and key files will be given to the clients. Copy these files to the 
 
 * `cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/easy-rsa/pki/private/ta.key /etc/openvpn/easy-rsa/pki/issued/ps_remote.crt /etc/openvpn/easy-rsa/pki/private/ps_remote.key /home/pi/credentials`
 
-**You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email.**
+Change the owner of the certificates to be able to copy them to another machine
+* `chown pi /home/pi/credentials/*`
+
+If you are connected via ssh on your raspberry you can securily copy the files to your computer using scp (this is the only option available for the pi zero as you can't plug an usb on it as the ethernet dongle is already taking the usb slot) so open a terminal on your computer
+
+* `scp -rp pi@RASPBERRY_IP:/home/pi/credentials target_directory_local_computer`
+
+
+**You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email** 
 
 ### VPN setup
 This is where we will be using all the information that we made you find in the part common to both simple and complex installation, namely **raspberry IP**, **netmask**, **broadcast IP**,**router IP**,**public IP**
@@ -404,7 +412,7 @@ ExecStartPre=/etc/openvpn/openvpn-bridge start
 ExecStopPost=/etc/openvpn/openvpn-bridge stop
 ```
 And paste them at the bottom of the [Service] section.
-Exit and save. Reboot the VM by entering
+Exit and save. Reboot the raspberry by entering
 
 * `reboot`
 
@@ -426,8 +434,6 @@ You still need to enable IP forwarding on your raspberry pi, but if you use the 
 And you have to uncomment the following lines (close from the begin of the file, or just paste it if you are lazy):
 
 * `net.ipv4.ip_forward = 1`
-* `net.ipv6.conf.default.forwarding=1`
-* `net.ipv6.conf.all.forwarding=1`
 
 
 
@@ -492,8 +498,8 @@ For Mac unfortunately, we cannot give feedback yet, so I will just paste the [gu
 To get back to the individual client files, right-click on the .tblk file and select "Show Package Contents." If you want to change any of the client files, you must reload (double-click) the .tblk file again after making the changes. However, to quickly change the client configuration file without having to reload, go to "VPN Details", highlight the connection in the list on the left, click the gear icon below the list and select "Edit OpenVPN Configuration File".
 The client doesn't need to keep the original client files after the configuration is created, since they get copied to the folder \~/Library/Application Support/Tunnelblick/Configurations.
 
-### Linux
-As for Linux, Ubuntu integrate Openvpn therefore only two steps are needed: 
+### Ubuntu
+Ubuntu 20.04 integrates Openvpn therefore only two steps are needed: 
 * Edit the `ps_remote.conf` file by adding the following two lines at the bottom
 ```
 up /etc/openvpn/update-resolv-conf
@@ -514,8 +520,8 @@ Now that you managed to connect you can breathe, this is it, it's done. (Painkil
 ## Connect to your PlayStation locally remotely (uhuhuhuhuh)
 Now that your VPN is on, that your client is ready and that you can connect to the VPN server, all you need to do is to fire the PS remote play app!!! maybe you'll have a pairing to make: 
 To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC
-And that's it folks a local remote play is on!!! With full compatibility with all keys, touchpad and so on... isn't it beautiful? 
-Now you can increase the quality of your remote play as long as you connexion allows it, you are not more bounded by the state of Sony's server. Free of this dominion you can finally remote play in peace.
+And that's it folks a local remote play is on!!! With full compatibility with all keys, touchpad and so on. Chiaki has full compatibility on Ubuntu so if you have a linux machine you can also use this solution
+Now you can increase the quality of your remote play as long as you connexion allows it, you are not more bounded by the state of Sony's server.
 
 ## About this solution: what is this changing
 Now any device connected to the VPN can be spotted on the LAN, if you go to your router's admin page (that you can also access on the remote computer with the VPN now) and check the devices connected you will note that a new device has appeared whose IP belongs to the range you gave in the configuration file of openVPN whereas in the previous solution your device was not visible as it was on a subnetwork.
@@ -525,7 +531,7 @@ Now any device connected to the VPN can be spotted on the LAN, if you go to your
 Once your setup is ready I advise you to use iperf3 to check the performance of your network through the VPN by using a remote wired network: the software is available on linux, windows and MacOS: therefore you can use it on all you machines to check the throuput:
 * On linux (on the raspberry) install it by using `sudo apt-get install iperf3`, on windows and on MacOS download the [source files](https://iperf.fr/fr/iperf-download.php) and unzip them
 * On the raspberry run the following command to run a test server `iperf3 -s`
-* On the client computer if it is a windows go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` and you should see the average throuput that you can get from the VPN: for a seamless connection it has to be above 10Mb/s which can be perfomed by the pi zero with the dongle
+* On the client computer if it is a windows go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` and you should see the average throuput that you can get from the VPN: for a seamless connection it has to be above 10Mb/s which can be perfomed by the pi zero with the dongle.
 
 <p align="center">
  <img src="./images/bridgeVPN.png">
