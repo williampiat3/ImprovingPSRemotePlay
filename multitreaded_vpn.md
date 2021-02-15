@@ -29,7 +29,7 @@ Now you should be connected. Doing ```Hostname -I``` will give you both your IP 
 
 ### Bonus: latency and bandwidth
 You can ping the VPN by doing ```ping 10.6.0.1``` 
-This will give you a latency test. Keep in mind that remote playing will add more software overlay and delay even more your experience but these delays are constant regardless of you playing next door or half a planet appart from the VPN: **only the time it will take for your computer to comunicate to the VPN will vary.**
+This will give you a latency test. Keep in mind that remote playing will add more software overlay and delay even more your experience but these delays are constant regardless of you playing next door or half a planet appart from the VPN: **only the time it will take for your computer to communicate to the VPN will vary.**
 
 Regarding bandwidth, install iperf3 by doing ```sudo apt-get install iperf3```
 Then test the max bandwith by doing ```iperf3 -c Raspberry IP```
@@ -42,7 +42,7 @@ You can see what your VPN will allows you to do following this [reddit forum](ht
 1080p is about 15 Mbps (Peaks at 1.64MBps with less than 30fps)
 
 I personnaly experienced, on a PS4 Fat 720p with max fps, 7.7Mbps on average with peaks up to 11 Mbps. 
-Good news if you have a connection with more then 35 Mbps, you will be able to play at two at the same time througth the VPN in 1080p, with one person been on the PS4 another one been on the PS5.
+Good news if you have a connection with more then 35 Mbps, you will be able to play at two at the same time througth the VPN in 1080p, with one person been on the PS4 and another one been on the PS5.
 
 
 
