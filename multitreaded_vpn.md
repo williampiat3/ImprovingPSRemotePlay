@@ -17,10 +17,10 @@ DNS = 8.8.8.8, 8.8.4.4
 PublicKey = YourPublicKey_DoNotChangeOrShareToInternet
 PresharedKey = YourPresharedKey_DoNotChangeOrShareToInternet
 Endpoint = "Public IP":51820
-AllowedIPs = 10.0.6.0/24,"Router IP  format"/24
+AllowedIPs = 10.0.6.0/24,"Router_IP  format"/24
 ```
 **N** in Address is the number that will have your host computer on the network : the VPN is at the IP ```10.6.0.1```, therefore you need to give a different number of each machine connecting to the VPN. Here, you can put 2 instead of N therefore this machine will be hosted at the IP ```10.6.0.2```.
-**Router IP format** is a modified IP. Take your **Router IP** and change the last number to zero: ```192.168.X.ABC```=> ```192.168.X.0```
+**Router_IP format** is a modified IP. Take your **Router IP** and change the last number to zero: ```192.168.X.ABC```=> ```192.168.X.0```
 
 * Tranfert the psconf_file.conf file to WireGuard install file: ```cp psremote.conf /etc/wireguard/```
 * Start the VPN by doing ```wg-quick up psconf_file```
@@ -32,8 +32,8 @@ You can ping the VPN by doing ```ping 10.6.0.1```
 This will give you a latency test. Keep in mind that remote playing will add more software overlay and delay even more your experience but these delays are constant regardless of you playing next door or half a planet appart from the VPN: **only the time it will take for your computer to communicate to the VPN will vary.**
 
 Regarding bandwidth, install iperf3 by doing ```sudo apt-get install iperf3``` if you do not have it.
-Then test the max bandwith by doing ```iperf3 -c Raspberry IP``` on the remote PC and ```iperf3 -s``` on the raspberry PI
-You may run it during 10 minutes to eliminate any Rasberry pi heating throttle (```iperf3 -c 600 -t Raspberry IP```)
+Then test the max bandwith by doing ```iperf3 -c Raspberry_IP``` on the remote PC and ```iperf3 -s``` on the raspberry PI
+You may run it during 10 minutes to eliminate any Rasberry pi heating throttle (```iperf3 -c 600 -t Raspberry_IP```)
 
 You can see what your VPN will allows you to do following this [reddit forum](https://www.reddit.com/r/remoteplay/comments/k0s3rr/megathread_tips_and_good_practices_for_remote_play/):
 
@@ -70,9 +70,11 @@ I am not sure why ```AllowedIPs``` needs to be changed to this extend but it app
 
 ### Bonus: latency and bandwidth and steam remote play 
 Just like in linux you can ping the VPN by doing ```ping 10.6.0.1``` and this will give you a broad idea of the latency just like precised in the Linux version of this test.
+For iperf3, download the [source files](https://iperf.fr/fr/iperf-download.php) and unzip them
+* On the raspberry run the following command to run a test server `iperf3 -s`
+* On the remote computer go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` or `iperf3.exe -c 600 -t Raspberry_IP` to test during 10 minutes.
 
-
-Regarding Steam Remote Play, this VPN  is multithreaded therefore it is optimised to maximise the bandwidth. if you are into 4K remote play and you are using a Raspberry pi 3b+ or 4 you can perform the following. Note that it works automatically with a bridge VPN but due to OpenVPN been not multithreaded and been the only solution so far, performanced can be ... meh ?
+Regarding Steam Remote Play, this VPN is multithreaded therefore it is optimised to maximise the bandwidth. if you are into 4K remote play and you are using a Raspberry pi 3b+ or 4 you can perform the following. Note that it works automatically with a bridge VPN but due to OpenVPN been not multithreaded and been the only solution so far, performanced can be ... meh ?
 
 [This forum](https://steamcommunity.com/groups/homestream/discussions/3/619574421223826076/) and [this guide](https://steamcommunity.com/sharedfiles/filedetails/?id=873543244) will provide you with all information needed:
 * Plug the PC you wish to stream for on the same network as the VPN and find it's IP (called here **SteamHost IP**)
