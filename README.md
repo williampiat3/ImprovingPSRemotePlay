@@ -8,6 +8,9 @@
       * [First steps common to all solutions:](#first-steps-that-are-common-to-all-the-solutions)
       * [Requirements before going to the next steps](#requirements-before-going-to-the-next-steps)
    * [Quick and dirty solution](#quick-and-dirty-solution)
+      * [Install a VPN server](#install-a-vpn-server)
+      * [Connect to the PlayStation (try at least..)](#connect-to-the-playstation-try-at-least)
+      * [Install Chiaki](#install-chiaki-)
       * [Why is this not working with the PS remote play app](#why-is-this-not-working-with-the-ps-remote-play-app)
    * [Longer and more complex solution](#longer-and-more-complex-solution)
       * [Connect to your PlayStation locally remotely (uhuhuhuhuh)](#connect-to-your-playstation-locally-remotely)
@@ -105,12 +108,45 @@ So at the end of these steps you are able to ssh on your raspberry that is conne
 We will be supposing here that your public IP is not changing very often (in case you have a static IP, that's great). But in case for some reason your public IP changes regularly you'll have to subscribe to a DynDNS service to be able to connect every time to your home network. If it changes only when you reboot your router it's fine, you can go ahead and pretend you have a static IP (we will show you what to change if your public IP changed and guess what? it will just be changing one ip address in a configuration file)
 
 # Quick and dirty solution
+
+## Install a VPN server
 This one is fast and might give you a taste of the improvement you can experience using the VPN but it doesn't completely support all the controller's keys on Windows, Linux users can enjoy full compatibility following this solution.
 
-[Here is our detailed guide to install a TUN VPN on your raspberry and then install Chiaki to play remotely](quick_and_dirty.md).
+[Here is our detailed guide to install an OpenVPN server](quick_and_dirty.md) or [Install a wireguard VPN server](multithreaded_vpn.md). They are both quite straightforward and are both made using the piVPN script.
 
 
 I will advise it just for testing the solution before implementing the second one because it lacks some of the features of the remote play. But if you really just care about having your VPN up and running with PS remote play I suggest you to switch directly to the longer solution. However this way this connection works allowed us to understand how we could make our VPN work. This is why we left its conclusion here.
+
+## Connect to the PlayStation (try at least..)
+Yeeeww ! You are connected remotely to your home network now try to connect to your PlayStation using the PS remote play application...
+
+It doesn't work...
+
+Yes, it doesn't work...
+
+But you can actually detect the PlayStation if you run this command (that works on windows, Linux and Mac OS) `ping **PS IP**` you will be receiving packets meaning the PlayStation is accessible but the app doesn't reach it! ([explanation here](#why-is-this-not-working-with-the-ps-remote-play-app)) But you know what does? Chiaki!
+
+## Install Chiaki <img src="./images/chiaki_icon.png" width=10% height=10%>
+[Chiaki](https://git.sr.ht/~thestr4ng3r/chiaki) is a free, open source, PS remote play client that you can download [here.](https://git.sr.ht/~thestr4ng3r/chiaki/refs)
+You also need your **PSN account ID**, not your login, not your email... Look, you just don't have it yet ;). 
+
+The Chiaki github is providing a python script for you to get it easily [here](https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you :
+just run `wget https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py` to get the script and run `python3 psn-account-id.py`...
+Some packages missing? `sudo pip3 install requests` .....
+pip missing? `sudo apt-get install python3-pip`. 
+
+Ok now you should be fine running the script. It will open up a web page for logging you, copy past the link you get in your terminal and that's it your **PSN account ID**, note it down. 
+Run the Chiaki executable enter your **PSN account ID** the **PS IP** and then it will prompt for a PIN code
+To register a PS4 with a PIN, it must be put into registration mode. To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC and noooooooooooowwwwwwwww .... YOU ARE CONNECTED
+
+You can now run remote play at a higher resolution with less lag and more stable connection but ... BUT using Chiaki comes at some cost:
+* not all the keys of the controller are supported the touchpad for instance (Windows and MacOS)
+* Rumble and ... remote waking-up the PlayStation from Rest mode are not supported on Windows. 
+
+It is great for a game that doesn't use them, for other games... well then the second solution remains.
+
+These tests were performed on Chiaki 1.3.0, version 2.1.1 appears to have fixed those issues but we still haven't fully tested them.
+
 
 
 ## Why is this not working with the PS remote play app
@@ -168,6 +204,8 @@ On our networks we had the following throughput:
 * For the pi zero: 200 Mb/s on the LAN, and 11 Mb/s over the VPN
 
 The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network.
+
+Throughput is one thing however when you are playing video games there is another metric that is terribly important, the latency. Of course you'll be playing from far away on your console, this means that this will introduce some delay between the time your are typing your commands and the time you will see them executed on the screen, this is kind of the unsolvable problem of remote play as it depends of the distance and the internet providers you have. You'll feel the difference as your inputs will be less responsive and it will be more difficult to have quick reflexes on any game so of course this is not ideal if you want to play competitive. But it does provide a good experience for casual play.
 
 # Conclusion
 

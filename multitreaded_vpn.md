@@ -1,6 +1,35 @@
-# Remote play in multithreaded
+# Install Wireguard for a multithreaded VPN
+As Wireguard can provide a multithreaded VPN interface it is a good solution in case you want more throughput via your VPN, we will cover here how to install a wireguard VPN server and the clients on Windows and Linux. Wireguard doesn't provide a layer 2 interface to your LAN therefore you won't be able to use it with the official remote play app but it can be used with Steam remote play or Chiaki
+
+## Wireguard server
+The installation is straight forward and has very little difference of the piVPN TUN server that we explored already. PiVPN provides an easy way to install wireguard and you can completly trust the installation script.
+* Run `sudo apt-get update && sudo apt-get upgrade`
+* Run `sudo apt-get install openssl`
+* Run `curl -L https://install.pivpn.io | bash` or `curl -L -k https://install.pivpn.io | bash` if the first command fails
+* Confirm static IP address
+* Use your current network settings as static address
+* pi is your local user for the VPN
+* Select Wireguard
+* Don't customize the default protocol, neither the search domain or modern features
+* Choose port 51820 for wireguard port
+* Select any DNS provider (if you have no idea pick OpenDNS or Google)
+* Use public IP
+* You want the security packages
+* Yes you want to reboot
+
+## Open up the 51820 port on your router
+
+**Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do it at your own risks.**
+Connect to your router admin interface: http://**router IP** and look in the advanced configurations or firewall settings for a port forwarding option (the specific location of this option is dependent of your router and web provider) and add a new routing rule:
+* protocol: UDP and TCP
+* external port 51820
+* internal port 51820
+* destination: **Raspberry IP**
+* external IP: Leave empty (except if you only want to authorize some specific IPs to connect to your VPN, which could be a good idea if the remote network whence you want to connect has a static IP... )
+
+
 Now switch to your host machine and install WireGuard Client. We provide how-to for Linux and Windows:
-## Linux:
+## Linux Client:
 
 ### Install:
 In linux or Ubuntu, WireGuard is not natively installed like OpenVPN was therefore it needs to be installed. 
@@ -44,9 +73,9 @@ You can see what your VPN will allows you to do following this [reddit forum](ht
 
 I personnaly experienced, on a PS4 Fat 720p with max fps, 7.7Mbps on average with peaks up to 11 Mbps. 
 
-Good news if you have a connection with more then 35 Mbps, you will be able to play at two at the same time througth the VPN in 1080p, with one person been on the PS4 and another one been on the PS5.
+Good news if you have a connection with more then 35 Mbps, you will be able to play at two at the same time through the VPN in 1080p, with one person been on the PS4 and another one been on the PS5.
 
-## Windows:
+## Windows Client:
 
 ### Install:
 * On Windows, install [WireGuard](https://www.wireguard.com/install/).
@@ -74,7 +103,7 @@ For iperf3, download the [source files](https://iperf.fr/fr/iperf-download.php) 
 * On the raspberry run the following command to run a test server `iperf3 -s`
 * On the remote computer go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` or `iperf3.exe -c 600 -t Raspberry_IP` to test during 10 minutes.
 
-Regarding Steam Remote Play, this VPN is multithreaded therefore it is optimised to maximise the bandwidth. if you are into 4K remote play and you are using a Raspberry pi 3b+ or 4 you can perform the following. Note that it works automatically with a bridge VPN but due to OpenVPN been not multithreaded and been the only solution so far, performanced can be ... meh ?
+Regarding Steam Remote Play, this VPN is multithreaded therefore it is optimised to maximise the throughput. if you are into 4K remote play and you are using a Raspberry pi 3b+ or 4 you can perform the following. Note that it works automatically with a bridge VPN but due to OpenVPN been not multithreaded and been the only solution so far, performance can be ... meh ?
 
 [This forum](https://steamcommunity.com/groups/homestream/discussions/3/619574421223826076/) and [this guide](https://steamcommunity.com/sharedfiles/filedetails/?id=873543244) will provide you with all information needed:
 * Plug the PC you wish to stream for on the same network as the VPN and find it's IP (called here **SteamHost IP**)
