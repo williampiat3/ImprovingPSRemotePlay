@@ -13,7 +13,8 @@
       * [Install Chiaki](#install-chiaki-)
       * [Why is this not working with the PS remote play app](#why-is-this-not-working-with-the-ps-remote-play-app)
    * [Longer and more complex solution](#longer-and-more-complex-solution)
-      * [Connect to your PlayStation locally remotely (uhuhuhuhuh)](#connect-to-your-playstation-locally-remotely)
+      * [Install a layer 2 bridge VPN](#install-a-layer-2-vpn-server-and-set-up-the-client)
+      * [Connect to your PlayStation locally remotely](#connect-to-your-playstation-locally-remotely)
       * [About this solution: what is this changing](#about-this-solution-what-is-this-changing)
       * [Testing the connection](#testing-the-connection)
    * [Conclusion](#conclusion)
@@ -167,6 +168,8 @@ So the other possibility is to have the VPN register you to the LAN and not crea
 
 # Longer and more complex solution
 So as described in the conclusion of the previous section the solution is to build a bridge VPN that will assign the remote computer to the LAN itself, not a subnetwork. The VPN is a little bit more complicated to configure but we will guide you through it.
+
+## Install a layer 2 VPN server and set up the client
 
 If you performed the Quick and dirty solution, you'll have to uninstall piVPN on the raspberry by running the command: `pivpn uninstall` and select to uninstall all the dependencies, remove the port forwarding rule on your router (you'll have to put it back afterwards),enable ssh on your raspberry pi to be able to run commands on it from your computer and reboot it.
 As we performed the installation on raspberry pi 4 and zero we made two guides with very slight differences. However to make sure that you guys don't mix the two solution we made them in two different files.
