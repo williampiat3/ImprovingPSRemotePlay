@@ -17,6 +17,8 @@ The installation is straight forward and has very little difference of the piVPN
 * You want the security packages
 * Yes you want to reboot
 
+Make the credentials by running `pivpn add` and this will create the conf file that you will have to change later on
+
 ## Open up the 51820 port on your router
 
 **Before performing this last step I recommend disabling SSH on the raspberry pi just to be safe not to have any intrusion on your raspberry, if you are confident in your password and refuse to disable SSH, do it at your own risks.**
