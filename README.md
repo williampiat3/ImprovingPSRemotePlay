@@ -145,7 +145,7 @@ Using Chiaki used to be constraigning in many ways in it's version 1.3.0:
 * Rumble and ... remote waking-up the PlayStation from Rest mode was not supported on Windows. 
 
 Now in it's version 2.1.1 fully compatible with PS5, the only noticable drawbacks are:
-* The touch pad can be bug, resulting in having to use the "t" touch on your keyboard (rarely)
+* The touch pad can dysfunction temporaly, resulting in having to use the "t" touch on your keyboard (rarely)
 * The ps button on PS4 act a bit differently than usual
 * Sometimes the fullscreen mode revert to window mode (rarely, not randomly but I haven't found why yet)
 
