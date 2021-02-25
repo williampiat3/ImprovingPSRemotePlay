@@ -140,14 +140,23 @@ Ok now you should be fine running the script. It will open up a web page for log
 Run the Chiaki executable enter your **PSN account ID** the **PS IP** and then it will prompt for a PIN code
 To register a PS4 with a PIN, it must be put into registration mode. To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC and noooooooooooowwwwwwwww .... YOU ARE CONNECTED
 
-You can now run remote play at a higher resolution with less lag and more stable connection but ... BUT using Chiaki comes at some cost:
-* not all the keys of the controller are supported the touchpad for instance (Windows and MacOS)
-* Rumble and ... remote waking-up the PlayStation from Rest mode are not supported on Windows. 
+Using Chiaki used to be constraigning in many ways in it's version 1.3.0:
+* not all the keys of the controller were supported the touchpad for instance (Windows and MacOS)
+* Rumble and ... remote waking-up the PlayStation from Rest mode was not supported on Windows. 
 
-It is great for a game that doesn't use them, for other games... well then the second solution remains.
+Now in it's version 2.1.1 fully compatible with PS5, the only noticable drawbacks are:
+* The touch pad can dysfunction temporaly, resulting in having to use the "t" touch on your keyboard (rarely)
+* The ps button on PS4 act a bit differently than usual
+* Sometimes the fullscreen mode revert to window mode (rarely, not randomly but I haven't found why yet)
 
-These tests were performed on Chiaki 1.3.0, version 2.1.1 appears to have fixed those issues but we still haven't fully tested them.
+However it have a lots of advantages : 
+* PS4 and PS5 on local network are detected automatically
+* The DualShock 4 and DualSense can be mapped on your keyboard
+* Many PS can be mapped in Chiaki (instead of 1 account at the time in it's official counterpart)
+* You can use it through WireGuard VPN (A multitreaded VPN)
+* It is open source so you can edit the code to add new features (if you are willing to try ...) 
 
+It is a great tool but the official application remains better if you are using a single PS and a DualShock (or DualSense) in my opinion.
 
 
 ## Why is this not working with the PS remote play app
