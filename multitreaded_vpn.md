@@ -52,7 +52,7 @@ AllowedIPs = 10.0.6.0/24,"Router_IP  format"/24
 **Router_IP format** is a modified IP. Take your **Router IP** and change the last number to zero: ```192.168.X.ABC```=> ```192.168.X.0```
 
 * Tranfert the psconf_file.conf file to WireGuard install file: ```cp psremote.conf /etc/wireguard/```
-* Start the VPN by doing ```wg-quick up psconf_file```
+* Start the VPN by doing ```wg-quick up psremote```
 * An error might pop up and WireGuard will not start: ```/usr/bin/wg-quick: line 31: resolvconf: command not found```, it an be fixed by doing ```ln -s /usr/bin/resolvectl /usr/local/bin/resolvconf``` and retry starting WireGuard.
 Now you should be connected. Doing ```Hostname -I``` will give you both your IP on you local network and 10.6.0.N. 
 
