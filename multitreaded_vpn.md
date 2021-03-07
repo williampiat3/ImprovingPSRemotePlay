@@ -20,8 +20,7 @@ The installation is straight forward and has very little difference of the piVPN
 Make the credentials by running `pivpn add` and this will create the conf file that you will have to change later on.
 The name entered here during the process of creating credentials is *psremote*.
 
-The .conf file was most likely created in '/home/pi/configs', give it to the computer aiming at connecting to the VPN.
-**You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. The safest method remains giving it on a USB drive ** 
+The .conf file was most likely created in '/home/pi/configs', give it to the computer aiming at connecting to the VPN. **You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. The safest method remains giving it on a USB drive** 
 
 ## Open up the 51820 port on your router
 
