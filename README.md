@@ -212,8 +212,8 @@ Once your setup is ready I advise you to use iperf3 to check the performance of 
 </p>
 
 On our networks we had the following throughput:
-* For the pi 4: 900 Mb/s on the LAN and 50Mb/s over the VPN
-* For the pi zero: 200 Mb/s on the LAN, and 11 Mb/s over the VPN
+* For the pi 4: 900 Mb/s on the LAN and 50Mb/s over the VPN (OpenVPN as bridge and WireGuard)
+* For the pi zero: 200 Mb/s on the LAN, and 11 Mb/s over the VPN (OpenVPN as bridge)
 
 The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network.
 
