@@ -17,7 +17,8 @@ The installation is straight forward and has very little difference of the piVPN
 * You want the security packages
 * Yes you want to reboot
 
-Make the credentials by running `pivpn add` and this will create the conf file that you will have to change later on
+Make the credentials by running `pivpn add` and this will create the conf file that you will have to change later on.
+The name entered here during the process of creating credentials is *psremote*.
 
 ## Open up the 51820 port on your router
 
