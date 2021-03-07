@@ -145,16 +145,17 @@ Using Chiaki used to be constraigning in many ways in it's version 1.3.0:
 * Rumble and ... remote waking-up the PlayStation from Rest mode was not supported on Windows. 
 
 Now in it's version 2.1.1 fully compatible with PS5, the only noticable drawbacks are:
-* The touch pad can dysfunction temporaly, resulting in having to use the "t" touch on your keyboard (rarely)
+* The touchpad become your second PC touchpad and it stop working if the stream windows isn't selected.
 * The ps button on PS4 act a bit differently than usual
-* Sometimes the fullscreen mode revert to window mode (rarely, not randomly but I haven't found why yet)
+* Sometimes the fullscreen mode revert to window mode (double tap on touchpad is equivalement to double clic)
 
 However it have a lots of advantages : 
 * PS4 and PS5 on local network are detected automatically (or in the case of bridge VPN)
 * The DualShock 4 and DualSense can be mapped on your keyboard
-* Many PS can be mapped in Chiaki (instead of 1 account at the time in it's official counterpart)
-* You can use it through a TUN VPN ([OpenVPN](quick_and_dirty.md)  or [WireGuard](multitreaded_vpn.md)) 
+* Many PlayStations can be mapped in Chiaki (instead of 1 account at the time in it's official counterpart)
 * It is open source so you can edit the code to add new features (if you are willing to try ...) 
+* You can use it through a TUN VPN ([OpenVPN](quick_and_dirty.md)  or [WireGuard](multitreaded_vpn.md)) 
+
 
 It is a great tool but the official application remains better if you are using a single PS and a DualShock (or DualSense) in my opinion.
 
