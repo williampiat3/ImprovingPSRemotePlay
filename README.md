@@ -113,7 +113,7 @@ We will be supposing here that your public IP is not changing very often (in cas
 ## Install a VPN server
 This one is fast and might give you a taste of the improvement you can experience using the VPN but it doesn't completely support all the controller's keys on Windows, Linux users can enjoy full compatibility following this solution.
 
-[Here is our detailed guide to install an OpenVPN server](quick_and_dirty.md) or [Install a wireguard VPN server](multithreaded_vpn.md). They are both quite straightforward and are both made using the piVPN script.
+[Here is our detailed guide to install an OpenVPN server](quick_and_dirty.md) or [Install a wireguard VPN server](multitreaded_vpn.md). They are both quite straightforward and are both made using the piVPN script.
 
 
 I will advise it just for testing the solution before implementing the second one because it lacks some of the features of the remote play. But if you really just care about having your VPN up and running with PS remote play I suggest you to switch directly to the longer solution. However this way this connection works allowed us to understand how we could make our VPN work. This is why we left its conclusion here.
@@ -150,10 +150,10 @@ Now in it's version 2.1.1 fully compatible with PS5, the only noticable drawback
 * Sometimes the fullscreen mode revert to window mode (rarely, not randomly but I haven't found why yet)
 
 However it have a lots of advantages : 
-* PS4 and PS5 on local network are detected automatically
+* PS4 and PS5 on local network are detected automatically (or in the case of bridge VPN)
 * The DualShock 4 and DualSense can be mapped on your keyboard
 * Many PS can be mapped in Chiaki (instead of 1 account at the time in it's official counterpart)
-* You can use it through WireGuard VPN (A multitreaded VPN)
+* You can use it through a TUN VPN ([OpenVPN](quick_and_dirty.md)  or [WireGuard](multitreaded_vpn.md)) 
 * It is open source so you can edit the code to add new features (if you are willing to try ...) 
 
 It is a great tool but the official application remains better if you are using a single PS and a DualShock (or DualSense) in my opinion.
