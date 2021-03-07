@@ -147,7 +147,7 @@ Using Chiaki used to be constraigning in many ways in it's version 1.3.0:
 Now in it's version 2.1.1 fully compatible with PS5, the only noticable drawbacks are:
 * The touchpad become your second PC touchpad and it stop working if the stream windows isn't selected.
 * The ps button on PS4 act a bit differently than usual
-* Sometimes the fullscreen mode revert to window mode (double tap on touchpad is equivalement to double clic)
+* Sometimes the fullscreen mode revert to window mode (double tap on touchpad is equivalent to double clic)
 
 However it have a lots of advantages : 
 * PS4 and PS5 on local network are detected automatically (or in the case of bridge VPN)
