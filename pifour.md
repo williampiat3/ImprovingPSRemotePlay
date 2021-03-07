@@ -86,7 +86,7 @@ Change the owner of the certificates to be able to copy them to another machine
 
 Plug a USB drive onto the pi to get the files
 
-**You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. THe ssafest mannef is by simply giving the USB drive with the certificates** 
+**You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. The safest method is by simply giving the USB drive with the certificates** 
 
 ### VPN setup
 This is where we will be using all the information that we made you find in the part common to both simple and complex installation, namely **raspberry IP**, **netmask**, **broadcast IP**,**router IP**,**public IP**
