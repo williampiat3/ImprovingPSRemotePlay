@@ -57,7 +57,7 @@ We will offer you 2 solutions depending on your usage:
 * A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up.
 
 ## Price
-Our solution is cheap, and it works on raspberry pi zero, 3 and 4 (so if you have one of these it works), meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 consumes 3.4 Watts which is a small lamp so it won't be much of an extra cost. The raspberry 3 and 4 can sustain multiple connexions on the VPN but come at a higher cost, on the other hand if there is only one person using the VPN then the pi zero solution is cheaper (half of the price approximatly) the configuration is a little bit trickier at the beginning as you need to ssh from the start on it but it is more efficient.
+Our solution is cheap, and it works on raspberry pi zero, 3 and 4 (so if you have one of these it works), meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 [consumes 1.9 Watts](https://www.pidramble.com/wiki/benchmarks/power-consumption) which is less than a small lamp so it won't be much of an extra cost. The raspberry 3 and 4 can sustain multiple connexions on the VPN but come at a higher cost, on the other hand if there is only one person using the VPN then the pi zero solution is cheaper (half of the price approximatly) the configuration is a little bit trickier at the beginning as you need to ssh from the start on it but it is more efficient.
 
 
 For the raspberry pi 3 and 4 you will need:
@@ -213,10 +213,14 @@ Once your setup is ready I advise you to use iperf3 to check the performance of 
 </p>
 
 On our networks we had the following throughput:
-* For the pi 4: 900 Mb/s on the LAN and 50Mb/s over the VPN (OpenVPN as bridge and WireGuard)
-* For the pi zero: 200 Mb/s on the LAN, and 11 Mb/s over the VPN (OpenVPN as bridge)
+| VPN\pi model    | Pi zero + usb dongle| Pi 4 |Pi 3b+ | Pi 4 (another provider)|
+| -------------   |:-----------:| :---------:|:---:| :------:|
+| local LAN       | 200 Mb/s    |  900 Mb/s  | TODO| 900 Mb/s|
+| OpenVPN (Bridge)| 11 Mb/s     |   50 Mb/s  | TODO| 80Mb/s  |
+| Wireguard       | 25 Mb/s     |   50 Mb/s  | TODO| 80Mb/s  |
 
-The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network.
+
+The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network. WireGuard appeards to be more optimized than OpenVPN as the gains on a pi zero are significant. Regarding pi 4 performances, internet providers in our country limit the bandwith for VPN therefore even with OpenVPN set up as bridge, we max out at this limit.
 
 Throughput is one thing however when you are playing video games there is another metric that is terribly important, the latency. Of course you'll be playing from far away on your console, this means that this will introduce some delay between the time your are typing your commands and the time you will see them executed on the screen, this is kind of the unsolvable problem of remote play as it depends of the distance and the internet providers you have. You'll feel the difference as your inputs will be less responsive and it will be more difficult to have quick reflexes on any game so of course this is not ideal if you want to play competitive. But it does provide a good experience for casual play.
 
