@@ -213,11 +213,11 @@ Once your setup is ready I advise you to use iperf3 to check the performance of 
 </p>
 
 On our networks we had the following throughput:
-| VPN\pi model    | Pi zero + usb dongle| Pi 4 |Pi 3b+ | Pi 4 (another provider)|
-| -------------   |:-----------:| :---------:|:---:| :------:|
-| local LAN       | 200 Mb/s    |  900 Mb/s  | TODO| 900 Mb/s|
-| OpenVPN (Bridge)| 11 Mb/s     |   50 Mb/s  | TODO| 80Mb/s  |
-| Wireguard       | 25 Mb/s     |   50 Mb/s  | TODO| 80Mb/s  |
+| VPN\pi model    | Pi zero + usb dongle| Pi 3b+ |Pi 4 | Pi 4 (another provider)|
+| -------------   |:-----------:|:----:| :------:| :------:|
+| local LAN       | 200 Mb/s    | TODO | 900 Mb/s| 900 Mb/s|
+| OpenVPN (Bridge)| 11 Mb/s     | TODO | 50 Mb/s | 80Mb/s  |
+| Wireguard       | 25 Mb/s     | TODO | 50 Mb/s | 80Mb/s  |
 
 
 The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network. WireGuard appeards to be more optimized than OpenVPN as the gains on a pi zero are significant. Regarding pi 4 performances, internet providers in our country limit the bandwith for VPN therefore even with OpenVPN set up as bridge, we max out at this limit.
