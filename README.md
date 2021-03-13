@@ -213,7 +213,7 @@ Once your setup is ready I advise you to use iperf3 to check the performance of 
 </p>
 
 On our networks we had the following throughput:
-| VPN\pi model    | Pi zero + usb dongle| Pi 3b+ |Pi 4 | Pi 4 (another provider)|
+| VPN \ pi model    | Pi zero + usb dongle| Pi 3b+ |Pi 4 | Pi 4 (another provider)|
 | -------------   |:-----------:|:----:| :------:| :------:|
 | local LAN       | 200 Mb/s    | TODO | 900 Mb/s| 900 Mb/s|
 | OpenVPN (Bridge)| 11 Mb/s     | TODO | 50 Mb/s | 80Mb/s  |
