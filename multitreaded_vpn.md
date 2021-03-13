@@ -20,7 +20,7 @@ The installation is straight forward and has very little difference of the piVPN
 Make the credentials by running `pivpn add` and this will create the conf file that you will have to change later on.
 The name entered here during the process of creating credentials is *psremote*.
 
-The .conf file was most likely created in '/home/pi/configs', give it to the computer aiming at connecting to the VPN. **You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. The safest method remains giving it on a USB drive** 
+The .conf file was most likely created in `/home/pi/configs`, give it to the computer aiming at connecting to the VPN. **You have to give the folder credentials that we just created to the computer that is on the remote network in a secure manner: not by email. The safest method remains giving it on a USB drive** 
 
 ## Open up the 51820 port on your router
 
@@ -38,8 +38,8 @@ Now switch to your host machine and install WireGuard Client. We provide how-to 
 
 ### Install:
 In linux or Ubuntu, WireGuard is not natively installed like OpenVPN was therefore it needs to be installed. 
-* First, update your machine by opening a terminal and entering ```sudo apt-get update``` and then ```sudo apt-get upgrade``` 
-* Install WireGuard by doing ```sudo apt install wireguard``` 
+* First, update your machine by opening a terminal and entering `sudo apt-get update` and then `sudo apt-get upgrade` 
+* Install WireGuard by doing `sudo apt install wireguard`
 * Open the psremote.conf file to ensure the following:
 ```
 [Interface]
@@ -53,21 +53,22 @@ PresharedKey = YourPresharedKey_DoNotChangeOrShareToInternet
 Endpoint = "Public IP":51820
 AllowedIPs = 10.0.6.0/24,"Router_IP  format"/24
 ```
-**N** in Address is the number that will have your host computer on the network : the VPN is at the IP ```10.6.0.1```, therefore you need to give a different number of each machine connecting to the VPN. Here, you can put 2 instead of N therefore this machine will be hosted at the IP ```10.6.0.2```.
-**Router_IP format** is a modified IP. Take your **Router IP** and change the last number to zero: ```192.168.X.ABC```=> ```192.168.X.0```
+**N** in Address is the number that will have your host computer on the network : the VPN is at the IP `10.6.0.1`, therefore you need to give a different number of each machine connecting to the VPN. Here, you can put 2 instead of N therefore this machine will be hosted at the IP `10.6.0.2`.
+**Router_IP format** is a modified IP. Take your **Router IP** and change the last number to zero: `192.168.X.ABC`=> `192.168.X.0`
 
-* Tranfert the psconf_file.conf file to WireGuard install file: ```cp psremote.conf /etc/wireguard/```
-* Start the VPN by doing ```wg-quick up psremote```
-* An error might pop up and WireGuard will not start: ```/usr/bin/wg-quick: line 31: resolvconf: command not found```, it an be fixed by doing ```ln -s /usr/bin/resolvectl /usr/local/bin/resolvconf``` and retry starting WireGuard.
-Now you should be connected. Doing ```Hostname -I``` will give you both your IP on you local network and 10.6.0.N. 
+* Tranfert the psconf_file.conf file to WireGuard install file: `cp psremote.conf /etc/wireguard/`
+* Start the VPN by doing `wg-quick up psremote`
+* An error might pop up and WireGuard will not start: `/usr/bin/wg-quick: line 31: resolvconf: command not found`, it an be fixed by doing `ln -s /usr/bin/resolvectl /usr/local/bin/resolvconf` and retry starting WireGuard.
+Now you should be connected. Doing `Hostname -I` will give you both your IP on you local network and 10.6.0.N. 
+* Stop the VPN by doing `wg-quick down psremote`
 
 ### Bonus: latency and bandwidth
-You can ping the VPN by doing ```ping 10.6.0.1``` 
+You can ping the VPN by doing `ping 10.6.0.1` 
 This will give you a latency test. Keep in mind that remote playing will add more software overlay and delay even more your experience but these delays are constant regardless of you playing next door or half a planet appart from the VPN: **only the time it will take for your computer to communicate to the VPN will vary.**
 
-Regarding bandwidth, install iperf3 by doing ```sudo apt-get install iperf3``` if you do not have it.
-Then test the max bandwith by doing ```iperf3 -c Raspberry_IP``` on the remote PC and ```iperf3 -s``` on the raspberry PI
-You may run it during 10 minutes to eliminate any Rasberry pi heating throttle (```iperf3 -c 600 -t Raspberry_IP```)
+Regarding bandwidth, install iperf3 by doing `sudo apt-get install iperf3` if you do not have it.
+Then test the max bandwith by doing `iperf3 -c Raspberry_IP` on the remote PC and `iperf3 -s` on the raspberry PI
+You may run it during 10 minutes to eliminate any Rasberry pi heating throttle (`iperf3 -c 600 -t Raspberry_IP`)
 
 You can see what your VPN will allows you to do following this [reddit forum](https://www.reddit.com/r/remoteplay/comments/k0s3rr/megathread_tips_and_good_practices_for_remote_play/):
 
@@ -97,13 +98,13 @@ PresharedKey = YourPresharedKey_DoNotChangeOrShareToInternet
 Endpoint = "Public IP":51820
 AllowedIPs = 0.0.0.0/1, 128.0.0.0/1, ::/1, 8000::/1
 ```
-**N** in Address is the number that will have your host computer on the network : the VPN is at the IP ```10.6.0.1```, therefore you need to give a different number of each machine connecting to the VPN. Here, you can put 2 instead of N therefore this machine will be hosted at the IP ```10.6.0.2```.
-I am not sure why ```AllowedIPs``` needs to be changed to this extend but it appears to work this way ...
+**N** in Address is the number that will have your host computer on the network : the VPN is at the IP `10.6.0.1`, therefore you need to give a different number of each machine connecting to the VPN. Here, you can put 2 instead of N therefore this machine will be hosted at the IP `10.6.0.2`.
+I am not sure why `AllowedIPs` needs to be changed to this extend but it appears to work this way ...
 * Open WireGuard and import the psremote.conf file as a new tunnel and start the VPN
 
 
 ### Bonus: latency and bandwidth and steam remote play 
-Just like in linux you can ping the VPN by doing ```ping 10.6.0.1``` and this will give you a broad idea of the latency just like precised in the Linux version of this test.
+Just like in linux you can ping the VPN by doing `ping 10.6.0.1` and this will give you a broad idea of the latency just like precised in the Linux version of this test.
 For iperf3, download the [source files](https://iperf.fr/fr/iperf-download.php) and unzip them
 * On the raspberry run the following command to run a test server `iperf3 -s`
 * On the remote computer go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` or `iperf3.exe -c 600 -t Raspberry_IP` to test during 10 minutes.
@@ -114,11 +115,11 @@ Regarding Steam Remote Play, this VPN is multithreaded therefore it is optimised
 * Plug the PC you wish to stream for on the same network as the VPN and find it's IP (called here **SteamHost IP**)
 * Log on this pc on your Steam account and pass it on offline mode in Steam => Go Offline (note that letting it online might use Stream online streaming services)
 * On the remote computer, left clic on Steam shortcut and clic on properties 
-* Edit the target and change it from  ```"C:\Program Files (x86)\Steam\Steam.exe"``` to ```"C:\Program Files (x86)\Steam\Steam.exe" -console```
+* Edit the target and change it from  `"C:\Program Files (x86)\Steam\Steam.exe"` to `"C:\Program Files (x86)\Steam\Steam.exe" -console`
 * Start your VPN with WireGuard
 * Start Steam (or restart if you were loged in) on the remote computer and log on the same accound as the host PC
-* Now you have a new tab call **Console** that appeared. Go into it and type ```connect_remote "SteamHost IP":27036```
-for exemple, if your host PC is hosted on the IP 192.168.0.25, type ```connect_remote 192.168.0.25:27036```
+* Now you have a new tab call **Console** that appeared. Go into it and type `connect_remote "SteamHost IP":27036`
+for exemple, if your host PC is hosted on the IP 192.168.0.25, type `connect_remote 192.168.0.25:27036`
 You should have a popup of steam detecting a remote computer at the IP you provided
 
 
