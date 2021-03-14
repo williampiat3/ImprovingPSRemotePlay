@@ -22,14 +22,14 @@
 
 ## Introduction
 This guide will allow you to improve your experience of PS remote play, reduce the load of Sony's servers and tap into the world of raspberry pi while sitting on your couch and playing your PS4 or 5 from anywhere. Hooked already? Well, here's how to do it:
-As I wasn't able to find online the full explanation on how to solve this problem. My brother and I decided to note down the steps that allowed us to completely tackle some issues with the PS remote play.
+As we were not able to find online the full explanation on how to solve this problem. My brother and I decided to note down the steps that allowed us to completely tackle some issues with the PS remote play.
 PlayStation gives an amazing feature to all its users by enabling them to [play on their PlayStation from afar](https://remoteplay.dl.playstation.net/remoteplay/lang/en/index.html). My brother and I discovered this functionality during the quarantines in Europe for the Coronavirus. Thanks to it we were able to both play the PlayStation (not at the same time of course) while being physically separated. As we are both owners of the PS4 this is not in violation of the terms of use of the PS remote play.
 
-To put it simple the remote play feature allows you to stream your PS4 on any device, your computer for instance. As this is streaming, you don't need huge specs on the client devices ([here are the ones for windows](https://remoteplay.dl.playstation.net/remoteplay/lang/gb/ps4_win.html) as an example), just a solid connection (15 Mb/s according to Sony's website). You can test your speed by making a speed test.
+To put it simple the remote play feature allows you to stream your PS4 on any device, your computer or phone for instance. As this is streaming, you don't need huge specs on the client devices ([here are the ones for windows](https://remoteplay.dl.playstation.net/remoteplay/lang/gb/ps4_win.html) as an example), just a solid connection (15 Mb/s according to Sony's website). You can test your speed by making a speed test.
 Although this tool is incredible and useful, it has a few drawbacks:
 
 When using it in your home network(ie same network as the PS4):
-* There are no connectivity issues and it works very well, capped at 720p and 30fps per second for a regular ps4 and, 1080p and 60fps for a PS4 pro and PS5
+* There are no connectivity issues and it works very well, capped at 720p and 30fps per second for a regular ps4 and, 1080p and 60fps for a PS4 pro and PS5 and works with low latency as it doesn't leave your LAN
 
 The problems arise when playing on a remote network:
 * It requires a very high-speed internet on both sides
@@ -53,11 +53,11 @@ Here is a drawing explaining the principle of the solution:
 </p>
 
 We will offer you 2 solutions depending on your usage: 
-* A quick and dirty one that is very easy but that has some disadvantages (touchpad not working... for now), you only have this solution if the remote PC is running on Linux.
+* A quick and dirty one that is very easy but that has some disadvantages (touchpad not working for windows users but perfect for linux clients) you only have this solution if the remote PC is running on Linux as the offical PS remote application is not supported on linux.
 * A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up.
 
 ## Price
-Our solution is cheap, and it works on raspberry pi zero, 3 and 4 (so if you have one of these it works), meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 consumes 3.4 Watts which is a small lamp so it won't be much of an extra cost. The raspberry 3 and 4 can sustain multiple connexions on the VPN but come at a higher cost, on the other hand if there is only one person using the VPN then the pi zero solution is cheaper (half of the price approximatly) the configuration is a little bit trickier at the beginning as you need to ssh from the start on it but it is more efficient.
+Our solution is cheap, and it works on raspberry pi zero, 3 and 4 (we haven't tested with the others), meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 consumes 3.4 Watts which is a small lamp so it won't be much of an extra cost. The raspberry 3 and 4 can sustain multiple connexions on the VPN but come at a higher cost, on the other hand if there is only one person using the VPN then the pi zero solution is cheaper (half of the price approximatly) the configuration is a little bit trickier at the beginning as you need to ssh from the start on it but it is more efficient.
 
 
 For the raspberry pi 3 and 4 you will need:
@@ -71,6 +71,7 @@ For the raspberry zero you will need:
 * A micro SD card of 16Gb (or more), 8Gb could be enough but I do not recommend it.
 * A micro USB - ethernet dongle that can power the raspberry, [this one](https://www.amazon.com/Cable-Matters-Streaming-Including-Chromecast/dp/B07N2ZHFY9) for instance
 * A nice [case](https://www.raspberrypi.org/products/raspberry-pi-zero-case/), recommended to protect it
+* A USB power supply of 5V, 1.2 A. Your phone power supply can do the trick
 
 If you are using the solution with the raspberry pi zero make sure to [enable ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/) (check paragraph 3.) right after burning the OS as you can't plug a keyboard on the pi zero if the ethernet dongle is on it
 
