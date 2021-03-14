@@ -57,7 +57,9 @@ We will offer you 2 solutions depending on your usage:
 * A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up.
 
 ## Price
-Our solution is cheap, and it works on raspberry pi zero, 3 and 4 (we haven't tested with the others), meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 consumes 3.4 Watts which is a small lamp so it won't be much of an extra cost. The raspberry 3 and 4 can sustain multiple connexions on the VPN but come at a higher cost, on the other hand if there is only one person using the VPN then the pi zero solution is cheaper (half of the price approximatly) the configuration is a little bit trickier at the beginning as you need to ssh from the start on it but it is more efficient.
+
+Our solution is cheap, and it works on raspberry pi zero, 3 and 4 (so if you have one of these it works), meaning no subscription is needed in order to operate it (apart for your electricity subscription of course). And an idle raspberry pi 3 [consumes 1.9 Watts](https://www.pidramble.com/wiki/benchmarks/power-consumption) which is less than a small lamp so it won't be much of an extra cost. The raspberry 3 and 4 can sustain multiple connexions on the VPN but come at a higher cost, on the other hand if there is only one person using the VPN then the pi zero solution is cheaper (half of the price approximatly) the configuration is a little bit trickier at the beginning as you need to ssh from the start on it but it is more efficient.
+
 
 
 For the raspberry pi 3 and 4 you will need:
@@ -114,7 +116,7 @@ We will be supposing here that your public IP is not changing very often (in cas
 ## Install a VPN server
 This one is fast and might give you a taste of the improvement you can experience using the VPN but it doesn't completely support all the controller's keys on Windows, Linux users can enjoy full compatibility following this solution.
 
-[Here is our detailed guide to install an OpenVPN server](quick_and_dirty.md) or [Install a wireguard VPN server](multithreaded_vpn.md). They are both quite straightforward and are both made using the piVPN script.
+[Here is our detailed guide to install an OpenVPN server](quick_and_dirty.md) or [Install a wireguard VPN server](multitreaded_vpn.md). They are both quite straightforward and are both made using the piVPN script.
 
 
 I will advise it just for testing the solution before implementing the second one because it lacks some of the features of the remote play. But if you really just care about having your VPN up and running with PS remote play I suggest you to switch directly to the longer solution. However this way this connection works allowed us to understand how we could make our VPN work. This is why we left its conclusion here.
@@ -146,16 +148,17 @@ Using Chiaki used to be constraigning in many ways in it's version 1.3.0:
 * Rumble and ... remote waking-up the PlayStation from Rest mode was not supported on Windows. 
 
 Now in it's version 2.1.1 fully compatible with PS5, the only noticable drawbacks are:
-* The touch pad can dysfunction temporaly, resulting in having to use the "t" touch on your keyboard (rarely)
+* The touchpad become your second PC touchpad and it stop working if the stream windows isn't selected.
 * The ps button on PS4 act a bit differently than usual
-* Sometimes the fullscreen mode revert to window mode (rarely, not randomly but I haven't found why yet)
+* Sometimes the fullscreen mode revert to window mode (double tap on touchpad is equivalent to double clic)
 
 However it have a lots of advantages : 
-* PS4 and PS5 on local network are detected automatically
+* PS4 and PS5 on local network are detected automatically (or in the case of bridge VPN)
 * The DualShock 4 and DualSense can be mapped on your keyboard
-* Many PS can be mapped in Chiaki (instead of 1 account at the time in it's official counterpart)
-* You can use it through WireGuard VPN (A multitreaded VPN)
+* Many PlayStations can be mapped in Chiaki (instead of 1 account at the time in it's official counterpart)
 * It is open source so you can edit the code to add new features (if you are willing to try ...) 
+* You can use it through a TUN VPN ([OpenVPN](quick_and_dirty.md)  or [WireGuard](multitreaded_vpn.md)) 
+
 
 It is a great tool but the official application remains better if you are using a single PS and a DualShock (or DualSense) in my opinion.
 
@@ -213,10 +216,14 @@ Once your setup is ready I advise you to use iperf3 to check the performance of 
 </p>
 
 On our networks we had the following throughput:
-* For the pi 4: 900 Mb/s on the LAN and 50Mb/s over the VPN
-* For the pi zero: 200 Mb/s on the LAN, and 11 Mb/s over the VPN
+| VPN \ pi model    | Pi zero + usb dongle| Pi 3b+ |Pi 4 | Pi 4 (another provider)|
+| -------------   |:-----------:|:----:| :------:| :------:|
+| local LAN       | 200 Mb/s    | TODO | 900 Mb/s| 900 Mb/s|
+| OpenVPN (Bridge)| 11 Mb/s     | TODO | 50 Mb/s | 80Mb/s  |
+| Wireguard       | 25 Mb/s     | TODO | 50 Mb/s | 80Mb/s  |
 
-The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network.
+
+The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network. WireGuard appeards to be more optimized than OpenVPN as the gains on a pi zero are significant. Regarding pi 4 performances, internet providers in our country limit the bandwith for VPN therefore even with OpenVPN set up as bridge, we max out at this limit.
 
 Throughput is one thing however when you are playing video games there is another metric that is terribly important, the latency. Of course you'll be playing from far away on your console, this means that this will introduce some delay between the time your are typing your commands and the time you will see them executed on the screen, this is kind of the unsolvable problem of remote play as it depends of the distance and the internet providers you have. You'll feel the difference as your inputs will be less responsive and it will be more difficult to have quick reflexes on any game so of course this is not ideal if you want to play competitive. But it does provide a good experience for casual play.
 
