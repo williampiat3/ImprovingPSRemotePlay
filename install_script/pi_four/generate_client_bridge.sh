@@ -11,6 +11,7 @@ cd /etc/openvpn/easy-rsa
 
 echo "   + Creation credentials for a client "
 read -p "Enter a name for the first client to your vpn: "  username
+read -p "vpn port (choose 1194 by default): " port
 echo "Please enter your public IP adress (VPN side). I can be optained by searching on internet"
 echo "What is my IP adress. Put all numbers and points without spaces"
 read -p "Public IP: "  public_ip
@@ -28,7 +29,7 @@ path='/home/pi/credentials/'"$username"'.conf'
 echo 'client'> $path
 echo 'dev tap0'>> $path
 echo 'proto udp'>> $path
-echo 'remote '"$public_ip"' 1194'>> $path
+echo 'remote '"$public_ip"' '"$port'>> $path
 echo 'persist-key'>> $path
 echo 'persist-tun'>> $path
 echo 'ca ca.crt'>> $path
