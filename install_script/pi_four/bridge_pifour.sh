@@ -142,8 +142,9 @@ chmod 744 /etc/openvpn/openvpn-bridge
 echo "Provide starting IP and ending IP for bridge"
 read -p "Starting IP: "  starting_ip
 read -p "Ending IP: "  ending_ip
+read -p "vpn port (choose 1194 by default): " port
 
-echo 'port 1194' > /etc/openvpn/server.conf
+echo 'port '"$port"' > /etc/openvpn/server.conf
 echo 'proto udp' >> /etc/openvpn/server.conf
 echo 'dev tap0' >> /etc/openvpn/server.conf
 echo 'ca /etc/openvpn/easy-rsa/pki/ca.crt' >> /etc/openvpn/server.conf
@@ -181,7 +182,7 @@ path='/home/pi/credentials/'"$username"'.conf'
 echo 'client'> $path
 echo 'dev tap0'>> $path
 echo 'proto udp'>> $path
-echo 'remote '"$public_ip"' 1194'>> $path
+echo 'remote '"$public_ip"' '"$port"'>> $path
 echo 'persist-key'>> $path
 echo 'persist-tun'>> $path
 echo 'ca ca.crt'>> $path
