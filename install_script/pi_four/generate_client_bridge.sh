@@ -29,7 +29,7 @@ path='/home/pi/credentials/'"$username"'.conf'
 echo 'client'> $path
 echo 'dev tap0'>> $path
 echo 'proto udp'>> $path
-echo 'remote '"$public_ip"' '"$port'>> $path
+echo 'remote '"$public_ip"' '"$port"'>> $path
 echo 'persist-key'>> $path
 echo 'persist-tun'>> $path
 echo 'ca ca.crt'>> $path
