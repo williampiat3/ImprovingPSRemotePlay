@@ -175,7 +175,7 @@ echo "   + Enable IPV4 forwarding"
 sysctl -w net.ipv4.ip_forward=1
 
 echo "   + Edition of openvpn@.service"
-sed -i '/^Restart=.*/a ExecStartPre=/etc/openvpn/openvpn-bridge stop' /lib/systemd/system/openvpn@.service
+sed -i '/^Restart=.*/a ExecStopPost=/etc/openvpn/openvpn-bridge stop' /lib/systemd/system/openvpn@.service
 sed -i '/^Restart=.*/a ExecStartPre=/etc/openvpn/openvpn-bridge start' /lib/systemd/system/openvpn@.service
 
 path='/home/pi/credentials/'"$username"'.conf'
