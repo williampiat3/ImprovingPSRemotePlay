@@ -68,7 +68,7 @@ This will give you a latency test. Keep in mind that remote playing will add mor
 
 Regarding bandwidth, install iperf3 by doing `sudo apt-get install iperf3` if you do not have it.
 Then test the max bandwith by doing `iperf3 -c Raspberry_IP` on the remote PC and `iperf3 -s` on the raspberry PI
-You may run it during 10 minutes to eliminate any Rasberry pi heating throttle (`iperf3 -c 600 -t Raspberry_IP`)
+You may run it during 10 minutes to eliminate any Rasberry pi heating throttle (`iperf3 -c Raspberry_IP -t 600`)
 
 You can see what your VPN will allows you to do following this [reddit forum](https://www.reddit.com/r/remoteplay/comments/k0s3rr/megathread_tips_and_good_practices_for_remote_play/):
 
@@ -107,7 +107,7 @@ I am not sure why `AllowedIPs` needs to be changed to this extend but it appears
 Just like in linux you can ping the VPN by doing `ping 10.6.0.1` and this will give you a broad idea of the latency just like precised in the Linux version of this test.
 For iperf3, download the [source files](https://iperf.fr/fr/iperf-download.php) and unzip them
 * On the raspberry run the following command to run a test server `iperf3 -s`
-* On the remote computer go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` or `iperf3.exe -c 600 -t Raspberry_IP` to test during 10 minutes.
+* On the remote computer go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` or `iperf3.exe -c Raspberry_IP -t 600` to test during 10 minutes.
 
 Regarding Steam Remote Play, this VPN is multithreaded therefore it is optimised to maximise the throughput. if you are into 4K remote play and you are using a Raspberry pi 3b+ or 4 you can perform the following. Note that it works automatically with a bridge VPN but due to OpenVPN been not multithreaded and been the only solution so far, performance can be ... meh ?
 
