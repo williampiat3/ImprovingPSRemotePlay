@@ -134,7 +134,7 @@ But you can actually detect the PlayStation if you run this command (that works 
 [Chiaki](https://git.sr.ht/~thestr4ng3r/chiaki) is a free, open source, PS remote play client that you can download [here.](https://git.sr.ht/~thestr4ng3r/chiaki/refs)
 You also need your **PSN account ID**, not your login, not your email... Look, you just don't have it yet ;). 
 
-The Chiaki github is providing a python script for you to get it easily [here](https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you :
+The Chiaki github is providing a python script for you to get it easily [here](hhttps://git.sr.ht/~thestr4ng3r/chiaki/tree/master/item/scripts/psn-account-id.py), and if you don't know how to run a python script on your computer well you should! it really is an awesome language. If you really don't have and don't want python3 on your computer, the raspberry pi can run it for you :
 just run `wget https://raw.githubusercontent.com/thestr4ng3r/chiaki/master/scripts/psn-account-id.py` to get the script and run `python3 psn-account-id.py`...
 Some packages missing? `sudo pip3 install requests` .....
 pip missing? `sudo apt-get install python3-pip`. 
