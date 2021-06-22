@@ -77,6 +77,22 @@ For the raspberry zero you will need:
 
 If you are using the solution with the raspberry pi zero make sure to [enable ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/) (check paragraph 3.) right after burning the OS as you can't plug a keyboard on the pi zero if the ethernet dongle is on it
 
+To help you in your choice, here is a small table of the use case we thought might help you choosing a raspberry pi
+
+
+|        use cases         | Pi zero<br>OpenVPN|Pi zero<br>Wireguard |Pi 3 & 4<br>OpenVPN | Pi 3 & 4<br>Wireguard | Psremote app|
+| ----------------------   |:-----------------:|:-------------------:| :-------------:| :----------------:| :--------------:|
+| PS4 fat 540p low fps     | OK                |      OK             |     OK         |     OK            |    OK           |
+| PS4 fat 720p low fps     | OK                |      OK             |     OK         |     OK            |  Not stable     |
+| PS4 pro 720p low fps     | Not optimal       |      OK             |     OK         |     OK            |  disconnecting  |
+| PS4 fat 720p high fps    | Not optimal       |      OK             |     OK         |     OK            |  disconnecting  |
+| PS4 pro 1080p high fps   | Not working       |      OK             |     OK         |     OK            |  disconnecting* |
+| PS5 1080p high fps       | Not working       |      OK             |     OK         |     OK            |  OK*            |
+| PS5 and PS4 pro max out  | Not working*      |      Not working*   |     OK*        |     OK *          |  Not possible*  |
+| Steam remote play        | Not working       |      Not optimal    |     OK         |     OK            |  -  |
+
+\**Test not performed, theorical result within our limited testing and comprehension*
+
 ## Equipment needed:
 
 Of course you will need some extra devices, setting a VPN server requires a machine to run full time but the raspberry is consuming the equivalent of a lamp, and some cables if you don't already have them.
@@ -224,9 +240,12 @@ On our networks we had the following throughput:
 
 \**Test performed on another internet provider*
 
+
+
 The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network. WireGuard appeards to be more optimized than OpenVPN as the gains on a pi zero are significant. Regarding pi 4 performances, internet providers in our country limit the bandwith for VPN therefore even with OpenVPN set up as bridge, we max out at this limit.
 
 Throughput is one thing however when you are playing video games there is another metric that is terribly important, the latency. Of course you'll be playing from far away on your console, this means that this will introduce some delay between the time your are typing your commands and the time you will see them executed on the screen, this is kind of the unsolvable problem of remote play as it depends of the distance and the internet providers you have. You'll feel the difference as your inputs will be less responsive and it will be more difficult to have quick reflexes on any game so of course this is not ideal if you want to play competitive. But it does provide a good experience for casual play.
+
 
 # Conclusion
 
