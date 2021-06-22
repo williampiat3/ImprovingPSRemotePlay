@@ -77,8 +77,7 @@ For the raspberry zero you will need:
 
 If you are using the solution with the raspberry pi zero make sure to [enable ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/) (check paragraph 3.) right after burning the OS as you can't plug a keyboard on the pi zero if the ethernet dongle is on it
 
-To help you in your choice, here is a small table of the use case we thought might help you choosing a raspberry pi
-
+To help you in your choice, here is a small table summing up all use case we thought of. We hope this might help you in selecting the right raspberry pi:
 
 |        use cases         | Pi zero<br>OpenVPN|Pi zero<br>Wireguard |Pi 3 & 4<br>OpenVPN | Pi 3 & 4<br>Wireguard | Psremote app|
 | ----------------------   |:-----------------:|:-------------------:| :-------------:| :----------------:| :--------------:|
