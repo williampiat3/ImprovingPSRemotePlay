@@ -87,7 +87,7 @@ To help you in your choice, here is a small table summing up all use case we tho
 | PS4 fat 720p high fps    | Not optimal       |      OK             |     OK         |     OK            |  disconnecting  |
 | PS4 pro 1080p high fps   | Not working       |      OK             |     OK         |     OK            |  disconnecting* |
 | PS5 1080p high fps       | Not working*      |      OK*            |     OK*        |     OK*           |  OK*            |
-| PS5 and PS4 pro max out  | Not working*      |      Not working*   |     OK*        |     OK *          |  Not possible*  |
+| PS5 and PS4 pro max out  | Not working*      |      Not working*   |     OK*        |     OK*           |  Not possible*  |
 | Steam remote play        | Not working       |      Not optimal    |     OK         |     OK            |  -  |
 
 \**Test not performed, theorical result within our limited testing and comprehension*
