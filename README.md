@@ -29,7 +29,7 @@ To put it simple the remote play feature allows you to stream your PS4 on any de
 Although this tool is incredible and useful, it has a few drawbacks:
 
 When using it in your home network(ie same network as the PS4):
-* There are no connectivity issues and it works very well, capped at 720p and 30fps per second for a regular ps4 and, 1080p and 60fps for a PS4 pro and PS5 and works with low latency as it doesn't leave your LAN
+* There are no connectivity issues and it works very well, capped at 720p and 30fps per second for a regular ps4 and, 1080p and 60fps for a PS4 pro and PS5 and works with low latency as the connection passes through your local network only.
 
 The problems arise when playing on a remote network:
 * It requires a very high-speed internet on both sides
@@ -53,8 +53,8 @@ Here is a drawing explaining the principle of the solution:
 </p>
 
 We will offer you 2 solutions depending on your usage: 
-* A quick and dirty one that is very easy but that has some disadvantages (touchpad not working for windows users but perfect for linux clients) you only have this solution if the remote PC is running on Linux as the offical PS remote application is not supported on linux.
-* A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up.
+* A quick and dirty one that is very easy but that has some disadvantages (touchpad not working for windows users but perfect for linux clients) you only have this solution if the remote PC is running on Linux as the offical PS remote application is not supported on linux. It offers the best performance possible for linux users
+* A more complex one that enables you to have the full experience of the PlayStation remote play but that is a bit trickier to set up. It offers the best compatibility with windows users
 
 ## Price
 
@@ -64,13 +64,13 @@ Our solution is cheap, and it works on raspberry pi zero, 3 and 4 (so if you hav
 
 For the raspberry pi 3 and 4 you will need:
 * A [raspberry pi 3 or 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?resellerType=home) (2Gb of RAM are sufficient)
-* A micro SD card of 16Gb (or more), 8Gb could be enough but I do not recommend it.
+* A micro SD card of 16Gb (or more), 8Gb could be enough but we do not recommend it.
 * A USB-C Power supply, ideally the [official one](https://www.raspberrypi.org/products/type-c-power-supply/?resellerType=home)
 * A nice [case](https://www.raspberrypi.org/products/raspberry-pi-4-case/?resellerType=home), recommended to protect it
 
 For the raspberry zero you will need:
 * A [raspberry pi zero 1.3](https://www.raspberrypi.org/products/raspberry-pi-zero/)
-* A micro SD card of 16Gb (or more), 8Gb could be enough but I do not recommend it.
+* A micro SD card of 16Gb (or more), 8Gb could be enough if you are willing to try.
 * A micro USB - ethernet dongle that can power the raspberry, [this one](https://www.amazon.com/Cable-Matters-Streaming-Including-Chromecast/dp/B07N2ZHFY9) for instance
 * A nice [case](https://www.raspberrypi.org/products/raspberry-pi-zero-case/), recommended to protect it
 * A USB power supply of 5V, 1.2 A. Your phone power supply can do the trick
@@ -94,20 +94,19 @@ To help you in your choice, here is a small table summing up all use case we tho
 
 ## Equipment needed:
 
-Of course you will need some extra devices, setting a VPN server requires a machine to run full time but the raspberry is consuming the equivalent of a lamp, and some cables if you don't already have them.
 You will need:
 * An internet router with a solid connection (15 Mb/s according to Sony's website)
 * A fully operational raspberry pi 4, 3 or zero, with its power supply and an SD card with the Raspberry Pi OS on it.
 
 If you don't feel like burning the OS yourself on the SD card, you can buy SD cards with the OS preinstalled as described [here](https://www.raspberrypi.org/downloads/noobs/), no judgment here.
 * A keyboard and a mouse (only for the installation not the usage)
-* An ethernet cable to link the Raspberry to your router
+* An ethernet cable to link the Raspberry to your router (Wifi is not an option as we want stability)
 * A second ethernet cable (if you don't already have it) to wire your PlayStation to the router as well.
 * A PC for configuring the raspberry and testing the VPN (a PC on a remote network and a PC on the local network is the best configuration but one PC is fine by switching the network when testing the VPN)
 
 ## First steps that are common to all the solutions
 * [Get you raspberry pi up and running with the Raspberry pi OS](https://magpi.raspberrypi.org/articles/set-up-raspberry-pi-4) you can find a lot of tutorials on the web for this and we will not be covering this here. 
-* Connect your raspberry pi to the same router as the PlayStation and turn it on, in order for it to get a local ip address.
+* Connect your raspberry pi to the same router as the PlayStation and turn the raspberry on, in order for it to get a local ip address.
 * On the raspberry get the local IP by typing `hostname -I` note it, it will be referred afterward as **raspberry IP**
 * If your password on the raspberry is the default one, it's time for you to change it: `passwd` default one is 'raspberry'
 * [Enable SSH on your raspberry](https://www.raspberrypi.org/documentation/remote-access/ssh/) for being able to connect to it from your computer and run commands on it.
@@ -120,11 +119,11 @@ If you don't feel like burning the OS yourself on the SD card, you can buy SD ca
 
 * Get your **router IP** and note it: it is most likely your **raspberry IP** but replacing the last set of numbers by one (for instance in the image the router IP is 192.168.1.1). Most routers have an admin server at http://**router IP**, check it out to verify your **router IP** is correct. Alternatively browsing 'my router IP "my internet provider"' will likely give you the answer
 * Get your **public IP**, Google can do that for you if you just browse 'my IP address'. Get the [ipv4](https://en.wikipedia.org/wiki/IP_address#IPv4_addresses) address, not the [ipv6](https://en.wikipedia.org/wiki/IP_address#IPv6_addresses)
-* Get your **PS IP** (your PlayStation has to be connected to the LAN for this), by browsing the http://**router IP** and entering your admin credentials (see your router manual for them) the interface depends on your internet provider but the devices on the local net are often listed under a 'LAN' tab or 'my network'. Identify the one that is your PS4 and note down its IP. We will refer it as **PS IP**
+* Get your **PS IP** (your PlayStation has to be connected to the LAN for this), you can get it on the playstation once it is plugged on the router by going to your network settings, alternatively you can browse http://**router IP** and enter your admin credentials. (see your router manual for them) The router admin interface depends on your internet provider but the devices on the local net are often listed under a 'LAN' tab or 'my network'. Identify the one that is your PS4 and note down its IP. We will refer it as **PS IP**
 
 ## Requirements before going to the next steps.
 So at the end of these steps you are able to ssh on your raspberry that is connected to your network, and you have your **raspberry IP**, **netmask**, **broadcast IP**, **router IP**, **public IP** and **PS IP**.
-We will be supposing here that your public IP is not changing very often (in case you have a static IP, that's great). But in case for some reason your public IP changes regularly you'll have to subscribe to a DynDNS service to be able to connect every time to your home network. If it changes only when you reboot your router it's fine, you can go ahead and pretend you have a static IP (we will show you what to change if your public IP changed and guess what? it will just be changing one ip address in a configuration file)
+We will be supposing here that your public IP is not changing very often (in case you have a static IP, that's great). But in case for some reason your public IP changes regularly you'll have to subscribe to a DynDNS service to be able to connect every time to your home network. If it changes only when you reboot your router it's fine, you can go ahead and pretend you have a static IP (we will show you what to change if your public IP changed and it will just be changing one ip address in a configuration file)
 
 # Quick and dirty solution
 
@@ -137,13 +136,13 @@ This one is fast and might give you a taste of the improvement you can experienc
 I will advise it just for testing the solution before implementing the second one because it lacks some of the features of the remote play. But if you really just care about having your VPN up and running with PS remote play I suggest you to switch directly to the longer solution. However this way this connection works allowed us to understand how we could make our VPN work. This is why we left its conclusion here.
 
 ## Connect to the PlayStation (try at least..)
-Yeeeww ! You are connected remotely to your home network now try to connect to your PlayStation using the PS remote play application...
+Using the VPN you can connect remotly to your home network, now you can try to fire the PS remote play application but...
 
 It doesn't work...
 
 Yes, it doesn't work...
 
-But you can actually detect the PlayStation if you run this command (that works on windows, Linux and Mac OS) `ping **PS IP**` you will be receiving packets meaning the PlayStation is accessible but the app doesn't reach it! ([explanation here](#why-is-this-not-working-with-the-ps-remote-play-app)) But you know what does? Chiaki!
+But you can actually detect the PlayStation if you run this command (it works on windows, Linux and Mac OS) `ping **PS IP**` you will be receiving packets meaning the PlayStation is accessible but the app doesn't reach it! ([explanation here](#why-is-this-not-working-with-the-ps-remote-play-app)) But you know what does? Chiaki!
 
 ## Install Chiaki <img src="./images/chiaki_icon.png" width=10% height=10%>
 [Chiaki](https://git.sr.ht/~thestr4ng3r/chiaki) is a free, open source, PS remote play client that you can download [here.](https://git.sr.ht/~thestr4ng3r/chiaki/refs)
@@ -163,17 +162,16 @@ Using Chiaki used to be constraigning in many ways in it's version 1.3.0:
 * Rumble and ... remote waking-up the PlayStation from Rest mode was not supported on Windows. 
 
 Now in it's version 2.1.1 fully compatible with PS5, the only noticable drawbacks are:
-* The touchpad become your second PC touchpad and it stop working if the stream windows isn't selected.
+* On linux, The touchpad become your second PC touchpad and it stop working if the stream windows isn't selected.
 * The ps button on PS4 act a bit differently than usual
-* Sometimes the fullscreen mode revert to window mode (double tap on touchpad is equivalent to double clic)
+* On linux, sometimes the fullscreen mode revert to window mode (double tap on touchpad is equivalent to double clic)
 
 However it have a lots of advantages : 
 * PS4 and PS5 on local network are detected automatically (or in the case of bridge VPN)
 * The DualShock 4 and DualSense can be mapped on your keyboard
 * Many PlayStations can be mapped in Chiaki (instead of 1 account at the time in it's official counterpart)
 * It is open source so you can edit the code to add new features (if you are willing to try ...) 
-* You can use it through a TUN VPN ([OpenVPN](quick_and_dirty.md)  or [WireGuard](multitreaded_vpn.md)) 
-
+* You can use it through a TUN VPN ([OpenVPN](quick_and_dirty.md)  or [WireGuard](multitreaded_vpn.md)), Wireguard being the best performing VPN in terms of streaming quality
 
 It is a great tool but the official application remains better if you are using a single PS and a DualShock (or DualSense) in my opinion.
 
@@ -184,7 +182,7 @@ Your LAN or local network is the network connecting all your machines to the web
 
 On your LAN every device has a local address: a local IP (the **PS IP** or **raspberry IP** or **router IP** are local IPs) that are not visible from the outside but you can access them from within your network or with the VPN we just did. 
 
-How acts the VPN we just did? It creates a subnetwork in your network, meaning that the raspberry acts just like your web router: the raspberry gives to any device connected to the VPN access to your LAN and the web. That's why you can actually ping the PlayStation. However the PlayStation app can't reach it? Yes (and this was a conjuncture) the app looks for the PlayStation on the same network that the computer meaning the subnetwork of the raspberry pi! 
+How acts the VPN we just did? It creates a subnetwork in your network, meaning that the raspberry acts just like your web router: the raspberry gives to any device connected to the VPN access to your LAN and the web. That's why you can actually ping the PlayStation. However the PlayStation app can't reach it? Yes (and this was a conjuncture) the app looks for the PlayStation on the same network than the device running it meaning the subnetwork of the raspberry pi and not your LAN...
 
 <p align="center">
  <img src="./images/quickAndDirty.png">
@@ -213,7 +211,7 @@ Now that your VPN is on, that your client is ready and that you can connect to t
 To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC
 And that's it folks a local remote play is on!!! With full compatibility with all keys, touchpad and so on. Chiaki has full compatibility on Ubuntu so if you have a linux machine you can also use this solution
 
-Now you can increase the quality of your remote play as long as you connexion allows it, you are not more bounded by the state of Sony's server.
+Now you can increase the quality of your remote play as long as you connexion allows it. Feel free to test with and without the VPN: we saw drastic improvements
 
 ## About this solution: what is this changing
 Now any device connected to the VPN can be spotted on the LAN, if you go to your router's admin page (that you can also access on the remote computer with the VPN now) and check the devices connected you will note that a new device has appeared whose IP belongs to the range you gave in the configuration file of openVPN whereas in the previous solution your device was not visible as it was on a subnetwork.
@@ -223,7 +221,7 @@ Now any device connected to the VPN can be spotted on the LAN, if you go to your
 Once your setup is ready I advise you to use iperf3 to check the performance of your network through the VPN by using a remote wired network: the software is available on linux, windows and MacOS: therefore you can use it on all you machines to check the throuput:
 * On linux (on the raspberry) install it by using `sudo apt-get install iperf3`, on windows and on MacOS download the [source files](https://iperf.fr/fr/iperf-download.php) and unzip them
 * On the raspberry run the following command to run a test server `iperf3 -s`
-* On the client computer if it is a windows go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` and you should see the average throuput that you can get from the VPN: for a seamless connection it has to be above 10Mb/s which can be perfomed by the pi zero with the dongle.
+* On the client computer if it is a windows go find the iperf3.exe file, open up a terminal in the same folder and run `iperf3.exe -c Raspberry_IP` and you should see the average throughput that you can get from the VPN: for a seamless connection it has to be above 10Mb/s which can be perfomed by the pi zero with the dongle.
 
 
 <p align="center">
@@ -241,7 +239,7 @@ On our networks we had the following throughput:
 
 
 
-The VPN drastically reduces the throughput but this is the only way you can safely connect remotely to your local network. WireGuard appeards to be more optimized than OpenVPN as the gains on a pi zero are significant. Regarding pi 4 performances, internet providers in our country limit the bandwith for VPN therefore even with OpenVPN set up as bridge, we max out at this limit.
+The VPN drastically reduces the throughput compared to local play but this is the only way you can safely connect remotely to your local network. WireGuard appeards to be more optimized than OpenVPN as the gains on a pi zero are significant. Regarding pi 4 performances, internet providers in our country limit the bandwith for VPN therefore even with OpenVPN set up as bridge, we max out at this limit.
 
 Throughput is one thing however when you are playing video games there is another metric that is terribly important, the latency. Of course you'll be playing from far away on your console, this means that this will introduce some delay between the time your are typing your commands and the time you will see them executed on the screen, this is kind of the unsolvable problem of remote play as it depends of the distance and the internet providers you have. You'll feel the difference as your inputs will be less responsive and it will be more difficult to have quick reflexes on any game so of course this is not ideal if you want to play competitive. But it does provide a good experience for casual play.
 
