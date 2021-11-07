@@ -79,7 +79,7 @@ If you are using the solution with the raspberry pi zero make sure to [enable ss
 
 To help you in your choice, here is a small table summing up all use case we thought of. We hope this might help you in selecting the right raspberry pi:
 
-|        use cases         | Pi zero v1.3<br>OpenVPN|Pi zerov1.3<br>Wireguard |Pi 3 & 4<br>OpenVPN | Pi 3 & 4<br>Wireguard | Psremote app|
+|        use cases         | Pi zero v1.3<br>OpenVPN|Pi zero v1.3<br>Wireguard |Pi 3 & 4<br>OpenVPN | Pi 3 & 4<br>Wireguard | Psremote app|
 | ----------------------   |:-----------------:|:-------------------:| :-------------:| :----------------:| :--------------:|
 | PS4 fat 540p low fps     | OK                |      OK             |     OK         |     OK            |    OK           |
 | PS4 fat 720p low fps     | OK                |      OK             |     OK         |     OK            |  Not stable     |
