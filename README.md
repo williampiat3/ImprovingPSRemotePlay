@@ -79,7 +79,7 @@ If you are using the solution with the raspberry pi zero make sure to [enable ss
 
 To help you in your choice, here is a small table summing up all use case we thought of. We hope this might help you in selecting the right raspberry pi:
 
-|        use cases         | Pi zero<br>OpenVPN|Pi zero<br>Wireguard |Pi 3 & 4<br>OpenVPN | Pi 3 & 4<br>Wireguard | Psremote app|
+|        use cases         | Pi zero v1.3<br>OpenVPN|Pi zerov1.3<br>Wireguard |Pi 3 & 4<br>OpenVPN | Pi 3 & 4<br>Wireguard | Psremote app|
 | ----------------------   |:-----------------:|:-------------------:| :-------------:| :----------------:| :--------------:|
 | PS4 fat 540p low fps     | OK                |      OK             |     OK         |     OK            |    OK           |
 | PS4 fat 720p low fps     | OK                |      OK             |     OK         |     OK            |  Not stable     |
@@ -229,7 +229,7 @@ Once your setup is ready I advise you to use iperf3 to check the performance of 
 </p>
 
 On our networks we had the following throughput:
-| VPN \ pi model    | Pi zero + usb dongle| Pi 3b |Pi 4 | Pi 3b v1.2* | Pi 4* |
+| VPN \ pi model    | Pi zero v1.3<br>+ usb dongle| Pi 3b |Pi 4 | Pi 3b v1.2* | Pi 4* |
 | -------------   |:-----------:|:----:| :------:| :------:| :------:|
 | local LAN       | 200 Mb/s    | TODO | 900 Mb/s| 95 Mb/s  | 900 Mb/s|
 | OpenVPN (Bridge)| 11 Mb/s     | TODO | 50 Mb/s | 61 Mb/s  | 80 Mb/s |
