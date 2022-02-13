@@ -1,6 +1,17 @@
 # Install Wireguard for a multithreaded VPN
 As Wireguard can provide a multithreaded VPN interface it is a good solution in case you want more throughput via your VPN, we will cover here how to install a wireguard VPN server and the clients on Windows and Linux. Wireguard doesn't provide a layer 2 interface to your LAN therefore you won't be able to use it with the official remote play app but it can be used with Steam remote play or Chiaki
 
+
+## Possible conflict in IP adresses
+A problem will arise if IP adresses from your local network overlap your remote network. Exemple : 
+* Router_IP: `192.168.1.1`
+* PS_IP: `192.168.1.25`
+* connected PC: `192.168.1.35`, `10.6.0.2`
+
+In the case, the connected PC has IPs 10.6.0.2 (Wireguard) and 192.168.1.35 (local network adress before connecting to the VPN). As this adress is also on 192.168.1.n, attempting a ping to a remote PS4-5 will results in an error. **This can be solved by accessing admin settings in one of the router and changing it's IP to 192.168.m.1**, with m different from classical adresses (in most cases, picking `m=2` will work). 
+
+You may not be able to change your IP on the network of the PC connecting remotly, **the best course of action is to edit your router IP settings** on the side of the PS4-5 **before starting building your VPN** as this will result in numerous manual changes in settings for the VPN
+
 ## Wireguard server
 The installation is straight forward and has very little difference of the piVPN TUN server that we explored already. PiVPN provides an easy way to install wireguard and you can completly trust the installation script.
 * Run `sudo apt-get update && sudo apt-get upgrade`
@@ -32,7 +43,6 @@ Connect to your router admin interface: http://**router IP** and look in the adv
 * destination: **Raspberry IP**
 * external IP: Leave empty (except if you only want to authorize some specific IPs to connect to your VPN, which could be a good idea if the remote network whence you want to connect has a static IP... )
 
-
 Now switch to your host machine and install WireGuard Client. We provide how-to for Linux and Windows:
 ## Linux Client:
 
@@ -51,7 +61,7 @@ DNS = 8.8.8.8, 8.8.4.4
 PublicKey = YourPublicKey_DoNotChangeOrShareToInternet
 PresharedKey = YourPresharedKey_DoNotChangeOrShareToInternet
 Endpoint = "Public IP":51820
-AllowedIPs = 10.0.6.0/24,"Router_IP  format"/24
+AllowedIPs = 10.6.0.0/24,"Router_IP  format"/24
 ```
 **N** in Address is the number that will have your host computer on the network : the VPN is at the IP `10.6.0.1`, therefore you need to give a different number of each machine connecting to the VPN. Here, you can put 2 instead of N therefore this machine will be hosted at the IP `10.6.0.2`.
 **Router_IP format** is a modified IP. Take your **Router IP** and change the last number to zero: `192.168.X.ABC`=> `192.168.X.0`
@@ -102,8 +112,7 @@ AllowedIPs = 0.0.0.0/1, 128.0.0.0/1, ::/1, 8000::/1
 I am not sure why `AllowedIPs` needs to be changed to this extend but it appears to work this way ...
 * Open WireGuard and import the psremote.conf file as a new tunnel and start the VPN
 
-
-### Bonus: latency and bandwidth and steam remote play 
+## Bonus: latency and bandwidth and steam remote play 
 Just like in linux you can ping the VPN by doing `ping 10.6.0.1` and this will give you a broad idea of the latency just like precised in the Linux version of this test.
 For iperf3, download the [source files](https://iperf.fr/fr/iperf-download.php) and unzip them
 * On the raspberry run the following command to run a test server `iperf3 -s`
