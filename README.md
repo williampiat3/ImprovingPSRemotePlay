@@ -229,8 +229,8 @@ Once your setup is ready I advise you to use iperf3 to check the performance of 
 </p>
 
 On our networks we had the following throughput:
-| VPN \ pi model    | Pi zero v1.3<br>+ usb dongle| Pi 3b v1.2 |Pi 4 (64bits)|
-| ---------------|:-----------:|:-------:|:--------:| :------:| :------:|
+| VPN \ pi model    | Pi zero v1.3<br>+ usb dongle| Pi 3b<br> v1.2 |Pi 4 (64bits)|
+| ------------------|:-----------:|:-------:|:--------:|
 | local LAN         | 200 Mb/s    | 95 Mb/s  | 900 Mb/s|
 | OpenVPN (Bridge)  | 11 Mb/s     | 61 Mb/s  | 80 Mb/s |
 | Wireguard         | 25 Mb/s     | 80 Mb/s  | 86 Mb/s |
