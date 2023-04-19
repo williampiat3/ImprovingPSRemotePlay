@@ -236,8 +236,6 @@ On our networks we had the following throughput:
 | Wireguard         | 25 Mb/s     | 80 Mb/s  | 86 Mb/s |
 | Tailscale         | 10 Mb/s     |          | 86 Mb/s |
 
-\**Test performed on another internet provider*
-
 
 
 The VPN drastically reduces the throughput compared to local play but this is the only way you can safely connect remotely to your local network. WireGuard appeards to be more optimized than OpenVPN as the gains on a pi zero are significant. Regarding pi 4 performances, internet providers in our country limit the bandwith for VPN therefore even with OpenVPN set up as bridge, we max out at this limit.
