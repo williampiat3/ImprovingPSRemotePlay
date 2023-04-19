@@ -143,7 +143,7 @@ Ok now you should be fine running the script. It will open up a web page for log
 Run the Chiaki executable enter your **PSN account ID** the **PS IP** and then it will prompt for a PIN code
 To register a PS4 with a PIN, it must be put into registration mode. To do this, on your PS4, simply go to: Settings -> Remote Play (ensure this is ticked) -> Add Device, it will give you a PIN code to enter on your PC and noooooooooooowwwwwwwww .... YOU ARE CONNECTED
 
-Using Chiaki used to be constraigning in many ways in it's version 1.3.0:
+Using Chiaki used to be constraining in many ways in it's version 1.3.0:
 * not all the keys of the controller were supported the touchpad for instance (Windows and MacOS)
 * Rumble and ... remote waking-up the PlayStation from Rest mode was not supported on Windows. 
 
