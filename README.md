@@ -130,7 +130,7 @@ We will be supposing here that your public IP is not changing very often (in cas
 ## Install a VPN server
 This one is fast and might give you a taste of the improvement you can experience using the VPN but it doesn't completely support all the controller's keys on Windows, Linux users can enjoy full compatibility following this solution.
 
-[Here is our detailed guide to install an OpenVPN server](quick_and_dirty.md), how to [install a wireguard VPN server](multitreaded_vpn.md) or even how to [use Tailscale](tailscale_install.md). They are straightforward and are both made using the piVPN script.
+[Here is our detailed guide to install an OpenVPN server](quick_and_dirty.md) and how to [install a wireguard VPN server](multitreaded_vpn.md)  They are straightforward and are both made using the piVPN script. The same behavior can be achieved [using Tailscale](tailscale_install.md) but requires also some level of configuration.
 
 Using [Tailscale](https://tailscale.com/), while simplifing the all process by allowing a connection without opening ports on your router, requires more computationnal power on the raspberry pi, rendering this solution on pi zero's not optimal. We sugest using a pi 3, 4 or a pi zero 2 W.
 
