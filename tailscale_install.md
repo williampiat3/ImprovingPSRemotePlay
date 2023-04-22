@@ -13,7 +13,7 @@ A problem will arise if IP adresses from your local network overlap your remote 
 
 In the case, the connected PC has IPs 100.80.220.57 (Tailscale) and 192.168.1.35 (local network adress before connecting to the VPN). As this adress is also on 192.168.1.n, attempting a ping to a remote PS4-5 will results in an error. **This can be solved by accessing admin settings in one of the router and changing it's IP to 192.168.m.1**, with m different from classical adresses (in most cases, picking `m=2` will work). 
 
-Otherwise, you may not be able to change your IP on the network of the PC connecting remotly
+You may not be able to change your IP on the network of the PC connecting remotly but this can be an solution too.
 
 ##  Tailscale Node
 The installation is straight forward. Tailscale provides an easy way to install wireguard and you can completly trust the installation script.
