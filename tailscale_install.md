@@ -25,7 +25,7 @@ The installation is straight forward. Tailscale provides an easy way to install 
 At the end of the installation process, you will be linked to a login page for both devices. We recommend using github or a freshly made gmail adress to keep everything separated but it is up to your judgment. **Your login method need to be the same across all connected devices : raspberry pi and computer using remote play**
 
 ## Configure the raspberry pi as subnet router
-the [official guide]((https://tailscale.com/kb/1019/subnets/) is straiforward and we recommand using it. Note that you wish to access the Playstation network subnet therefore the command to enter is `sudo tailscale up --advertise-routes=192.168.1.0/24` if your router_IP is `192.168.1.1`
+the [official guide](https://tailscale.com/kb/1019/subnets/) is straiforward and we recommand using it. Note that you wish to access the Playstation network subnet therefore the command to enter is `sudo tailscale up --advertise-routes=192.168.1.0/24` if your router_IP is `192.168.1.1`
 
 **Linux users, do not forget to accept all subnet routes onces the raspberry pi is configured.** This step is automatic on other OS.
 * `sudo tailscale up --accept-routes`
