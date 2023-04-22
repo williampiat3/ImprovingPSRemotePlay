@@ -79,16 +79,16 @@ If you are using the solution with the raspberry pi zero make sure to [enable ss
 
 To help you in your choice, here is a small table summing up all use case we thought of. We hope this might help you in selecting the right raspberry pi:
 
-|       use cases      | Pi zero v1.3<br>OpenVPN & Tailscale|Pi zero v1.3<br>Wireguard |Pi 3 & 4<br>OpenVPN | Pi 3 & 4<br>Wireguard & Tailscale| Psremote app|
-| ----------------------   |:-----------------:|:-------------------:| :-------------:| :----------------:| :--------------:|
-| PS4 fat 540p low fps     | OK                |      OK             |     OK         |     OK            |    OK           |
-| PS4 fat 720p low fps     | OK                |      OK             |     OK         |     OK            |  Not stable     |
-| PS4 pro 720p low fps     | Not optimal       |      OK             |     OK         |     OK            |  disconnecting  |
-| PS4 fat 720p high fps    | Not optimal       |      OK             |     OK         |     OK            |  disconnecting  |
-| PS4 pro 1080p high fps   | Not working       |      OK             |     OK         |     OK            |  disconnecting* |
-| PS5 1080p high fps       | Not working*      |      OK             |     OK*        |     OK            |  OK*            |
-| PS5 and PS4 pro          | Not working*      |      Not working*   |     OK*        |     OK*           |  Not possible*  |
-| Steam remote play        | Not working       |      Not optimal    |     OK         |     OK            |  -  |
+|       use cases      | Pi zero v1.3<br>OpenVPN & Tailscale|Pi zero v1.3<br>Wireguard | Pi 3 & 4<br> All VPN| Psremote app|
+| ----------------------   |:-----------------:|:-------------------:| :-------------:| :--------------:|
+| PS4 fat 540p low fps     | OK                |      OK             |     OK         |     OK          |
+| PS4 fat 720p low fps     | OK                |      OK             |     OK         |  Not stable     |
+| PS4 pro 720p low fps     | Not optimal       |      OK             |     OK         |  disconnecting  |
+| PS4 fat 720p high fps    | Not optimal       |      OK             |     OK         |  disconnecting  |
+| PS4 pro 1080p high fps   | Not working       |      OK             |     OK         |  disconnecting* |
+| PS5 1080p high fps       | Not working*      |      OK             |     OK         |     OK*         |
+| PS5 and PS4 pro          | Not working*      |      Not working*   |     OK*        |  Not possible*  |
+| Steam remote play        | Not working       |      Not optimal    |     OK         |  -  |
 
 \**Test not performed, theorical result within our limited testing and comprehension*
 
