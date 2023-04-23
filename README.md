@@ -128,14 +128,14 @@ We will be supposing here that your public IP is not changing very often (in cas
 # Quick and dirty solution
 
 ## Install a VPN server
-This one is fast and might give you a taste of the improvement you can experience using the VPN but it doesn't completely support all the controller's keys on Windows, Linux users can enjoy full compatibility following this solution.
+This one is fast and might give you a taste of the improvement you can experience using the VPN but it doesn't completely support all the controller's keys on Windows, Linux users can enjoy full compatibility following this solution. We suggest 3 possible solutions:
 
-[Here is our detailed guide to install an OpenVPN server](quick_and_dirty.md) and how to [install a wireguard VPN server](multitreaded_vpn.md)  They are straightforward and are both made using the piVPN script. The same behavior can be achieved [using Tailscale](tailscale_install.md) but requires also some level of configuration.
+You can follow our [detailed guide to install an OpenVPN server](quick_and_dirty.md) or [our guide to install a wireguard VPN server](multitreaded_vpn.md). They are straightforward and are both made using the piVPN script. The same behavior can be achieved [using Tailscale](tailscale_install.md) but requires also some level of configuration. 
 
-Using [Tailscale](https://tailscale.com/), while simplifing all the process by allowing a connection without opening ports on your router, requires more computational power on the raspberry pi, making this solution on pi zero's not optimal. We sugest using a pi 3, 4 or a pi zero 2 W.
+In a nutshell: Wireguard is the most performant, Tailsale is the easiest to configure, OpenVPN is the most flexible.
 
-
-We will advise it just for testing the solution before implementing the second one because it lacks some of the features of the remote play. But if you really just care about having your VPN up and running with PS remote play we suggest you to switch directly to the longer solution. However this way this connection works allowed us to understand how we could make our VPN work. This is why we left its conclusion here.
+ 
+We advise this quick and dirty solution just for testing the solution before implementing the second one since it lacks some of the features of the remote play. But if you really just care about having your VPN up and running with PS remote play app we suggest you to switch directly to the longer solution. However this way this connection works allowed us to understand how we could make our VPN work. This is why we left its conclusion here.
 
 ## Connect to the PlayStation (try at least..)
 Using the VPN you can connect remotly to your home network, now you can try to fire the PS remote play application but...

@@ -40,3 +40,6 @@ Additionnal note on the step 2 of the guide: we wish to access the Playstation n
 **Linux users, do not forget to accept all subnet routes once the raspberry pi is configured.** This step is automatic on other OSs.
 * `sudo tailscale up --accept-routes`
 
+
+## Conclusion
+Tailscale contrary to OpenVPN and Wiregard resorts to dedicated server to route your traffic. This simplifies the installation since it allows you not to configure your router however this adds an intermediate server which we wanted to avoid in the first place (removing the dependance of sony's servers was one of our main motivations). But this solution is unarguably the simplest one we experimented .
