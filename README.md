@@ -132,10 +132,10 @@ This one is fast and might give you a taste of the improvement you can experienc
 
 [Here is our detailed guide to install an OpenVPN server](quick_and_dirty.md) and how to [install a wireguard VPN server](multitreaded_vpn.md)  They are straightforward and are both made using the piVPN script. The same behavior can be achieved [using Tailscale](tailscale_install.md) but requires also some level of configuration.
 
-Using [Tailscale](https://tailscale.com/), while simplifing the all process by allowing a connection without opening ports on your router, requires more computationnal power on the raspberry pi, rendering this solution on pi zero's not optimal. We sugest using a pi 3, 4 or a pi zero 2 W.
+Using [Tailscale](https://tailscale.com/), while simplifing all the process by allowing a connection without opening ports on your router, requires more computational power on the raspberry pi, making this solution on pi zero's not optimal. We sugest using a pi 3, 4 or a pi zero 2 W.
 
 
-I will advise it just for testing the solution before implementing the second one because it lacks some of the features of the remote play. But if you really just care about having your VPN up and running with PS remote play I suggest you to switch directly to the longer solution. However this way this connection works allowed us to understand how we could make our VPN work. This is why we left its conclusion here.
+We will advise it just for testing the solution before implementing the second one because it lacks some of the features of the remote play. But if you really just care about having your VPN up and running with PS remote play we suggest you to switch directly to the longer solution. However this way this connection works allowed us to understand how we could make our VPN work. This is why we left its conclusion here.
 
 ## Connect to the PlayStation (try at least..)
 Using the VPN you can connect remotly to your home network, now you can try to fire the PS remote play application but...

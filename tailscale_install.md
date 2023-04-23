@@ -5,6 +5,8 @@ Similarly to Wireguard, the official application cannot be used through Tailscal
 
 This guide followed the official website guides : [set up Tailscale](https://tailscale.com/download/linux) and [configure as subnet router](https://tailscale.com/kb/1019/subnets/)
 
+
+
 ## Possible conflict in IP adresses
 A problem will arise if IP adresses from your local network overlap your remote network. Exemple : 
 * Router_IP: `192.168.1.1`
@@ -20,13 +22,21 @@ The installation is straight forward. Tailscale provides an easy way to install 
 * Run `sudo apt-get update && sudo apt-get upgrade`
 * Reboot using `sudo reboot`
 * Install Tailscale `curl -fsSL https://tailscale.com/install.sh | sh`
+* Reboot once more `sudo reboot` (if you do not the next command does not work, the installation guide on tailscale website does not suggest it although mandatory)
+* Connect your freshly installed Tailscale node to your account with `sudo tailscale up`
+Tailscale is installed but you need to connect it to your account
 * [Install Tailscale on the remote computer](https://tailscale.com/download) (MacOs, iOs, Windows, Linux and even Android)
 
 At the end of the installation process, you will be linked to a login page for both devices. We recommend using github or a freshly made gmail adress to keep everything separated but it is up to your judgment. **Your login method need to be the same across all connected devices : raspberry pi and computer using remote play**
 
 ## Configure the raspberry pi as subnet router
-The [official guide](https://tailscale.com/kb/1019/subnets/) is straightforward and we recommand using it. Note that you wish to access the Playstation network subnet therefore the command to enter is `sudo tailscale up --advertise-routes=192.168.1.0/24` if your router_IP is `192.168.1.1`
 
-**Linux users, do not forget to accept all subnet routes onces the raspberry pi is configured.** This step is automatic on other OS.
+The [official guide](https://tailscale.com/kb/1019/subnets/) is straightforward and we recommend using it. 
+
+Additionnal note on the step 2 of the guide: we wish to access the Playstation network subnet therefore the command to enter is `sudo tailscale up --advertise-routes=192.168.1.0/24` if your router_IP is `192.168.1.1` or you could jsut broadcast the IP of the playstation for security reasons with `sudo tailscale up --advertise-routes=PLAYSTATION_IP/32`.
+
+
+## On the client side
+**Linux users, do not forget to accept all subnet routes once the raspberry pi is configured.** This step is automatic on other OSs.
 * `sudo tailscale up --accept-routes`
 
