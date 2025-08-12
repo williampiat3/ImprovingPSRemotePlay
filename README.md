@@ -195,7 +195,7 @@ A solution could be to connect your PlayStation to the VPN but that is not feasi
 So the other possibility is to have the VPN register you to the LAN and not create a subnetwork and this is called a Bridge VPN! However piVPN is not (for now) able to configure your raspberry to work in that mode so we will have to configure everything manually... Yes, this is the trickier and more complex operation but it is worth it!
 
 # Longer and more complex solution
-So as described in the conclusion of the previous section the solution is to build a bridge VPN that will assign the remote computer to the LAN itself, not a subnetwork. The VPN is a little bit more complicated to configure but we will guide you through it.
+So as described in the conclusion of the previous section the solution is to build a bridge VPN that will assign the remote computer to the LAN itself, not a subnetwork. The VPN is a little bit more complicated to configure but we will guide you through it. 
 
 ## Install a layer 2 VPN server and set up the client
 
@@ -257,3 +257,4 @@ At the time of the writing, we didn't test our solution on a PS5 but, as it invo
 This VPN can also be used for other purposes: for building a LAN for playing with friends on PC, giving yourself access to your local network if you have a machine at home. I personnaly use it when working on projects with my friends so that we can code on the same machine.
 
 You can also stream more efficiently Steam to a remote computer: if you are using steam remote play over the internet the computer that is streaming has quite an heavy load ass it has to decode the streaming flux coming from steam server: even if you are using the VPN the computer running the game will be sending the video flux to steam servers and that will be redirected to the streaming computer, by putting steam in offline mode on the computer running the game you will force the video flux to pass through the VPN directly and decrease the decoding load on the computer streaming the game: good to know if you are streaming from a potatoe. 
+
